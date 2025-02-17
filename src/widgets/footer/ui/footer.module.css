@@ -6,8 +6,6 @@
 
 .footer__inner {
     height: 100%;
-    display: flex;
-    gap: 16px;
     max-width: 1440px;
     margin: 0 auto;
     padding: 64px;

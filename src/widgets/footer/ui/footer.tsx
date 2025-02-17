@@ -2,7 +2,7 @@ import React from "react";
 import Link from "next/link";
 import {Flex, Text, Link as RadixLink} from "@radix-ui/themes";
 
-import {LogoLink} from "@/widgets/logo-link/ui/logo-link";
+import {LogoLink} from "@/widgets/logo-link";
 import {SocialNetworks} from "@/widgets/social-networks";
 
 import PhoneIcon from "@/shared/assets/icons/phone-icon";
@@ -13,7 +13,7 @@ import styles from "./footer.module.css";
 export const Footer = () => {
   return (
     <footer className={styles.footer}>
-      <div className={styles.footer__inner}>
+      <Flex gap='16px' className={styles.footer__inner}>
         <Flex width='50%' direction='column' justify='between'>
           <LogoLink/>
           <SocialNetworks/>
@@ -66,7 +66,7 @@ export const Footer = () => {
             </Flex>
           </Flex>
         </Flex>
-      </div>
+      </Flex>
     </footer>
   )
 }

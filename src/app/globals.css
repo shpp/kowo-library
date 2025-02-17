@@ -38,6 +38,7 @@ a {
 }
 
 .radix-themes {
+  --font-weight-medium: 600;
   --font-weight-bold: 600;
   --heading-font-family: var(--font-podkova);
   --default-font-family: var(--font-inter), Arial, Helvetica, sans-serif;
