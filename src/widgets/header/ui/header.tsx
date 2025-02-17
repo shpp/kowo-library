@@ -1,5 +1,5 @@
 'use client'
-import {Box, Button, Flex} from "@radix-ui/themes";
+import {Button, Flex} from "@radix-ui/themes";
 
 import {LogoLink} from "@/widgets/logo-link";
 import {Navigation} from "@/widgets/navigation";
