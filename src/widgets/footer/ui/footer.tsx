@@ -22,15 +22,21 @@ export const Footer = () => {
         <Flex width='50%' gap='16px'>
           <Flex direction='column' gap='14px'>
             <Text weight='bold'>Навігація</Text>
-            <Link href='#'>
-              <Text>Про Бібліотеку</Text>
-            </Link>
-            <Link href='#'>
-              <Text>Як це працює</Text>
-            </Link>
-            <Link href='#'>
-              <Text>Підтримка проєкту</Text>
-            </Link>
+            <RadixLink asChild underline='hover' color='gray'>
+              <Link href='/about'>
+                Про Бібліотеку
+              </Link>
+            </RadixLink>
+            <RadixLink asChild underline='hover' color='gray'>
+              <Link href='/how-it-works'>
+                Як це працює
+              </Link>
+            </RadixLink>
+            <RadixLink asChild underline='hover' color='gray'>
+              <Link href='/support'>
+                Підтримка проєкту
+              </Link>
+            </RadixLink>
           </Flex>
           
           <Flex direction='column' align='center' flexGrow='1'>
