@@ -1,5 +1,8 @@
+'use client';
+
 import React from 'react'
 import { Theme } from "@radix-ui/themes";
+import {ChakraProvider, defaultSystem} from "@chakra-ui/react";
 
 export const Providers = ({
   children,
@@ -7,8 +10,10 @@ export const Providers = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <Theme accentColor='lime' grayColor='gray'>
-      {children}
-    </Theme>
+      <ChakraProvider value={defaultSystem}>
+          <Theme accentColor='lime' grayColor='gray'>
+            {children}
+          </Theme>
+      </ChakraProvider>
   )
 }
