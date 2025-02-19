@@ -15,7 +15,7 @@ export const Header = () => {
     <header className={styles.header}>
       <Flex height='100%' maxWidth='1440px' margin='0 auto' padding='11px 32px;' align='center' gap='12px'>
         <LogoLink/>
-        <Button colorPalette='green' rounded="lg">
+        <Button colorPalette='kowo' rounded="lg" color='#FFF' fontWeight='600'>
           <CatalogIcon/>
           Каталог
         </Button>
