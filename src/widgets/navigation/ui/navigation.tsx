@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import {Link as RadixLink} from "@radix-ui/themes";
+import { Link as ChakraLink } from "@chakra-ui/react"
 
 import styles from './navigation.module.css';
 
@@ -15,11 +15,11 @@ export const Navigation = () => (
     <ul className={styles.ul}>
       {NAVIGATION_LINKS.map(({href, title}) => (
         <li key={title}>
-          <RadixLink asChild underline='hover' color='gray' className={styles.link}>
-            <Link href={href}>
+          <ChakraLink asChild>
+            <Link href={href} className={styles.link}>
               {title}
             </Link>
-          </RadixLink>
+          </ChakraLink>
         </li>
       ))}
     </ul>

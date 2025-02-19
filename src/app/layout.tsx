@@ -2,8 +2,6 @@ import React from "react";
 import type {Metadata} from "next";
 import { Inter, Podkova } from "next/font/google";
 
-import "@radix-ui/themes/styles.css";
-
 import "./globals.css";
 
 import {Providers} from "@/app/providers";
