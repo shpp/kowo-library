@@ -1,4 +1,4 @@
-import {Box, Flex, Stack, Image, Heading, Text, Center, Container} from "@chakra-ui/react";
+import {Flex, Stack, Image, Heading, Text, Container} from "@chakra-ui/react";
 import Button from "@/shared/components/button";
 
 export default function Component() {
