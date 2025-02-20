@@ -27,6 +27,7 @@ export const Header = () => {
             p='4px 8px'
             rounded="lg"
             height='100%'
+            color='#030712'
             variant='ghost'
             flexDirection="column"
           >
@@ -38,6 +39,7 @@ export const Header = () => {
             p='4px 8px'
             rounded="lg"
             height='100%'
+            color='#030712'
             variant='ghost'
             flexDirection="column"
           >
