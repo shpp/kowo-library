@@ -1,39 +1,50 @@
 'use client'
-import {Button, Flex} from "@radix-ui/themes";
+import {Button, Flex} from "@chakra-ui/react";
 
 import {LogoLink} from "@/widgets/logo-link";
 import {Navigation} from "@/widgets/navigation";
-
-import CatalogIcon from "@/shared/assets/icons/catalog-icon";
-
-import styles from "./header.module.css";
 import {SearchBar} from "@/widgets/search-bar";
+import CatalogIcon from "@/shared/assets/icons/catalog-icon";
 import CabinetIcon from "@/shared/assets/icons/cabinet-icon";
 import FavoriteIcon from "@/shared/assets/icons/favorite-icon";
+
+import styles from "./header.module.css";
 
 export const Header = () => {
   return (
     <header className={styles.header}>
-      <Flex height='100%' align='center' gap='24px' className={styles.header__inner}>
+      <Flex height='100%' maxWidth='1440px' margin='0 auto' padding='11px 32px;' align='center' gap='12px'>
         <LogoLink/>
-        <Button size='3' radius='large'>
+        <Button colorPalette='kowo' rounded="lg" color='#FFF' fontWeight='600'>
           <CatalogIcon/>
           Каталог
         </Button>
         <SearchBar/>
         <Navigation/>
-        <Flex gap='24px'>
-          <Button variant='ghost' color='gray'>
-            <Flex height='100%' direction='column' align='center'>
-              <CabinetIcon/>
-              Кабінет
-            </Flex>
+        <Flex>
+          <Button
+            gap='0'
+            p='4px 8px'
+            rounded="lg"
+            height='100%'
+            color='#030712'
+            variant='ghost'
+            flexDirection="column"
+          >
+            <CabinetIcon/>
+            Кабінет
           </Button>
-          <Button variant='ghost' color='gray'>
-            <Flex height='100%' direction='column' align='center'>
-              <FavoriteIcon/>
-              Обране
-            </Flex>
+          <Button
+            gap='0'
+            p='4px 8px'
+            rounded="lg"
+            height='100%'
+            color='#030712'
+            variant='ghost'
+            flexDirection="column"
+          >
+            <FavoriteIcon/>
+            Обране
           </Button>
         </Flex>
       </Flex>

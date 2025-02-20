@@ -1,0 +1,1 @@
+export { KowoHeading } from './ui';

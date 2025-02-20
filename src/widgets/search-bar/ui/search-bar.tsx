@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {Box, IconButton, TextField} from "@radix-ui/themes";
+import {Group, Input, InputElement} from "@chakra-ui/react";
 
 import SearchIcon from "@/shared/assets/icons/search-icon";
 
@@ -7,19 +7,16 @@ export const SearchBar = () => {
   const [query, setQuery] = useState("");
   
   return (
-    <Box width='100%' maxWidth="410px">
-      <TextField.Root
-        size="3"
+    <Group width='100%' maxWidth="410px">
+      <InputElement pointerEvents="none">
+        <SearchIcon/>
+      </InputElement>
+      <Input
         value={query}
+        ps={`calc(var(--input-height) - 6px)`}
         placeholder="Яку книгу або автора ви шукаєте?"
         onChange={(e) => setQuery(e.target.value)}
-      >
-        <TextField.Slot side='right'>
-          <IconButton size="1" variant="ghost">
-            <SearchIcon/>
-          </IconButton>
-        </TextField.Slot>
-      </TextField.Root>
-    </Box>
+      />
+    </Group>
   )
 };

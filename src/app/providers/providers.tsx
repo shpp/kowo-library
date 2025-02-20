@@ -1,5 +1,9 @@
+'use client';
+
 import React from 'react'
-import { Theme } from "@radix-ui/themes";
+import {ChakraProvider} from "@chakra-ui/react";
+
+import {kowoTheme} from "@/shared/config/theme";
 
 export const Providers = ({
   children,
@@ -7,8 +11,8 @@ export const Providers = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <Theme accentColor='lime' grayColor='gray'>
+    <ChakraProvider value={kowoTheme}>
       {children}
-    </Theme>
+    </ChakraProvider>
   )
 }
