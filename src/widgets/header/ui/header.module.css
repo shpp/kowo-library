@@ -3,10 +3,3 @@
     width: 100%;
     border-bottom: 1px solid #D4D5D9;
 }
-
-.header__inner {
-    height: 100%;
-    margin: 0 auto;
-    padding: 11px 32px;
-    max-width: 1440px;
-}
