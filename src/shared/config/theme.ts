@@ -10,6 +10,7 @@ export const kowoTheme = createSystem(defaultConfig, {
     tokens: {
       fonts: {
         heading: {value: "var(--font-podkova)"},
+        text: {value: "var(--font-podkova)"},
         body: {value: "var(--font-inter)"},
       },
       colors: {
