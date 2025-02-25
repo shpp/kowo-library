@@ -1,10 +1,12 @@
-'use client'
-import { Flex, Heading, Text } from '@chakra-ui/react';
-// import { Slide } from '@chakra-ui/transition';
-import React, { FC } from 'react';
+'use client';
+import { Box, Flex, Heading, Text } from '@chakra-ui/react';
+import React, { FC, useState } from 'react';
 import Image from 'next/image';
 import CheckIcon from '@/shared/assets/icons/check-icon';
 import RefreshIcon from '@/shared/assets/icons/refrech-icon';
+
+import styles from './kowo-book.module.css';
+import HeartIcon from '@/shared/assets/icons/heart-icon';
 
 interface IKowoBookProps {
     image: string;
@@ -17,8 +19,9 @@ interface IKowoBookProps {
     };
 }
 
-export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, isLiked, availible }) => {
-    // const { isOpen, onOpen, onClose } = useDisclosure();
+export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, availible }) => {
+    const [isLikeShown, setIsLikeShown] = useState<boolean>(false);
+    const [isLiked, setIsLiked] = useState<boolean>(false);
 
     return (
         <Flex
@@ -33,8 +36,8 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, isLiked, ava
                 borderColor: 'transparent',
                 boxShadow: '0px 4px 10px 0px rgba(0, 0, 0, 0.1)',
             }}
-            // onMouseOver={onOpen}
-            // onMouseLeave={onClose}
+            onMouseEnter={() => setIsLikeShown(true)}
+            onMouseLeave={() => setIsLikeShown(false)}
         >
             <Flex justifyContent={'center'} bgColor={'rgba(0, 0, 0, 0.1)'} rounded={'8px 8px 0px 0px'} minH={'230px'}>
                 <Image
@@ -79,10 +82,9 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, isLiked, ava
                     </Flex>
                 )}
             </Flex>
-
-            {/* <Slide direction='bottom' in={isOpen} style={{ zIndex: 10 }}>
-                <Flex alignItems={'center'} justifyContent={'center'} width={'48px'} height={'36px'} bgColor={'white'}></Flex>
-            </Slide> */}
+            <Box onClick={() => setIsLiked(!isLiked)} className={`${styles.likeBtn} ${isLikeShown ? styles.shown : styles.hidden} ${isLiked ? styles.liked : styles.default}`}>
+                <HeartIcon/>
+            </Box>
         </Flex>
     );
 };
