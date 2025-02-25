@@ -10,7 +10,6 @@
   },
   "dependencies": {
     "@chakra-ui/react": "^3.8.1",
-    "@chakra-ui/transition": "^2.1.0",
     "@emotion/react": "^11.14.0",
     "embla-carousel-autoplay": "^8.5.2",
     "embla-carousel-react": "^8.5.2",
