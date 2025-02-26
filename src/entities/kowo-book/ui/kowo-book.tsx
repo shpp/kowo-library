@@ -19,9 +19,16 @@ interface IKowoBookProps {
     };
 }
 
-export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, availible }) => {
+export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, availible, isLiked }) => {
     const [isLikeShown, setIsLikeShown] = useState<boolean>(false);
-    const [isLiked, setIsLiked] = useState<boolean>(false);
+    const [isLikedLocal, setIsLikedLocal] = useState<boolean>(isLiked);
+
+    const LikeBtnHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+        e.preventDefault();
+        e.stopPropagation();
+        setIsLikedLocal(!isLikedLocal)
+        // API request functionality
+    }
 
     return (
         <Flex
@@ -82,8 +89,11 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, availible })
                     </Flex>
                 )}
             </Flex>
-            <Box onClick={() => setIsLiked(!isLiked)} className={`${styles.likeBtn} ${isLikeShown ? styles.shown : styles.hidden} ${isLiked ? styles.liked : styles.default}`}>
-                <HeartIcon/>
+            <Box
+                onClick={(e) => LikeBtnHandler(e)}
+                className={`${styles.likeBtn} ${isLikeShown ? styles.shown : styles.hidden} ${isLikedLocal ? styles.liked : styles.default}`}
+            >
+                <HeartIcon />
             </Box>
         </Flex>
     );
