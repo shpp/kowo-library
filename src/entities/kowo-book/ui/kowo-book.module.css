@@ -4,26 +4,17 @@
     justify-content: center;
     border-radius: 8px;
     padding: 6px 12px;
-    background-color: white;
 
     position: absolute;
     right: 5px;
     top: 5px;
     z-index: 10;
 
-    transition: opacity 0.2s, box-shadow 0.2s;
+    transition: background-color 0.2s, box-shadow 0.2s;
 }
 
 .likeBtn:hover {
-    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1)
-}
-
-.shown {
-    opacity: 1;
-}
-
-.hidden {
-    opacity: 0;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
 }
 
 .likeBtn svg path {
@@ -38,4 +29,21 @@
 .likeBtn.liked svg path {
     fill: #fc4141;
     stroke: #fc4141;
+}
+
+.shown {
+    background-color: white;
+}
+
+.hidden {
+   background-color: transparent;
+}
+
+.hidden.liked svg path {
+    stroke: white;
+}
+
+.hidden.default svg path {
+    fill: transparent;
+    stroke: transparent;
 }
