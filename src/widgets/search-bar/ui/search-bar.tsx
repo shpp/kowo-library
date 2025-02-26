@@ -7,7 +7,7 @@ export const SearchBar = () => {
   const [query, setQuery] = useState("");
   
   return (
-    <Group width='100%' maxWidth="410px">
+    <Group width='100%'>
       <InputElement pointerEvents="none">
         <SearchIcon/>
       </InputElement>

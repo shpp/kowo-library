@@ -7,7 +7,7 @@ import styles from './navigation.module.css';
 const NAVIGATION_LINKS = [
   {href: "/about", title: "Про Бібліотеку"},
   {href: "/how-it-works", title: "Як це працює"},
-  {href: "/support", title: "Підтримка проєкту"},
+  // {href: "/support", title: "Підтримка проєкту"},
 ];
 
 export const Navigation = () => (
