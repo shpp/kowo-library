@@ -1,10 +1,11 @@
 'use client'
+import React from "react";
 import {Button, Flex} from "@chakra-ui/react";
 
+import {MegaMenu} from "@/features/mega-menu";
 import {LogoLink} from "@/widgets/logo-link";
 import {Navigation} from "@/widgets/navigation";
 import {SearchBar} from "@/widgets/search-bar";
-import CatalogIcon from "@/shared/assets/icons/catalog-icon";
 import CabinetIcon from "@/shared/assets/icons/cabinet-icon";
 import FavoriteIcon from "@/shared/assets/icons/favorite-icon";
 
@@ -15,10 +16,7 @@ export const Header = () => {
     <header className={styles.header}>
       <Flex height='100%' maxWidth='1440px' margin='0 auto' padding='11px 32px;' align='center' gap='12px'>
         <LogoLink/>
-        <Button colorPalette='kowo' rounded="lg" color='#FFF' fontWeight='600'>
-          <CatalogIcon/>
-          Каталог
-        </Button>
+        <MegaMenu/>
         <SearchBar/>
         <Navigation/>
         <Flex>
