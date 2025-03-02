@@ -80,6 +80,7 @@ export const MegaMenu = () => (
         bg="#FFFFFF"
         zIndex='100'
         insetInline='0'
+        borderBottom='1px solid #D4D5D9'
       >
         <Box gap='16px' columns='240px' maxWidth='1224px' marginX='auto' padding='40px 0'>
           <Stack gap='24px' marginBottom='24px' css={{breakInside: 'avoid'}}>
