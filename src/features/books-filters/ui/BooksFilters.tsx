@@ -9,7 +9,7 @@ import { AvailabilityFilter } from "./AvailabilityFilter";
 
 export const BooksFilters = () => {
   return (
-    <Stack width="100%" maxW="264px" gap='16px' padding='16px'>
+    <Stack width="100%" maxW="264px" gap='16px'>
       <FilterTags tags={['В наявності', 'Агата Крісті', 'Ілларіон Павлюк']}/>
       <Separator/>
       <AvailabilityFilter/>
