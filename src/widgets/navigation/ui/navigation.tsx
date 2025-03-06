@@ -1,6 +1,6 @@
 import React from "react";
 import Link from "next/link";
-import { Link as ChakraLink } from "@chakra-ui/react"
+import { Link as ChakraLink, List } from "@chakra-ui/react"
 
 import styles from './navigation.module.css';
 
@@ -10,18 +10,18 @@ const NAVIGATION_LINKS = [
   // {href: "/support", title: "Підтримка проєкту"},
 ];
 
-export const Navigation = () => (
+export const Navigation = ({direction = 'row'}: {direction?: 'row' | 'column'}) => (
   <nav>
-    <ul className={styles.ul}>
+    <List.Root className={styles.ul} flexDirection={direction}>
       {NAVIGATION_LINKS.map(({href, title}) => (
-        <li key={title}>
+        <List.Item key={title} flexShrink='0'>
           <ChakraLink asChild>
             <Link href={href} className={styles.link}>
               {title}
             </Link>
           </ChakraLink>
-        </li>
+        </List.Item>
       ))}
-    </ul>
+    </List.Root>
   </nav>
 );
