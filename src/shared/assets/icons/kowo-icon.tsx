@@ -1,6 +1,8 @@
-export default function KowoIcon() {
+import React, {SVGProps} from "react";
+
+export default function KowoIcon({width = 267, height = 34}: SVGProps<SVGSVGElement>): React.JSX.Element {
   return (
-    <svg width="267" height="34" viewBox="0 0 267 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <svg width={width} height={height} viewBox="0 0 267 34" fill="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M18.1562 18.7184V2H34.941L18.1562 18.7184Z" fill="#99C963" fillOpacity="0.7"/>
       <path d="M18.1562 18.7184V34H35.0063L18.1562 18.7184Z" fill="#99C963" fillOpacity="0.7"/>
       <rect y="2" width="18.1562" height="32" fill="#A1CD70"/>

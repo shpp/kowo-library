@@ -1,12 +1,5 @@
 .footer {
     background-color: var(--background-footer, #F7F8F8);
-    height: 328px;
+    min-height: 328px;
     width: 100%;
-}
-
-.footer__inner {
-    height: 100%;
-    max-width: 1440px;
-    margin: 0 auto;
-    padding: 64px;
 }
