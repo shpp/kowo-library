@@ -2,10 +2,8 @@
 import { AspectRatio, Box, Flex, Heading, Text } from '@chakra-ui/react';
 import React, { FC, useState } from 'react';
 import Image from 'next/image';
-import CheckIcon from '@/shared/assets/icons/check-icon';
-import RefreshIcon from '@/shared/assets/icons/refresh-icon';
 import HeartIcon from '@/shared/assets/icons/heart-icon';
-import GrayBookIcon from '@/shared/assets/icons/gray-book-icon';
+import { BookStatus, IBookStatusProps } from '@/shared/ui/book-status';
 
 import styles from './kowo-book.module.css';
 
@@ -14,10 +12,7 @@ interface IKowoBookProps {
   author: string;
   name: string;
   isLiked: boolean;
-  availible: {
-    isAvailible: boolean;
-    whenAvailible: string; // date or 'now'
-  };
+  availible: IBookStatusProps;
   width?: string;
 }
 
@@ -77,30 +72,7 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, availible, i
           <Heading color={'rgba(3, 7, 18, 1)'} fontWeight={600} fontSize={'16px'} lineHeight={'24px'} fontFamily={'inter'} lineClamp={2}>
             {name}
           </Heading>
-          {!availible.isAvailible && (
-            <Flex gap={'4px'} alignItems={'center'}>
-              <GrayBookIcon />
-              <Text color={'rgba(140, 143, 154, 1)'} fontWeight={400} lineHeight={'18px'} fontSize={'12px'}>
-                Зараз на руках
-              </Text>
-            </Flex>
-          )}
-          {availible.isAvailible && availible.whenAvailible === 'now' && (
-            <Flex gap={'4px'} alignItems={'center'}>
-              <CheckIcon />
-              <Text color={'rgba(31, 152, 84, 1)'} fontWeight={400} lineHeight={'18px'} fontSize={'12px'}>
-                В наявності
-              </Text>
-            </Flex>
-          )}
-          {availible.isAvailible && availible.whenAvailible !== 'now' && (
-            <Flex gap={'4px'} alignItems={'center'}>
-              <RefreshIcon />
-              <Text color={'rgba(214, 114, 0, 1)'} fontWeight={400} lineHeight={'18px'} fontSize={'12px'}>
-                Доступна з {availible.whenAvailible}
-              </Text>
-            </Flex>
-          )}
+          <BookStatus {...availible} />
         </Flex>
         <Box onClick={(e) => LikeBtnHandler(e)} className={`${styles.likeBtn} ${isLikeShown ? styles.shown : styles.hidden} ${isLikedLocal ? styles.liked : styles.default}`}>
           <HeartIcon />
