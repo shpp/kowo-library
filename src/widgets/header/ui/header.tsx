@@ -12,11 +12,6 @@ import FavoriteIcon from "@/shared/assets/icons/favorite-icon";
 
 import styles from "./header.module.css";
 
-const LINKS = [
-  { href: "/about", title: "Про Бібліотеку" },
-  { href: "/how-it-works", title: "Як це працює" },
-];
-
 export const Header = () => {
   return (
     <header className={styles.header}>
