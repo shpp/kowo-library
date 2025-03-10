@@ -1,45 +1,38 @@
 import React, {useState} from "react";
 import Link from "next/link";
 import {
-  Box,
   Button,
-  Collapsible,
   Separator,
   Stack,
   Text,
   Link as ChakraLink,
   VStack,
-  Flex,
   HStack
 } from "@chakra-ui/react";
-import {
-  DrawerActionTrigger,
-  DrawerBackdrop,
-  DrawerBody,
-  DrawerCloseTrigger,
-  DrawerContent,
-  DrawerFooter,
-  DrawerHeader,
-  DrawerRoot,
-  DrawerTitle,
-  DrawerTrigger,
-} from "@/components/ui/drawer"
 
 import CatalogIcon from "@/shared/assets/icons/catalog-icon";
 import {Illustration} from "@/shared/ui/illustration";
 import {ArrowIcon} from "./ArrowIcon";
 
 import books from "@/shared/assets/illustrations/books.svg";
+import {
+  DrawerBackdrop,
+  DrawerBody, DrawerCloseTrigger,
+  DrawerContent,
+  DrawerFooter,
+  DrawerHeader,
+  DrawerRoot,
+  DrawerTrigger
+} from "@/shared/ui/drawer";
 import {LogoLink} from "@/widgets/logo-link";
 import {Navigation} from "@/widgets/navigation";
-import {FooterNavigation} from "@/widgets/footer/ui/FooterNavigation";
 import CabinetIcon from "@/shared/assets/icons/cabinet-icon";
 import MenuIcon from "@/shared/assets/icons/menu-icon";
-import {MegaMenu} from "@/features/mega-menu";
 import {SearchBar} from "@/widgets/search-bar";
 import FavoriteIcon from "@/shared/assets/icons/favorite-icon";
 import ArrowLeftIcon from "@/shared/assets/icons/arrow-left-icon";
 import MenuGreyIcon from "@/shared/assets/icons/menu-grey-icon";
+
 
 
 const CATEGORIES = [
