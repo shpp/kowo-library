@@ -1,5 +1,5 @@
 import React from "react";
-import {Container, Flex, Heading, Stack, Text} from "@chakra-ui/react";
+import {Box, Flex, Heading, Stack, Text} from "@chakra-ui/react";
 
 import {KowoButton} from "@/shared/ui/button";
 import {Illustration} from "@/shared/ui/illustration";
@@ -9,9 +9,9 @@ import support from "@/shared/assets/illustrations/support.png";
 import kowoBgGreen from "@/shared/assets/backgrounds/kowo-bg-green.png";
 
 export const KeyConcepts = () => {
-  return <Flex w='100%' h='600px'>
-    <Flex justify='center' align='center' w='50%' bgColor='#172110'>
-      <Container maxW='550px'>
+  return <Flex w='100%' h={{ xl: '600px' }} direction={{ base: 'column', xl: 'row' }}>
+    <Flex justify={{ base: 'center', xl: 'end' }} align='center' w={{ xl: '50%' }} py={{ base: '50px', md: '70px', xl: '0px' }} pr={{ xl: '90px' }} bgColor='#172110'>
+      <Box maxW='500px'>
         <Stack gap='50px' align='center'>
           <Illustration src={books.src} alt={'Books pile'} width={books.width} height={books.height}/>
           <Stack gap='24px' align='center'>
@@ -22,10 +22,11 @@ export const KeyConcepts = () => {
             <KowoButton>Задонатити книгу</KowoButton>
           </Stack>
         </Stack>
-      </Container>
+      </Box>
+
     </Flex>
-    <Flex justify='space-between' pt='100px' w='50%' bgImage={`url(${kowoBgGreen.src})`} bgPos='top' bgSize='cover'>
-      <Container maxW='550px'>
+    <Flex justify={{base: 'center', xl: 'start' }} pl={{ xl: '90px' }} pt={{ base: '50px', md: '90px', xl: '100px' }} w={{xl: '50%'}} bgImage={`url(${kowoBgGreen.src})`} bgPos='top' bgSize='cover'>
+      <Box maxW='500px'>
         <Stack h='100%' gap='50px' align='center'>
           <Stack gap='24px' align='center'>
             <Stack gap='8px'>
@@ -36,7 +37,7 @@ export const KeyConcepts = () => {
           </Stack>
           <Illustration src={support.src} alt={'People support'} width={support.width} height={support.height}/>
         </Stack>
-      </Container>
+      </Box>
     </Flex>
   </Flex>
 }
