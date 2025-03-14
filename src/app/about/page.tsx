@@ -7,7 +7,7 @@ export default function About() {
     <Center paddingTop='80px' paddingBottom='120px'>
       <Container maxW={{md: '2xl', lg: '3xl', xl: '5xl'}}>
         <Flex gap='32px' direction='column'>
-          <KowoHeading size='5xl'>Вітаємо у бібліотеці<br/> креативного IT-простору<br/>KOWO</KowoHeading>
+          <KowoHeading size='5xl'>Вітаємо у бібліотеці креативного IT-простору KOWO</KowoHeading>
           <Flex gap='20px' direction='column'>
             <Text fontSize='20px' lineHeight='30px'>
               KOWO - це команда волонтерів, що об’єдналася для розвитку ІТ і
