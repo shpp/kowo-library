@@ -1,14 +1,14 @@
 'use client';
 import { AspectRatio, Box, Flex, Heading, Text } from '@chakra-ui/react';
 import React, { FC, useState } from 'react';
-import Image from 'next/image';
+import Image, { StaticImageData } from 'next/image';
 import HeartIcon from '@/shared/assets/icons/heart-icon';
 import { BookStatus, IBookStatusProps } from '@/shared/ui/book-status';
 
 import styles from './kowo-book.module.css';
 
 interface IKowoBookProps {
-  image: string;
+  image: string | StaticImageData;
   author: string;
   name: string;
   isLiked: boolean;
@@ -46,8 +46,8 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, availible, i
           <Image
             loading="lazy"
             src={image}
-            height={1}
-            width={1}
+            height={800}
+            width={800}
             style={{
               height: '100%',
               width: '75%',
