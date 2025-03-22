@@ -5,14 +5,14 @@ import CheckIcon from '@/shared/assets/icons/check-icon';
 import RefreshIcon from '@/shared/assets/icons/refresh-icon';
 
 export interface IBookStatusProps {
-  isAvailible: boolean;
-  whenAvailible: string;
+  isAvailable: boolean;
+  whenAvailable: string;
 }
 
-export const BookStatus: FC<IBookStatusProps> = ({ isAvailible, whenAvailible }) => {
+export const BookStatus: FC<IBookStatusProps> = ({ isAvailable, whenAvailable }) => {
   return (
     <Flex gap={'4px'} alignItems={'center'}>
-      {!isAvailible && (
+      {!isAvailable && (
         <React.Fragment>
           <GrayBookIcon />
           <Text color={'rgba(140, 143, 154, 1)'} fontWeight={400} lineHeight={'18px'} fontSize={'12px'}>
@@ -20,7 +20,7 @@ export const BookStatus: FC<IBookStatusProps> = ({ isAvailible, whenAvailible })
           </Text>
         </React.Fragment>
       )}
-      {isAvailible && whenAvailible === 'now' && (
+      {isAvailable && whenAvailable === 'now' && (
         <React.Fragment>
           <CheckIcon />
           <Text color={'rgba(31, 152, 84, 1)'} fontWeight={400} lineHeight={'18px'} fontSize={'12px'}>
@@ -28,11 +28,11 @@ export const BookStatus: FC<IBookStatusProps> = ({ isAvailible, whenAvailible })
           </Text>
         </React.Fragment>
       )}
-      {isAvailible && whenAvailible !== 'now' && (
+      {isAvailable && whenAvailable !== 'now' && (
         <React.Fragment>
           <RefreshIcon />
           <Text color={'rgba(214, 114, 0, 1)'} fontWeight={400} lineHeight={'18px'} fontSize={'12px'}>
-            Доступна з {whenAvailible}
+            Доступна з {whenAvailable}
           </Text>
         </React.Fragment>
       )}
