@@ -12,11 +12,11 @@ interface IKowoBookProps {
   author: string;
   name: string;
   isLiked: boolean;
-  availible: IBookStatusProps;
+  available: IBookStatusProps;
   width?: string;
 }
 
-export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, availible, isLiked, width = '232px' }) => {
+export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, available, isLiked, width = '232px' }) => {
   const [isLikeShown, setIsLikeShown] = useState<boolean>(false);
   const [isLikedLocal, setIsLikedLocal] = useState<boolean>(isLiked);
 
@@ -53,7 +53,7 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, availible, i
               width: '75%',
               objectFit: 'fill',
             }}
-            alt={`Author: ${author} \n Book: ${name} \n When availible: ${availible} \n Is Liked: ${isLiked === true ? 'Yes' : 'No'} `}
+            alt={`Author: ${author} \n Book: ${name} \n When availible: ${available} \n Is Liked: ${isLiked === true ? 'Yes' : 'No'} `}
           />
         </Flex>
         <Flex
@@ -72,7 +72,7 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, availible, i
           <Heading color={'rgba(3, 7, 18, 1)'} fontWeight={600} fontSize={'16px'} lineHeight={'24px'} fontFamily={'inter'} lineClamp={2}>
             {name}
           </Heading>
-          <BookStatus {...availible} />
+          <BookStatus {...available} />
         </Flex>
         <Box onClick={(e) => LikeBtnHandler(e)} className={`${styles.likeBtn} ${isLikeShown ? styles.shown : styles.hidden} ${isLikedLocal ? styles.liked : styles.default}`}>
           <HeartIcon />
