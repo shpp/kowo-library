@@ -1,5 +1,5 @@
 'use client';
-import { AspectRatio, Box, Flex, Heading, Text } from '@chakra-ui/react';
+import { AspectRatio, Box, Center, Heading, Stack, Text } from '@chakra-ui/react';
 import React, { FC, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import HeartIcon from '@/shared/assets/icons/heart-icon';
@@ -8,7 +8,7 @@ import { BookStatus, IBookStatusProps } from '@/shared/ui/book-status';
 import styles from './kowo-book.module.css';
 
 interface IKowoBookProps {
-  image: string | StaticImageData;
+  image: StaticImageData;
   author: string;
   name: string;
   isLiked: boolean;
@@ -29,10 +29,10 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, available, i
 
   return (
     <AspectRatio minW={width} ratio={232 / 362}>
-      <Flex
+      <Stack
         pos={'relative'}
-        flexDir={'column'}
         rounded={'8px'}
+        gap={'none'}
         border={'1px solid rgba(212, 213, 217, 1)'}
         transition={'border-color 0.2s, box-shadow 0.2s'}
         _hover={{
@@ -42,23 +42,24 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, available, i
         onMouseEnter={() => setIsLikeShown(true)}
         onMouseLeave={() => setIsLikeShown(false)}
       >
-        <Flex justifyContent={'center'} bgColor={'rgba(0, 0, 0, 0.1)'} rounded={'8px 8px 0px 0px'} h={'65%'}>
+        <Center bgColor={'rgba(0, 0, 0, 0.1)'} rounded={'8px 8px 0px 0px'} h={'65%'}>
           <Image
             loading="lazy"
-            src={image}
-            height={800}
-            width={800}
+            src={image.src}
+            height={image.height}
+            width={image.width}
             style={{
               height: '100%',
               width: '75%',
               objectFit: 'fill',
             }}
-            alt={`Author: ${author} \n Book: ${name} \n When availible: ${available} \n Is Liked: ${isLiked === true ? 'Yes' : 'No'} `}
+            alt={`Author: ${author} \n Book: ${name} \n When available: ${available} \n Is Liked: ${isLiked === true ? 'Yes' : 'No'} `}
           />
-        </Flex>
-        <Flex
+        </Center>
+        <Stack
           bgColor={'white'}
           rounded={'0px 0px 8px 8px'}
+          gap={'none'}
           flexDir={'column'}
           padding={{ base: '8px', sm: '8px', md: '12px', lg: '12px', xl: '16px' }}
           alignItems={'start'}
@@ -73,11 +74,11 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, available, i
             {name}
           </Heading>
           <BookStatus {...available} />
-        </Flex>
+        </Stack>
         <Box onClick={(e) => LikeBtnHandler(e)} className={`${styles.likeBtn} ${isLikeShown ? styles.shown : styles.hidden} ${isLikedLocal ? styles.liked : styles.default}`}>
           <HeartIcon />
         </Box>
-      </Flex>
+      </Stack>
     </AspectRatio>
   );
 };

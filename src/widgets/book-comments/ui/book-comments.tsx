@@ -1,11 +1,13 @@
 import { BookComment } from '@/entities/book-comment';
 import { CreateComment } from '@/features/create-comment';
+import { useScreenSize } from '@/shared/hooks/useScreenSize/useScreenSize';
 import { ModalWindow } from '@/shared/ui/modal-window';
 import { CustomPagination } from '@/shared/ui/pagination-lib/customPagination';
 import { Button, Flex, Heading, Separator } from '@chakra-ui/react';
 import React from 'react';
 
 export const BookComments = () => {
+  const {isMobile, isTablet, isSmallLaptop} = useScreenSize();
   return (
     <Flex flexDir={'column'}>
       <Heading mb={'8px'} fontFamily={'Inter'} fontSize={'20px'} fontWeight={600} lineHeight={'150%'} color={'rgba(3, 7, 18, 1)'}>
@@ -26,7 +28,7 @@ export const BookComments = () => {
           }
           content={<CreateComment />}
         />
-        <CustomPagination pagesCount={10} pageSize={3} defaultPage={1} />
+        <CustomPagination type={isMobile || isTablet || isSmallLaptop ? 'compact' : 'default'} pagesCount={10} pageSize={3} defaultPage={1} />
       </Flex>
     </Flex>
   );
