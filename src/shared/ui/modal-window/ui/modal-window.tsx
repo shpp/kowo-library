@@ -1,4 +1,4 @@
-import React, { FC, ReactNode, useEffect, useState } from 'react';
+import React, { FC, ReactNode, useState } from 'react';
 import { CloseButton, Dialog, Portal } from '@chakra-ui/react';
 
 interface IModalWindowProps {
@@ -8,21 +8,6 @@ interface IModalWindowProps {
 
 export const ModalWindow: FC<IModalWindowProps> = ({ trigger, content }) => {
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    if (open) {
-      const scrollY = window.scrollY;
-      document.body.style.position = 'fixed';
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = '100%';
-    } else {
-      const scrollY = document.body.style.top;
-      document.body.style.position = '';
-      document.body.style.top = '';
-      document.body.style.width = '';
-      window.scrollTo(0, parseInt(scrollY || '0') * -1);
-    }
-  }, [open]);
 
   return (
     <Dialog.Root lazyMount open={open} onOpenChange={(e) => setOpen(e.open)} placement="center">

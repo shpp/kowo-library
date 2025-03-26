@@ -1,6 +1,6 @@
 import React, { FC } from 'react';
 import { PaginationItems, PaginationNextTrigger, PaginationPrevTrigger, PaginationRoot } from './pagination';
-import { HStack } from '@chakra-ui/react';
+import { ButtonGroup, HStack, Pagination } from '@chakra-ui/react';
 
 interface ICustomPaginationProps {
   pagesCount: number;
@@ -8,16 +8,31 @@ interface ICustomPaginationProps {
   defaultPage: number;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   setPage?: any;
+  type?: 'default' | 'compact';
 }
 
-export const CustomPagination: FC<ICustomPaginationProps> = ({ pageSize, pagesCount, defaultPage }) => {
-  return (
-    <PaginationRoot count={pagesCount} pageSize={pageSize} defaultPage={defaultPage} variant={'solid'}>
-      <HStack>
-        <PaginationPrevTrigger />
-        <PaginationItems />
-        <PaginationNextTrigger />
-      </HStack>
-    </PaginationRoot>
-  );
+export const CustomPagination: FC<ICustomPaginationProps> = ({ pageSize, pagesCount, defaultPage, type = 'default' }) => {
+  if (type === 'default') {
+    return (
+      <PaginationRoot count={pagesCount} pageSize={pageSize} defaultPage={defaultPage} variant={'solid'}>
+        <HStack>
+          <PaginationPrevTrigger />
+          <PaginationItems />
+          <PaginationNextTrigger />
+        </HStack>
+      </PaginationRoot>
+    );
+  } else if (type === 'compact') {
+    return (
+      <PaginationRoot count={pagesCount} pageSize={pageSize} defaultPage={defaultPage} variant={'solid'}>
+        <ButtonGroup gap="4" size="sm" variant="ghost">
+          <PaginationPrevTrigger />
+          <Pagination.PageText />
+          <PaginationNextTrigger />
+        </ButtonGroup>
+      </PaginationRoot>
+    );
+  } else {
+    return <></>;
+  }
 };
