@@ -15,7 +15,7 @@ export const ModalWindow: FC<IModalWindowProps> = ({ trigger, content }) => {
       <Portal>
         <Dialog.Backdrop />
         <Dialog.Positioner>
-          <Dialog.Content width="fit-content" height="fit-content" maxWidth="none" maxHeight="none" margin="auto" borderRadius={'8px'}>
+          <Dialog.Content width="fit-content" height="fit-content" maxWidth="none" maxHeight="none" marginInline={'16px'} borderRadius={'8px'}>
             <Dialog.Body asChild>{content}</Dialog.Body>
             <Dialog.CloseTrigger asChild>
               <CloseButton size="sm" />

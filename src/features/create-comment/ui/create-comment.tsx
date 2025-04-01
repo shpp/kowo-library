@@ -29,9 +29,9 @@ export const CreateComment = () => {
   const onSubmit: SubmitHandler<Inputs> = (data: unknown) => console.log(data);
 
   return (
-    <Flex bgColor={'white'} width={'853px'} borderRadius={'8px'} p={'32px'}>
+    <Flex bgColor={'white'} width={{base: '100%', lg: '853px'}} borderRadius={'8px'} maxH={'95dvh'} overflowY={'auto'}>
       <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
-        <Flex flexDir={'column'} gap={'24px'}>
+        <Flex flexDir={'column'} gap={'24px'} p={'32px'}>
           <Flex flexDir={'column'} gap={'8px'}>
             <Heading fontSize={'32px'} fontWeight={600}>
               Ваша думка важлива
@@ -84,11 +84,11 @@ export const CreateComment = () => {
             )}
           />
 
-          <Flex gap={'8px'}>
-            <Button borderRadius={'8px'} color={'white'} p={'8px 16px'} w={'fit-content'} type="submit">
+          <Flex gap={'8px'} flexDir={{base: 'column', sm: 'row'}}>
+            <Button borderRadius={'8px'} color={'white'} p={'8px 16px'} w={{base: '100%', sm: 'fit-content'}} type="submit">
               Опубліковати
             </Button>
-            <Button borderRadius={'8px'} bgColor={'white'} border={'1px solid rgba(212, 213, 217, 1)'} color={'kowo.solid'} p={'8px 16px'} w={'fit-content'} type="reset">
+            <Button borderRadius={'8px'} bgColor={'white'} border={'1px solid rgba(212, 213, 217, 1)'} color={'kowo.solid'} p={'8px 16px'} w={{base: '100%', sm: 'fit-content'}} type="reset">
               Скасувати
             </Button>
           </Flex>
