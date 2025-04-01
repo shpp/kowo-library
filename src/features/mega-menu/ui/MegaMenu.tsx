@@ -84,7 +84,7 @@ export const MegaMenu = () => (
       >
         <Box gap='16px' columns='240px' maxWidth='1224px' marginX='auto' padding='40px 0'>
           <Stack gap='24px' marginBottom='24px' css={{breakInside: 'avoid'}}>
-            <Link href='#'>
+            <Link href='/books'>
               <Stack bg='#F7F8F8' padding='8px' borderRadius='8px'>
                 <Stack direction='row' justify='space-between'>
                   <Text fontWeight="semibold">

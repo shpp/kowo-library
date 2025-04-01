@@ -4,6 +4,7 @@ import React, { FC, useState } from 'react';
 import Image, { StaticImageData } from 'next/image';
 import HeartIcon from '@/shared/assets/icons/heart-icon';
 import { BookStatus, IBookStatusProps } from '@/shared/ui/book-status';
+import { useRouter } from 'next/navigation';
 
 import styles from './kowo-book.module.css';
 
@@ -20,6 +21,8 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, available, i
   const [isLikeShown, setIsLikeShown] = useState<boolean>(false);
   const [isLikedLocal, setIsLikedLocal] = useState<boolean>(isLiked);
 
+  const router = useRouter();
+
   const LikeBtnHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
     e.preventDefault();
     e.stopPropagation();
@@ -30,6 +33,7 @@ export const KowoBook: FC<IKowoBookProps> = ({ image, author, name, available, i
   return (
     <AspectRatio minW={width} ratio={232 / 362}>
       <Stack
+        onClick={() => router.push('/book')}
         pos={'relative'}
         rounded={'8px'}
         gap={'none'}

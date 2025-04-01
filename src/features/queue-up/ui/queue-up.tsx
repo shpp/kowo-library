@@ -40,8 +40,8 @@ export const QueueUp = () => {
   const onSubmit: SubmitHandler<Inputs> = (data: unknown) => console.log(data);
 
   return (
-    <Flex bgColor={'white'} width={'853px'} borderRadius={'8px'}>
-      <Flex borderRadius={'8px 0px 0px 8px'} bgImage={`url(${kowoBg.src})`} bgPos={'center'} bgSize={'cover'} width={'40%'} flexDir={'column'} p={'32px'} gap={'16px'}>
+    <Flex bgColor={'white'} width={{base: '100%', lg: '853px'}} borderRadius={'8px'} flexDir={{base: 'column', md: 'row'}} maxH={'95dvh'} overflowY={'auto'}>
+      <Flex borderRadius={{base: '8px 8px 0px 0px', md: '8px 0px 0px 8px'}} bgImage={`url(${kowoBg.src})`} bgPos={'center'} bgSize={'cover'} width={{base: '100%', md: '40%'}} flexDir={'column'} p={'32px'} gap={'16px'}>
         <Center width={'100%'} bgColor={'rgba(0, 0, 0, 0.15)'} borderRadius={'8px'}>
           <Image width={100} height={100} src={''} alt="" style={{ width: '70%', aspectRatio: '3 / 4' }}></Image>
         </Center>
@@ -54,7 +54,7 @@ export const QueueUp = () => {
           </Text>
         </Flex>
       </Flex>
-      <Flex width={'60%'} p={'32px'}>
+      <Flex width={{base: '100%', md: '60%'}} p={'32px'}>
         <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
           <Flex flexDir={'column'} gap={'24px'}>
             <Heading fontSize={'32px'} fontWeight={600}>
@@ -94,11 +94,11 @@ export const QueueUp = () => {
                 </Checkbox.Root>
               )}
             />
-            <Flex gap={'8px'}>
-              <Button borderRadius={'8px'} bgColor={'rgba(252, 65, 65, 1)'} color={'white'} p={'8px 16px'} w={'fit-content'} type="submit">
+            <Flex gap={'8px'} flexDir={{base: 'column', sm: 'row'}}>
+              <Button borderRadius={'8px'} bgColor={'rgba(252, 65, 65, 1)'} color={'white'} p={'8px 16px'} w={{base: '100%', sm: 'fit-content'}} type="submit">
                 Забронювати
               </Button>
-              <Button borderRadius={'8px'} bgColor={'white'} border={'1px solid rgba(212, 213, 217, 1)'} color={'kowo.solid'} p={'8px 16px'} w={'fit-content'} type="reset">
+              <Button borderRadius={'8px'} bgColor={'white'} border={'1px solid rgba(212, 213, 217, 1)'} color={'kowo.solid'} p={'8px 16px'} w={{base: '100%', sm: 'fit-content'}} type="reset">
                 Скасувати
               </Button>
             </Flex>

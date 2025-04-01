@@ -11,7 +11,7 @@ import kowoBgGreen from '@/shared/assets/backgrounds/kowo-bg-green.png';
 export const KeyConcepts = () => {
   return (
     <Flex w="100%" h={{ xl: '600px' }} direction={{ base: 'column', xl: 'row' }}>
-      <Flex justify={{ base: 'center', xl: 'end' }} align="center" w={{ xl: '50%' }} py={{ base: '50px', md: '70px', xl: '0px' }} pr={{ xl: '90px' }} bgColor="#172110">
+      <Flex justify={{ base: 'center', xl: 'end' }} align="center" w={{ xl: '50%' }} paddingInline={'16px'} py={{ base: '50px', md: '70px', xl: '0px' }} pr={{ xl: '90px' }} bgColor="#172110">
         <Box maxW="500px">
           <Stack gap="50px" align="center">
             <Illustration src={books.src} alt={'Books pile'} width={books.width} height={books.height} />
@@ -31,7 +31,8 @@ export const KeyConcepts = () => {
       </Flex>
       <Flex
         justify={{ base: 'center', xl: 'start' }}
-        pl={{ xl: '90px' }}
+        pr={{base: '16px', xl: '0px'}}
+        pl={{base: '16px', xl: '90px' }}
         pt={{ base: '50px', md: '90px', xl: '100px' }}
         w={{ xl: '50%' }}
         bgImage={`url(${kowoBgGreen.src})`}
