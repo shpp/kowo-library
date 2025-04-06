@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box, Center, Container, Stack, Text } from '@chakra-ui/react';
+import { Box, Center, Container, Heading, Stack, Text } from '@chakra-ui/react';
 
-import { KowoHeading } from '@/shared/ui/heading';
 import { KeyConcepts } from '@/widgets/key-concepts';
 import { Illustration } from '@/shared/ui/illustration';
 import { SliderBlock } from '@/widgets/slider-block';
@@ -17,9 +16,9 @@ export default function Home() {
           <Container maxW="1000px" height="650px" paddingTop={{ base: '64px', lg: '120px' }}>
             <Stack h="100%" justify="space-between">
               <Stack gap="16px">
-                <KowoHeading size="6xl" textAlign="center">
+                <Heading fontSize="56px" fontWeight={600} lineHeight={'100%'} color={'rgba(252, 65, 65, 1)'} textAlign="center">
                   Бібліотека, що працює на довірі
-                </KowoHeading>
+                </Heading>
                 <Container maxW="70%">
                   <Text fontSize="20px" textAlign="center">
                     Тут книги можна взяти безкоштовно, а також поділитися своїми. Приєднуйтесь до спільноти книголюбів!

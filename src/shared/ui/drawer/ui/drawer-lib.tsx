@@ -43,6 +43,16 @@ export const DrawerCloseTrigger = React.forwardRef<
   )
 })
 
+export const StaticCloseTrigger = React.forwardRef<HTMLButtonElement, ChakraDrawer.CloseTriggerProps>(function DrawerCloseTrigger(props, ref) {
+  return (
+    <ChakraDrawer.CloseTrigger position="static" {...props} asChild>
+      <ChakraIconButton variant="ghost" aria-label="Close" size="sm" ref={ref} {...props}>
+        <LuX/>
+      </ChakraIconButton>
+    </ChakraDrawer.CloseTrigger>
+  );
+});
+
 export const DrawerTrigger = ChakraDrawer.Trigger
 export const DrawerRoot = ChakraDrawer.Root
 export const DrawerFooter = ChakraDrawer.Footer

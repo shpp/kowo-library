@@ -1,5 +1,5 @@
 'use client';
-import { Box, Button, Center, Flex, Heading, IconButton, Span, Text, useBreakpointValue } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, Heading, HStack, IconButton, Span, Stack, Text, useBreakpointValue } from '@chakra-ui/react';
 import React, { FC, useCallback } from 'react';
 import { KowoBook } from '@/entities/kowo-book/ui/kowo-book';
 import useEmblaCarousel from 'embla-carousel-react';
@@ -43,8 +43,8 @@ export const SliderBlock: FC<ISliderBlockProps> = ({ theme, title, subTitle }) =
       h={{ base: 'auto', xl: '600px' }}
       py={{ base: '20px', xl: '0' }}
     >
-      <Flex gap={{ base: '32px', xl: '90px' }} flexDirection={flexDirection} maxW="1440px" w="100%">
-        <Flex flexDirection="column" alignItems={{ base: 'center', xl: 'start' }} gap="8px" minW={{ base: '100%', xl: '410px' }}>
+      <Flex gap={{ base: '32px', xl: '90px' }} flexDirection={{ base: 'column', xl: 'row' }} maxW="1440px" w="100%">
+        <Stack alignItems={{ base: 'center', xl: 'start' }} gap="8px" minW={{ base: '100%', xl: '410px' }}>
           <Heading
             cursor="default"
             fontSize={'48px'}
@@ -68,10 +68,10 @@ export const SliderBlock: FC<ISliderBlockProps> = ({ theme, title, subTitle }) =
             {subTitle}
           </Text>
           {flexDirection === 'row' && <NavigationButtons scrollNext={scrollNext} scrollPrev={scrollPrev} theme={theme} />}
-        </Flex>
+        </Stack>
 
         <Box w="100%" overflow="hidden" ref={emblaRef}>
-          <Flex gap="16px" pl={'17px'}>
+          <HStack gap="16px" pl={'17px'}>
             {[1, 2, 3, 4, 5, 6, 7].map((_, index) => (
               <KowoBook
                 key={index}
@@ -79,11 +79,12 @@ export const SliderBlock: FC<ISliderBlockProps> = ({ theme, title, subTitle }) =
                 name="Я бачу, вас цікавить пітьма"
                 isLiked={false}
                 author="Ілларіон Павлюк"
-                availible={{ isAvailible: true, whenAvailible: 'now' }}
+                available={{ isAvailable: true, whenAvailable: 'now' }}
                 width={columns ? `calc((100% - ${16 * (columns! - 2)}px) / ${columns})` : undefined}
+                type='compact'
               />
             ))}
-          </Flex>
+          </HStack>
         </Box>
 
         {flexDirection === 'column' && <NavigationButtons scrollNext={scrollNext} scrollPrev={scrollPrev} theme={theme} />}
