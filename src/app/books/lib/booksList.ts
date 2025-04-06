@@ -13,7 +13,7 @@ export const books = [
     name: 'Я бачу, вас цікавить бобри',
     isLiked: false,
     author: 'Ілларіон Павлюк',
-    available: { isAvailable: true, whenAvailable: 'now' },
+    available: { isAvailable: true, whenAvailable: '21.22.2025' },
   },
   {
     image: kosmonawt,

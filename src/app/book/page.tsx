@@ -1,6 +1,6 @@
 'use client';
 import React, { useState } from 'react';
-import { Badge, Button, Flex, Heading, RatingGroup, Separator, Span, Text } from '@chakra-ui/react';
+import { Badge, Box, Button, Flex, Heading, RatingGroup, Separator, Span, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import { BookStatus } from '@/shared/ui/book-status';
 import HeartIcon from '@/shared/assets/icons/heart-icon';
@@ -13,7 +13,6 @@ import { QueueUp } from '@/features/queue-up';
 import { useScreenSize } from '@/shared/hooks/useScreenSize/useScreenSize';
 
 import kosmonawt from './../../shared/assets/illustrations/kosmonawt.jpg';
-
 
 export default function Book() {
   const [clampLines, setClampLines] = useState<string>('3');
@@ -76,7 +75,6 @@ export default function Book() {
                 }
                 content={<QueueUp />}
               />
-
               <Button border={'1px solid rgba(212, 213, 217, 1)'} borderRadius={'8px'} bgColor={'white'}>
                 <HeartIcon />
               </Button>
@@ -95,9 +93,11 @@ export default function Book() {
               </Text>
               <Button bgColor={'transparent'} alignItems={'center'} justifyContent={'start'} p={'0px'} onClick={showMoreHandler}>
                 <Text fontFamily={'Inter'} fontSize={'16px'} fontWeight={600} lineHeight={'150%'} color={'rgba(75, 128, 32, 1)'}>
-                  Показати ще
+                  {clampLines === 'none' ? 'Сховати' : 'Показати ще'}
                 </Text>
-                <GreenArrowDownIcon />
+                <Box rotate={clampLines === 'none' ? '180deg' : '0deg'} >
+                  <GreenArrowDownIcon />
+                </Box>
               </Button>
             </Flex>
             <BookComments />
@@ -113,7 +113,7 @@ export default function Book() {
 
 const BookImage = () => {
   return (
-    <Flex minW={{base: '48dvw', xl: '40%'}} aspectRatio={'525/500'} bgColor={'rgba(0, 0, 0, 0.1)'} justifyContent={'center'} borderRadius={'8px'}>
+    <Flex minW={{ base: '48dvw', xl: '40%' }} aspectRatio={'525/500'} bgColor={'rgba(0, 0, 0, 0.1)'} justifyContent={'center'} borderRadius={'8px'}>
       <Image
         width={kosmonawt.width}
         height={kosmonawt.height}

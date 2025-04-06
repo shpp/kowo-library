@@ -6,7 +6,7 @@ import { Select } from '@chakra-ui/react';
 
 export const BooksSorting = () => {
   return (
-    <SelectRoot defaultValue={[sortingOptions.items[0].value]} collection={sortingOptions} width={'230px'}>
+    <SelectRoot defaultValue={[sortingOptions.items[0].value]} collection={sortingOptions} width={{ base: '60%', md: '230px' }}>
       <Select.Context>
         {({ open }) => (
           <>

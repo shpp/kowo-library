@@ -31,7 +31,7 @@ export const BookStatus: FC<IBookStatusProps> = ({ isAvailable, whenAvailable })
       {isAvailable && whenAvailable !== 'now' && (
         <React.Fragment>
           <RefreshIcon />
-          <Text color={'rgba(214, 114, 0, 1)'} fontWeight={400} lineHeight={'18px'} fontSize={'12px'}>
+          <Text lineClamp={1} color={'rgba(214, 114, 0, 1)'} fontWeight={400} lineHeight={'18px'} fontSize={'12px'}>
             Доступна з {whenAvailable}
           </Text>
         </React.Fragment>
