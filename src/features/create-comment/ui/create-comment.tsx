@@ -1,3 +1,4 @@
+'use client'
 import { Button, Field, Flex, Heading, RatingGroup, Text, Textarea } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';

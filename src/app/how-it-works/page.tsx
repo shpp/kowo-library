@@ -1,4 +1,3 @@
-'use client';
 import React from 'react';
 import { Box, Center, Container, Flex, Highlight, ListItem, ListRoot, Separator, Stack } from '@chakra-ui/react';
 
@@ -15,7 +14,6 @@ import openedBook from '@/shared/assets/markers/opened_book.png';
 
 import boyWithBook from '@/shared/assets/illustrations/boy-with-book.png';
 import girlWithBook from '@/shared/assets/illustrations/girl-with-book.png';
-import { useScreenSize } from '@/shared/hooks/useScreenSize/useScreenSize';
 
 const RULES = [
   'Не пиши у книжках. Навіть якщо дуже хочеться. Навіть якщо сама книжка говорить тобі: “Обери правильну відповідь”. Не слухай її. Хай буде чистою.',
@@ -84,14 +82,12 @@ const howItWorksPoints = [
 ];
 
 export default function HowItWorks() {
-  const { isMobile, isTablet } = useScreenSize();
-
   return (
     <Center pt={{ base: '24px', lg: '120px' }} pb={{ base: '24px', lg: '80px' }}>
       <Container maxW="7xl" style={{ display: 'flex', flexDirection: 'column', gap: '36px', paddingInline: '16px' }}>
         <Flex gap="64px" justify="space-between" align="flex-start">
-          <Flex direction="column" gap={{base: "16px", lg: "32px"}} maxW={{ lg: '3xl' }}>
-            <KowoHeading size="5xl">Як це працює</KowoHeading>
+          <Flex direction="column" gap={{ base: '16px', lg: '32px' }} maxW={{ lg: '3xl' }}>
+            <KowoHeading textAlign={{base: 'center', lg: 'start'}} size="5xl">Як це працює</KowoHeading>
             <Stack gap="16px" fontSize="20px">
               {howItWorksPoints.map((item, index) => (
                 <Flex key={index} gap="16px" justify="flex-start" align="center">
@@ -101,27 +97,23 @@ export default function HowItWorks() {
               ))}
             </Stack>
           </Flex>
-          {!isMobile && !isTablet ? (
-            <Box width={{ base: '60%' }}>
-              <Illustration src={boyWithBook.src} alt={'Boy with book'} width={boyWithBook.width} height={boyWithBook.height} />
-            </Box>
-          ) : null}
+          <Box hideBelow={'lg'} width={{ base: '60%' }}>
+            <Illustration src={boyWithBook.src} alt={'Boy with book'} width={boyWithBook.width} height={boyWithBook.height} />
+          </Box>
         </Flex>
         <Flex justify="space-between" gap={'16px'} align="flex-start">
-          {!isMobile && !isTablet ? (
-            <Box>
-              <Illustration src={girlWithBook.src} alt={'Boy with book'} width={girlWithBook.width} height={girlWithBook.height} />
-            </Box>
-          ) : null}
-          <Flex direction="column" gap={{base: "16px", lg: "32px"}} w={{ lg: '600px' }}>
-            <KowoHeading size="5xl">Декілька правил</KowoHeading>
+          <Box hideBelow={'lg'}>
+            <Illustration src={girlWithBook.src} alt={'Boy with book'} width={girlWithBook.width} height={girlWithBook.height} />
+          </Box>
+          <Flex direction="column" gap={{ base: '16px', lg: '32px' }} w={{ lg: '600px' }}>
+            <KowoHeading textAlign={{base: 'center', lg: 'start'}} size="5xl">Декілька правил</KowoHeading>
             <ListRoot listStyle="none" gap="16px">
               {RULES.map((item, index) => {
                 return (
                   <Stack key={index} gap="16px">
                     {!!index && <Separator />}
                     <ListItem>
-                      <Flex gap="12px">
+                      <Flex alignItems={{base: 'center', lg: 'start'}} gap="12px">
                         <Marker value={String(index + 1)} />
                         {item}
                       </Flex>

@@ -1,34 +1,40 @@
-import { BookComment } from '@/entities/book-comment';
+// import { BookComment } from '@/entities/book-comment';
 import { CreateComment } from '@/features/create-comment';
-import { useScreenSize } from '@/shared/hooks/useScreenSize/useScreenSize';
 import { ModalWindow } from '@/shared/ui/modal-window';
 import { CustomPagination } from '@/shared/ui/pagination-lib/customPagination';
-import { Button, Flex, Heading, Separator } from '@chakra-ui/react';
+import { Box, Button, Center, Flex, Heading, Separator, Text } from '@chakra-ui/react';
 import React from 'react';
 
 export const BookComments = () => {
-  const {isMobile, isTablet, isSmallLaptop} = useScreenSize();
   return (
     <Flex flexDir={'column'}>
       <Heading mb={'8px'} fontFamily={'Inter'} fontSize={'20px'} fontWeight={600} lineHeight={'150%'} color={'rgba(3, 7, 18, 1)'}>
-        Відгуки (15)
+        Відгуки (0)
       </Heading>
       <Separator mb={'16px'} />
       <Flex mb={'24px'} flexDir={'column'} gap={'24px'}>
-        {[1, 2, 3].map((_, index) => (
+        {/* {[1, 2, 3].map((_, index) => (
           <BookComment key={index} />
-        ))}
+        ))} */}
+        <Center width={'100%'} height={'96px'}>
+          <Text>Тут поки нічого немає...</Text>
+        </Center>
       </Flex>
       <Flex w={'100%'} justifyContent={'space-between'} alignItems={'center'}>
         <ModalWindow
           trigger={
-            <Button borderRadius={'8px'} bgColor={'kowo.solid'} color={'rgba(245, 245, 245, 1)'} p={'6px 12px'}>
+            <Button visual={'kowo_green'} p={'6px 12px'}>
               Залишити відгук
             </Button>
           }
           content={<CreateComment />}
         />
-        <CustomPagination type={isMobile || isTablet || isSmallLaptop ? 'compact' : 'default'} pagesCount={10} pageSize={3} defaultPage={1} />
+        <Box hideFrom={'xl'}>
+          <CustomPagination type={'compact'} count={1} pageSize={1} page={1} />
+        </Box>
+        <Box hideBelow={'xl'}>
+          <CustomPagination type={'default'} count={1} pageSize={1} page={1} />
+        </Box>
       </Flex>
     </Flex>
   );

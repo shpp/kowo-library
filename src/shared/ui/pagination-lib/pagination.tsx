@@ -49,7 +49,16 @@ export const PaginationEllipsis = React.forwardRef<HTMLDivElement, ChakraPaginat
   const { size, variantMap } = useRootProps();
   return (
     <ChakraPagination.Ellipsis ref={ref} {...props} asChild>
-      <Button as="span" variant={variantMap.ellipsis} size={size}>
+      <Button
+        bgColor={'white'}
+        color={'rgba(102, 165, 43, 1)'}
+        borderRadius={'8px'}
+        border={'1px solid rgba(212, 213, 217, 1)'}
+        _hover={{ bgColor: 'kowo.contrast' }}
+        as="span"
+        variant={variantMap.ellipsis}
+        size={size}
+      >
         <HiMiniEllipsisHorizontal />
       </Button>
     </ChakraPagination.Ellipsis>
@@ -73,11 +82,11 @@ export const PaginationItem = React.forwardRef<HTMLButtonElement, ChakraPaginati
 
   return (
     <ChakraPagination.Item
-      bgColor={'white'}
+      bgColor={current ? 'kowo.subtle' : 'white'}
       color={'rgba(102, 165, 43, 1)'}
       borderRadius={'8px'}
       border={'1px solid rgba(212, 213, 217, 1)'}
-      _hover={{ bgColor: 'white' }}
+      _hover={{ bgColor: 'kowo.contrast' }}
       ref={ref}
       {...props}
       asChild
@@ -106,7 +115,7 @@ export const PaginationPrevTrigger = React.forwardRef<HTMLButtonElement, ChakraP
       color={'rgba(102, 165, 43, 1)'}
       borderRadius={'8px'}
       border={'1px solid rgba(212, 213, 217, 1)'}
-      _hover={{ bgColor: 'white' }}
+      _hover={{ bgColor: 'kowo.contrast' }}
       ref={ref}
       asChild
       {...props}
@@ -135,7 +144,7 @@ export const PaginationNextTrigger = React.forwardRef<HTMLButtonElement, ChakraP
       color={'rgba(102, 165, 43, 1)'}
       borderRadius={'8px'}
       border={'1px solid rgba(212, 213, 217, 1)'}
-      _hover={{ bgColor: 'white' }}
+      _hover={{ bgColor: 'kowo.contrast' }}
       ref={ref}
       asChild
       {...props}

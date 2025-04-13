@@ -1,3 +1,4 @@
+'use client'
 import React, { FC, ReactNode, useState } from 'react';
 import { CloseButton, Dialog, Portal } from '@chakra-ui/react';
 

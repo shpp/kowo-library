@@ -1,4 +1,3 @@
-'use client'
 import { Box, Button, Center, Heading, Stack, Text } from '@chakra-ui/react';
 import Image, { StaticImageData } from 'next/image';
 import React, { FC, ReactNode } from 'react';
@@ -8,7 +7,6 @@ import kowoLightGreenBG from './../../../shared/assets/backgrounds/kowo-bg-light
 import boyWithBook from './../../../shared/assets/illustrations/boy-with-book-noBG.png';
 import books from './../../../shared/assets/illustrations/books-whiteBG.png';
 import like from './../../../shared/assets/illustrations/like.png';
-import { useScreenSize } from '@/shared/hooks/useScreenSize/useScreenSize';
 
 interface IHereIsEmptyProps {
   type: 'hereIsEmpty' | 'unread' | 'addToLiked' | 'donate';
@@ -63,9 +61,6 @@ export const HereIsEmpty: FC<IHereIsEmptyProps> = ({ type }) => {
   };
 
   const setup: ISetup = generateSetup();
-
-  const { isMobile } = useScreenSize();
-
   return (
     <Center
       justifyContent={'start'}
@@ -78,11 +73,9 @@ export const HereIsEmpty: FC<IHereIsEmptyProps> = ({ type }) => {
       borderRadius={'8px'}
       gap={'64px'}
     >
-      {!isMobile && (
-        <Box>
-          <Image src={setup.image.src} width={setup.image.width} height={setup.image.height} alt="kowo light green background" />
-        </Box>
-      )}
+      <Box hideBelow={'md'} >
+        <Image src={setup.image.src} width={setup.image.width} height={setup.image.height} alt="kowo light green background" />
+      </Box>
       <Stack gap={'24px'}>
         <Stack gap={'8px'}>
           <Heading fontSize={'32px'} fontWeight={600}>
