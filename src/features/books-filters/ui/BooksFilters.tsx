@@ -6,19 +6,33 @@ import { YearsFilter } from './YearsFilter';
 import { AuthorFilter } from './AuthorFilter';
 import { LanguageFilter } from './LanguageFilter';
 import { AvailabilityFilter } from './AvailabilityFilter';
+import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 
-export const BooksFilters = ({ maxWidth }: { maxWidth?: string }) => {
+async function fetchBooks() {
+  const res = await fetch(`http://localhost:3000/api/books`, {
+    cache: 'force-cache',
+    next: { revalidate: 3600 },
+  });
+  if (!res.ok) {
+    throw new Error('Failed to fetch books');
+  }
+  const data = await res.json();
+  return data.data.slice(31, data.data.length);
+}
+
+export const BooksFilters = async () => {
+  const books: BooksApiResponse = await fetchBooks();
   return (
-    <Stack width="100%" maxW={maxWidth ? maxWidth : {mdOnly: '172px', md: '264px'}} gap="16px">
-      <FilterTags tags={['В наявності', 'Агата Крісті', 'Ілларіон Павлюк']} />
+    <Stack width="100%" maxW={{ base: 'none', mdOnly: '172px', md: '264px' }} minW={{ base: 'none', mdOnly: '172px', md: '264px' }} gap="16px">
+      <FilterTags />
       <Separator />
-      <AvailabilityFilter />
+      <AvailabilityFilter books={books} />
       <Separator />
-      <AuthorFilter />
+      <AuthorFilter books={books} />
       <Separator />
-      <LanguageFilter />
+      <LanguageFilter books={books} />
       <Separator />
-      <YearsFilter />
+      <YearsFilter books={books} />
     </Stack>
   );
 };

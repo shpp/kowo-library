@@ -65,7 +65,7 @@ export const MegaMenu = () => (
       <Box bg="#FFFFFF" borderBottom="1px solid #D4D5D9">
         <Box bgColor={'white'} gap="16px" columns="240px" maxWidth="1224px" marginX="auto" padding="40px 0">
           <Stack gap="24px" marginBottom="24px" css={{ breakInside: 'avoid' }}>
-            <Link href="/books">
+            <Link href="/books?page=1">
               <Stack bg="#F7F8F8" padding="8px" borderRadius="8px">
                 <Stack direction="row" justify="space-between">
                   <Text fontWeight="semibold">Усі книги</Text>
@@ -90,14 +90,14 @@ export const MegaMenu = () => (
           {CATEGORIES.map((category) => (
             <Stack key={category.title} marginBottom="24px" css={{ breakInside: 'avoid' }}>
               <ChakraLink asChild>
-                <Link href="#">
+                <Link href={`books?page=1&category=${category.title}`}>
                   <Text fontWeight="semibold">{category.title}</Text>
                 </Link>
               </ChakraLink>
               <Separator />
               {category.items.map((item) => (
                 <ChakraLink asChild key={item}>
-                  <Link href="#">
+                  <Link href={`books?page=1&category=${category.title}&sub_category=${item}`}>
                     <Text fontSize="sm">{item}</Text>
                   </Link>
                 </ChakraLink>

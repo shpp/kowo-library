@@ -1,20 +1,29 @@
+'use client';
 import React, { FC } from 'react';
 import { PaginationItems, PaginationNextTrigger, PaginationPrevTrigger, PaginationRoot } from './pagination';
 import { ButtonGroup, HStack, Pagination } from '@chakra-ui/react';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 interface ICustomPaginationProps {
-  pagesCount: number;
+  count: number;
   pageSize: number;
-  defaultPage: number;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  setPage?: any;
+  page: number;
   type?: 'default' | 'compact';
 }
 
-export const CustomPagination: FC<ICustomPaginationProps> = ({ pageSize, pagesCount, defaultPage, type = 'default' }) => {
+export const CustomPagination: FC<ICustomPaginationProps> = ({ pageSize, count, page, type = 'default' }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  const updatePage = (newPage: number) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.set('page', newPage.toString());
+    router.push(`/books?${params.toString()}`);
+  };
+
   if (type === 'default') {
     return (
-      <PaginationRoot count={pagesCount} pageSize={pageSize} defaultPage={defaultPage} variant={'solid'}>
+      <PaginationRoot onPageChange={(e) => updatePage(e.page)} page={page} count={count} pageSize={pageSize}>
         <HStack>
           <PaginationPrevTrigger />
           <PaginationItems />
@@ -24,7 +33,7 @@ export const CustomPagination: FC<ICustomPaginationProps> = ({ pageSize, pagesCo
     );
   } else if (type === 'compact') {
     return (
-      <PaginationRoot count={pagesCount} pageSize={pageSize} defaultPage={defaultPage} variant={'solid'}>
+      <PaginationRoot onPageChange={(e) => updatePage(e.page)} page={page} count={count} pageSize={pageSize}>
         <ButtonGroup gap="4" size="sm" variant="ghost">
           <PaginationPrevTrigger />
           <Pagination.PageText />

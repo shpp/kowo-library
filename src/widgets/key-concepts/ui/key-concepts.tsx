@@ -1,7 +1,6 @@
 import React from 'react';
-import { Box, Flex, Heading, Stack, Text } from '@chakra-ui/react';
+import { Box, Button, Flex, Heading, Stack, Text } from '@chakra-ui/react';
 
-import { KowoButton } from '@/shared/ui/button';
 import { Illustration } from '@/shared/ui/illustration';
 
 import books from '@/shared/assets/illustrations/books.png';
@@ -24,7 +23,7 @@ export const KeyConcepts = () => {
                   Ваша прочитана книга може знайти нового читача. Донатьте книги та діліться знаннями!
                 </Text>
               </Stack>
-              <KowoButton>Задонатити книгу</KowoButton>
+              <Button visual={'kowo_white'} border={'none'}>Задонатити книгу</Button>
             </Stack>
           </Stack>
         </Box>
@@ -50,7 +49,7 @@ export const KeyConcepts = () => {
                   Ваша підтримка допомагає нам розвиватися та дарувати книги всім охочим. Долучайтеся!
                 </Text>
               </Stack>
-              <KowoButton>Підтримати фінансово</KowoButton>
+              <Button visual={'kowo_white'} border={'none'}>Підтримати фінансово</Button>
             </Stack>
             <Illustration src={support.src} alt={'People support'} width={support.width} height={support.height} />
           </Stack>

@@ -11,11 +11,11 @@ export const BookButtonsMobile: FC<IBookButtonsProps> = ({ available }) => {
     return (
       <React.Fragment>
         {available.whenAvailable === 'now' ? (
-          <Button maxH={'33px'} w={'100%'} bgColor={'red'} borderRadius={'6px'} color={'white'}>
+          <Button visual={'kowo_red'} size={'sm'} width={'100%'}>
             Забронювати
           </Button>
         ) : (
-          <Button maxH={'33px'} w={'100%'} bgColor={'white'} borderRadius={'6px'} color={'kowo.solid'} border={'1px solid rgba(212, 213, 217, 1)'}>
+          <Button visual={'kowo_white'} size={'sm'} width={'100%'}>
             Встати в чергу
           </Button>
         )}
