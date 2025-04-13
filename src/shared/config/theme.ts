@@ -10,14 +10,13 @@ const buttonRecipe = defineRecipe({
     border: 'none',
     fontFamily: 'Inter',
     lineHeight: '150%',
-    fontWeight: 600,
     transition: 'background-color 0.2s'
   },
   variants: {
     visual: {
-      kowo_green: { fontSize: '16px', bgColor: 'rgba(102, 165, 43, 1)', color: 'white', _hover: { bgColor: 'rgba(102, 155, 53, 1)' } },
-      kowo_white: { fontSize: '16px', bgColor: 'white', color: 'rgba(102, 165, 43, 1)', border: '1px solid rgba(212, 213, 217, 1)', _hover: { bgColor: 'rgba(242, 248, 233, 1)' } },
-      kowo_red: { fontSize: '16px', bg: 'rgba(252, 65, 65, 1)', color: 'white', _hover: { bgColor: 'rgba(231, 23, 23, 1)' }},
+      kowo_green: { fontSize: '16px', fontWeight: 600, bgColor: 'rgba(102, 165, 43, 1)', color: 'white', _hover: { bgColor: 'rgba(102, 155, 53, 1)' } },
+      kowo_white: { fontSize: '16px', fontWeight: 600, bgColor: 'white', color: 'rgba(102, 165, 43, 1)', border: '1px solid rgba(212, 213, 217, 1)', _hover: { bgColor: 'rgba(242, 248, 233, 1)' } },
+      kowo_red: { fontSize: '16px', fontWeight: 600, bg: 'rgba(252, 65, 65, 1)', color: 'white', _hover: { bgColor: 'rgba(231, 23, 23, 1)' }},
     },
     size: {
       sm: { padding: '6px', fontSize: '14px', rounded: '6px'  }
