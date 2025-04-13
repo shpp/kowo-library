@@ -1,3 +1,4 @@
+import React from "react";
 import Link from 'next/link';
 import { Box, Button, DrawerContext, Separator, Stack, Text, VStack } from '@chakra-ui/react';
 
@@ -7,13 +8,11 @@ import { LogoLink } from '@/widgets/logo-link';
 import { Navigation } from '@/widgets/navigation';
 import { SearchBar } from '@/widgets/search-bar';
 
-import CabinetIcon from '@/shared/assets/icons/cabinet-icon';
 import CatalogIcon from '@/shared/assets/icons/catalog-icon';
 import FavoriteIcon from '@/shared/assets/icons/favorite-icon';
 import books from '@/shared/assets/illustrations/books.svg';
 import { ArrowIcon } from '../ArrowIcon';
-import { ModalWindow } from '@/shared/ui/modal-window';
-import { GoogleLogIn } from '@/features/google-log-in';
+import {AuthButton} from "@/widgets/header/ui/auth-button";
 
 export const MenuContent = ({ setStep }: { setStep: (step: number) => void }) => {
   return (
@@ -31,15 +30,7 @@ export const MenuContent = ({ setStep }: { setStep: (step: number) => void }) =>
               <Separator width="100%" />
             </VStack>
             <VStack alignItems="flex-start">
-              <ModalWindow
-                trigger={
-                  <Button gap="8px" p="4px 8px" rounded="lg" height="100%" color="#030712" variant="ghost">
-                    <CabinetIcon width="24px" height="24px" />
-                    Кабінет
-                  </Button>
-                }
-                content={<GoogleLogIn />}
-              />
+              <AuthButton />
               <Button gap="8px" p="4px 8px" rounded="lg" height="100%" color="#030712" variant="ghost">
                 <FavoriteIcon width="24px" height="24px" />
                 Обране
