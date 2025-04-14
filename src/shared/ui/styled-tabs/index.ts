@@ -1,1 +1,0 @@
-export { StyledTabs } from './ui/styled-tabs'

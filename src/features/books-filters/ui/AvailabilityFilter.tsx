@@ -22,8 +22,9 @@ export const AvailabilityFilter = ({ books }: { books?: BooksApiResponse }) => {
 
   const updateQueryParams = (available: boolean, onHands: boolean) => {
     const params = new URLSearchParams(searchParams.toString());
-
     params.delete('availability');
+    params.delete('search');
+    params.delete('page');
 
     if (available) {
       params.append('availability', 'В наявності');
@@ -32,7 +33,7 @@ export const AvailabilityFilter = ({ books }: { books?: BooksApiResponse }) => {
       params.append('availability', 'На руках');
     }
 
-    router.push(`?${params.toString()}`, { scroll: false });
+    router.push(`?page=1&${params.toString()}`, { scroll: false });
   };
 
   const handleAvailableChange = (checked: boolean) => {

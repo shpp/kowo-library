@@ -1,13 +1,16 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Badge, Collapsible, HStack, IconButton, Stack, Text } from '@chakra-ui/react';
 
 import { Checkbox } from '@/shared/ui/checkbox';
 import ChevronUp from '@/shared/assets/icons/chevron-up';
 import ChevronDown from '@/shared/assets/icons/chevron-down';
 import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export const LanguageFilter = ({ books }: { books: BooksApiResponse | undefined }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(true);
   const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
 
@@ -43,9 +46,30 @@ export const LanguageFilter = ({ books }: { books: BooksApiResponse | undefined 
     return languageList;
   }, [books]);
 
-  const toggleLanguage = (language: string) => {
-    setSelectedLanguages((prev) => (prev.includes(language) ? prev.filter((a) => a !== language) : [...prev, language]));
+  const updateQueryParams = (languages: string[]) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete('languages');
+    params.delete('search');
+    params.delete('page');
+
+    languages.forEach((language) => {
+      params.append('languages', language);
+    });
+
+    router.push(`?page=1&${params.toString()}`, { scroll: false });
   };
+
+  const handleLanguageChange = (language: string, checked: boolean) => {
+    const updatedLanguages = checked ? [...selectedLanguages, language] : selectedLanguages.filter((l) => l !== language);
+
+    setSelectedLanguages(updatedLanguages);
+    updateQueryParams(updatedLanguages);
+  };
+
+  useEffect(() => {
+    if (!searchParams) return;
+    setSelectedLanguages(searchParams.getAll('languages'));
+  }, [searchParams]);
 
   return (
     <Collapsible.Root open={isOpen} onOpenChange={({ open }) => setIsOpen(open)}>
@@ -63,7 +87,7 @@ export const LanguageFilter = ({ books }: { books: BooksApiResponse | undefined 
         <Stack gap="10px" maxHeight="190px" overflowY="auto" pt="8px">
           {languages.map((language) => (
             <HStack key={language.name} justifyContent="space-between" gap="16px">
-              <Checkbox checked={selectedLanguages.includes(language.name)} onChange={() => toggleLanguage(language.name)}>
+              <Checkbox checked={selectedLanguages.includes(language.name)} onCheckedChange={(e) => handleLanguageChange(language.name, !!e.checked)}>
                 {language.name}
               </Checkbox>
               <Badge colorPalette="gray" variant="subtle">

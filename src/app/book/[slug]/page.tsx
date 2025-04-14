@@ -93,7 +93,7 @@ export default async function Book({ params }: { params: Promise<{ slug: string 
                     Забронювати
                   </Button>
                 }
-                content={<QueueUp />}
+                content={<QueueUp book={currentBookData} />}
               />
               <Button border={'1px solid rgba(212, 213, 217, 1)'} borderRadius={'8px'} bgColor={'white'}>
                 <HeartIcon />

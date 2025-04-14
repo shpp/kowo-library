@@ -1,5 +1,5 @@
-'use client'
-import { Button, Field, Flex, Heading, RatingGroup, Text, Textarea } from '@chakra-ui/react';
+'use client';
+import { Button, Dialog, Field, Flex, Heading, RatingGroup, Text, Textarea } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import React from 'react';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
@@ -30,7 +30,7 @@ export const CreateComment = () => {
   const onSubmit: SubmitHandler<Inputs> = (data: unknown) => console.log(data);
 
   return (
-    <Flex bgColor={'white'} width={{base: '100%', lg: '853px'}} borderRadius={'8px'} maxH={'95dvh'} overflowY={'auto'}>
+    <Flex bgColor={'white'} width={{ base: '100%', lg: '853px' }} borderRadius={'8px'} maxH={'95dvh'} overflowY={'auto'}>
       <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
         <Flex flexDir={'column'} gap={'24px'} p={'32px'}>
           <Flex flexDir={'column'} gap={'8px'}>
@@ -80,18 +80,22 @@ export const CreateComment = () => {
                     Відгук
                   </Text>
                 </Field.Label>
-                <Textarea style={{maxHeight: '160px', height: '160px'}} placeholder="Залиште відгук" variant="outline" />
+                <Textarea style={{ maxHeight: '160px', height: '160px' }} placeholder="Залиште відгук" variant="outline" />
               </Field.Root>
             )}
           />
 
-          <Flex gap={'8px'} flexDir={{base: 'column', sm: 'row'}}>
-            <Button borderRadius={'8px'} color={'white'} p={'8px 16px'} w={{base: '100%', sm: 'fit-content'}} type="submit">
+          <Flex gap={'8px'} flexDir={{ base: 'column', sm: 'row' }}>
+            <Button visual={'kowo_green'} w={{ base: '100%', sm: 'fit-content' }} type="submit">
               Опубліковати
             </Button>
-            <Button borderRadius={'8px'} bgColor={'white'} border={'1px solid rgba(212, 213, 217, 1)'} color={'kowo.solid'} p={'8px 16px'} w={{base: '100%', sm: 'fit-content'}} type="reset">
-              Скасувати
-            </Button>
+            <Dialog.Context>
+              {(store) => (
+                <Button visual={'kowo_white'} w={{ base: '100%', sm: 'fit-content' }} onClick={() => store.setOpen(false)} type="reset">
+                  Скасувати
+                </Button>
+              )}
+            </Dialog.Context>
           </Flex>
         </Flex>
       </form>

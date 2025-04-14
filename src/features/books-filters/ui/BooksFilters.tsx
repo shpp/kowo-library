@@ -8,20 +8,11 @@ import { LanguageFilter } from './LanguageFilter';
 import { AvailabilityFilter } from './AvailabilityFilter';
 import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 
-async function fetchBooks() {
-  const res = await fetch(`http://localhost:3000/api/books`, {
-    cache: 'force-cache',
-    next: { revalidate: 3600 },
-  });
-  if (!res.ok) {
-    throw new Error('Failed to fetch books');
-  }
-  const data = await res.json();
-  return data.data.slice(31, data.data.length);
+interface BooksFiltersProps {
+  books: BooksApiResponse;
 }
 
-export const BooksFilters = async () => {
-  const books: BooksApiResponse = await fetchBooks();
+export const BooksFilters: React.FC<BooksFiltersProps> = ({ books }) => {
   return (
     <Stack width="100%" maxW={{ base: 'none', mdOnly: '172px', md: '264px' }} minW={{ base: 'none', mdOnly: '172px', md: '264px' }} gap="16px">
       <FilterTags />

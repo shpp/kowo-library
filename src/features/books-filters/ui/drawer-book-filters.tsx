@@ -3,11 +3,12 @@ import { Heading, HStack } from '@chakra-ui/react';
 
 import { DrawerBody, DrawerHeader, StaticCloseTrigger } from '@/shared/ui/drawer/ui/drawer-lib';
 import { BooksFilters } from './BooksFilters';
+import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 
 import ArrowLeftIcon from '@/shared/assets/icons/arrow-left-icon';
 import FilterIcon from '@/shared/assets/icons/filter-icon';
 
-export const DrawerBookFilters = () => {
+export const DrawerBookFilters = ({ books }: { books: BooksApiResponse }) => {
   return (
     <>
       <DrawerHeader>
@@ -23,9 +24,8 @@ export const DrawerBookFilters = () => {
         </HStack>
       </DrawerHeader>
       <DrawerBody>
-        <BooksFilters maxWidth='none' />
+        <BooksFilters books={books} />
       </DrawerBody>
     </>
   );
 };
-
