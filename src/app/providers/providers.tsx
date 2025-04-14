@@ -2,6 +2,7 @@
 
 import React from 'react'
 import {ChakraProvider} from "@chakra-ui/react";
+import {SessionProvider} from "next-auth/react"
 
 import {kowoTheme} from "@/shared/config/theme";
 
@@ -11,8 +12,10 @@ export const Providers = ({
   children: React.ReactNode;
 }>) => {
   return (
-    <ChakraProvider value={kowoTheme}>
-      {children}
-    </ChakraProvider>
+    <SessionProvider>
+      <ChakraProvider value={kowoTheme}>
+        {children}
+      </ChakraProvider>
+    </SessionProvider>
   )
 }
