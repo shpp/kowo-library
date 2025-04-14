@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { Button, Flex, Grid, Heading } from '@chakra-ui/react';
+import { Button, Grid, Heading, Stack } from '@chakra-ui/react';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { z } from 'zod';
@@ -47,7 +47,7 @@ export const UserInfoForm = () => {
   const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
 
   return (
-    <Flex flexDir={'column'} gap={'24px'}>
+    <Stack maxW={'604px'} gap={'24px'}>
       <Heading fontSize={'40px'} fontWeight={600} color={'rgba(3, 7, 18, 1)'}>
         Особисті дані
       </Heading>
@@ -106,10 +106,10 @@ export const UserInfoForm = () => {
             render={({ field }) => <StyledInput icon={<ViberIcon />} placeholder="Введіть ваш логін" field={field} title="Viber" type="text" errorText={errors.viber?.message} />}
           />
         </Grid>
-        <Button color={'white'} p={'8px 16px'} w={'fit-content'} type="submit">
+        <Button visual={'kowo_green'} type="submit">
           Зберегти зміни
         </Button>
       </form>
-    </Flex>
+    </Stack>
   );
 };

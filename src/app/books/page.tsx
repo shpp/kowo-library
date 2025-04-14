@@ -20,28 +20,83 @@ async function fetchBooks() {
   return data.data.slice(31, data.data.length);
 }
 
-export default async function Books({ searchParams }: { searchParams: { page?: string } }) {
-  const books: BooksApiResponse = await fetchBooks();
-  const pageSize = 20;
-  const currentPage = parseInt(searchParams.page || '1', 10);
-  const totalBooks = books.length;
+type SearchParamsType = {
+  page?: string;
+  years?: string;
+  search?: string;
+  authors?: string | string[];
+  availability?: string | string[];
+  languages?: string | string[];
+};
 
+export default async function Books({ searchParams }: { searchParams: SearchParamsType }) {
+  const { page, years, authors, availability, languages, search } = await searchParams; // used because of https://nextjs.org/docs/messages/sync-dynamic-apis
+  const allBooks: BooksApiResponse = await fetchBooks();
+
+  const authorsArray = Array.isArray(authors) ? authors : authors ? [authors] : [];
+  const availabilityArray = Array.isArray(availability) ? availability : availability ? [availability] : [];
+  const languagesArray = Array.isArray(languages) ? languages : languages ? [languages] : [];
+
+  let filteredBooks: BooksApiResponse = allBooks;
+
+  if (search && search.trim()) {
+    const searchLower = search.toLowerCase();
+    filteredBooks = filteredBooks.filter((item) => {
+      if (item.name.toLowerCase().includes(searchLower)) return true;
+      if (item.authors.some((author) => author.toLowerCase().includes(searchLower))) return true;
+      return false;
+    });
+  }
+
+  if (years) {
+    const [min, max] = years.split(',').map(Number);
+    if (!isNaN(min) && !isNaN(max) && min <= max) {
+      filteredBooks = filteredBooks.filter((book) => book.year >= min && book.year <= max);
+    }
+  }
+
+  if (authorsArray.length > 0) {
+    filteredBooks = filteredBooks.filter((book) => book.authors.some((author) => authorsArray.includes(author)));
+  }
+
+  if (availabilityArray.length > 0) {
+    filteredBooks = filteredBooks.filter((book) => {
+      if (availabilityArray.includes('В наявності') && book.status === 'open') {
+        return true;
+      }
+      if (availabilityArray.includes('На руках') && book.status === 'hidden') {
+        return true;
+      }
+      return false;
+    });
+  }
+
+  if (languagesArray.length > 0) {
+    filteredBooks = filteredBooks.filter((book) => {
+      const bookLanguage = book.language === 'ua' ? 'Українська' : book.language === 'ru' ? 'Москворота' : 'Англійська';
+      return languagesArray.includes(bookLanguage);
+    });
+  }
+
+  const pageSize = 20;
+  const currentPage = Math.max(1, Number(page) || 1);
+  const totalBooks = filteredBooks.length;
   const startIndex = (currentPage - 1) * pageSize;
   const endIndex = startIndex + pageSize;
-  const paginatedBooks = books.slice(startIndex, endIndex);
+  const paginatedBooks = filteredBooks.slice(startIndex, endIndex);
 
   return (
     <Flex maxW="1440px" m="0 auto" p={'3dvh 3dvw'} gap={'16px'} flexDir={'column'}>
       <Box hideFrom={'sm'}>
-        <BooksHeader />
+        <BooksHeader books={filteredBooks} />
       </Box>
       <Flex gap={'16px'}>
         <Box hideBelow={'md'}>
-          <BooksFilters />
+          <BooksFilters books={filteredBooks} />
         </Box>
         <Flex flexDirection={'column'} gap={'16px'} w={'100%'}>
           <Box hideBelow={'sm'}>
-            <BooksHeader />
+            <BooksHeader books={filteredBooks} />
           </Box>
           <SimpleGrid columns={{ base: 2, md: 3, xl: 4 }} gap="16px">
             {paginatedBooks.length > 0 ? paginatedBooks.map((item) => <KowoBook key={item.id} data={item} width={`100%`} />) : <Text>No books to display</Text>}
@@ -63,7 +118,7 @@ export default async function Books({ searchParams }: { searchParams: { page?: s
   );
 }
 
-const BooksHeader = () => {
+const BooksHeader = ({ books }: { books: BooksApiResponse }) => {
   return (
     <Flex gap={{ mdDown: '10px' }} flexDir={'row'} alignItems={{ mdDown: 'start', md: 'center' }} justifyContent={'space-between'} w={'100%'}>
       <Heading textWrap={'nowrap'} fontFamily={'Podkova'} fontWeight={600} fontSize={'32px'} lineHeight={'38.4px'} color={'rgba(3, 7, 18, 1)'}>
@@ -77,7 +132,7 @@ const BooksHeader = () => {
               Фільтри
             </Button>
           }
-          content={<DrawerBookFilters />}
+          content={<DrawerBookFilters books={books} />}
         />
       </Box>
       {/* <Flex alignItems={{ mdDown: 'end', md: 'center' }} gap={'16px'} w={{ mdDown: '100%' }}>

@@ -17,8 +17,7 @@ export const FilterTags = () => {
   };
 
   const handleClearTags = () => {
-    const params = new URLSearchParams(searchParams.toString());
-    router.push(`?page=${params.get('page')}`, { scroll: false });
+    router.push(`?page=1`, { scroll: false });
   };
 
   return (

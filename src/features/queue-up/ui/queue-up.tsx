@@ -1,5 +1,5 @@
-'use client'
-import { Button, Center, Checkbox, Flex, Heading, Text } from '@chakra-ui/react';
+'use client';
+import { Button, Center, Checkbox, Dialog, Flex, Heading, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 import React from 'react';
 
@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { Controller, SubmitHandler, useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { StyledInput } from '@/shared/ui/styled-input';
+import { BookApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 
 const userInfoSchema = z.object({
   firstName: z.string().min(1, "Ім'я обов’язкове"),
@@ -28,7 +29,7 @@ const defaultValues: Inputs = {
   policy: false,
 };
 
-export const QueueUp = () => {
+export const QueueUp = ({ book, type = 'book' }: { book?: BookApiResponse; type?: 'book' | 'queue' }) => {
   const {
     control,
     handleSubmit,
@@ -41,25 +42,34 @@ export const QueueUp = () => {
   const onSubmit: SubmitHandler<Inputs> = (data: unknown) => console.log(data);
 
   return (
-    <Flex bgColor={'white'} width={{base: '100%', lg: '853px'}} borderRadius={'8px'} flexDir={{base: 'column', md: 'row'}} maxH={'95dvh'} overflowY={'auto'}>
-      <Flex borderRadius={{base: '8px 8px 0px 0px', md: '8px 0px 0px 8px'}} bgImage={`url(${kowoBg.src})`} bgPos={'center'} bgSize={'cover'} width={{base: '100%', md: '40%'}} flexDir={'column'} p={'32px'} gap={'16px'}>
+    <Flex bgColor={'white'} width={{ base: '100%', lg: '853px' }} borderRadius={'8px'} flexDir={{ base: 'column', md: 'row' }} maxH={'95dvh'} overflowY={'auto'}>
+      <Flex
+        borderRadius={{ base: '8px 8px 0px 0px', md: '8px 0px 0px 8px' }}
+        bgImage={`url(${kowoBg.src})`}
+        bgPos={'center'}
+        bgSize={'cover'}
+        width={{ base: '100%', md: '40%' }}
+        flexDir={'column'}
+        p={'32px'}
+        gap={'16px'}
+      >
         <Center width={'100%'} bgColor={'rgba(0, 0, 0, 0.15)'} borderRadius={'8px'}>
-          <Image width={100} height={100} src={''} alt="" style={{ width: '70%', aspectRatio: '3 / 4' }}></Image>
+          <Image width={100} height={100} src={book!.cover} alt="" style={{ width: '70%', aspectRatio: '3 / 4' }}></Image>
         </Center>
         <Flex flexDir={'column'} gap={'8px'}>
           <Heading fontSize={'32px'} fontWeight={600} color={'white'}>
-            Я бачу, вас цікавить пітьма
+            {book?.name}
           </Heading>
           <Text fontFamily={'Inter'} fontSize={'20px'} lineHeight={'150%'} color={'white'}>
-            Ілларіон Павлюк
+            {book?.authors.join(', ')}
           </Text>
         </Flex>
       </Flex>
-      <Flex width={{base: '100%', md: '60%'}} p={'32px'}>
+      <Flex width={{ base: '100%', md: '60%' }} p={'32px'}>
         <form onSubmit={handleSubmit(onSubmit)} style={{ width: '100%' }}>
           <Flex flexDir={'column'} gap={'24px'}>
             <Heading fontSize={'32px'} fontWeight={600}>
-              Забронювати книгу
+              {type === 'book' ? 'Забронювати книгу' : 'Стати в чергу'}
             </Heading>
             <Controller
               name="firstName"
@@ -95,13 +105,17 @@ export const QueueUp = () => {
                 </Checkbox.Root>
               )}
             />
-            <Flex gap={'8px'} flexDir={{base: 'column', sm: 'row'}}>
-              <Button borderRadius={'8px'} bgColor={'rgba(252, 65, 65, 1)'} color={'white'} p={'8px 16px'} w={{base: '100%', sm: 'fit-content'}} type="submit">
-                Забронювати
+            <Flex gap={'8px'} flexDir={{ base: 'column', sm: 'row' }}>
+              <Button visual={'kowo_red'} w={{ base: '100%', sm: 'fit-content' }} type="submit">
+                {type === 'book' ? 'Забронювати' : 'Стати в чергу'}
               </Button>
-              <Button borderRadius={'8px'} bgColor={'white'} border={'1px solid rgba(212, 213, 217, 1)'} color={'kowo.solid'} p={'8px 16px'} w={{base: '100%', sm: 'fit-content'}} type="reset">
-                Скасувати
-              </Button>
+              <Dialog.Context>
+                {(store) => (
+                  <Button visual={'kowo_white'} w={{ base: '100%', sm: 'fit-content' }} onClick={() => store.setOpen(false)} type="reset">
+                    Скасувати
+                  </Button>
+                )}
+              </Dialog.Context>
             </Flex>
           </Flex>
         </form>

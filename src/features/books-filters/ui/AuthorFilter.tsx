@@ -1,5 +1,5 @@
 'use client';
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Badge, Collapsible, Group, HStack, IconButton, Input, InputElement, Stack, Text } from '@chakra-ui/react';
 
 import { Checkbox } from '@/shared/ui/checkbox';
@@ -7,11 +7,15 @@ import ChevronUp from '@/shared/assets/icons/chevron-up';
 import SearchIcon from '@/shared/assets/icons/search-icon';
 import ChevronDown from '@/shared/assets/icons/chevron-down';
 import { BookApiResponse, BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
+import { useRouter, useSearchParams } from 'next/navigation';
 
 export const AuthorFilter = ({ books }: { books: BooksApiResponse | undefined }) => {
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
   const [isOpen, setIsOpen] = useState(true);
-  const [selectedAuthors, setSelectedAuthors] = useState<string[]>([]);
   const [search, setSearch] = useState('');
+  const [selectedAuthors, setSelectedAuthors] = useState<string[]>(searchParams.getAll('authors'));
 
   const authors = useMemo(() => {
     if (!books) {
@@ -36,9 +40,30 @@ export const AuthorFilter = ({ books }: { books: BooksApiResponse | undefined })
     }));
   }, [books]);
 
-  const toggleAuthor = (author: string) => {
-    setSelectedAuthors((prev) => (prev.includes(author) ? prev.filter((a) => a !== author) : [...prev, author]));
+  const updateQueryParams = (authors: string[]) => {
+    const params = new URLSearchParams(searchParams.toString());
+    params.delete('authors');
+    params.delete('search');
+    params.delete('page');
+
+    authors.forEach((author) => {
+      params.append('authors', author);
+    });
+
+    router.push(`?page=1${params.toString()}`, { scroll: false });
   };
+
+  const handleAuthorChange = (author: string, checked: boolean) => {
+    const updatedAuthors = checked ? [...selectedAuthors, author] : selectedAuthors.filter((a) => a !== author);
+
+    setSelectedAuthors(updatedAuthors);
+    updateQueryParams(updatedAuthors);
+  };
+
+  useEffect(() => {
+    if (!searchParams) return;
+    setSelectedAuthors(searchParams.getAll('authors'));
+  }, [searchParams]);
 
   const filteredAuthors = authors.filter((author) => author.name.toLowerCase().includes(search.toLowerCase()));
 
@@ -66,7 +91,7 @@ export const AuthorFilter = ({ books }: { books: BooksApiResponse | undefined })
           <Stack gap="10px" maxHeight="190px" overflowY="auto">
             {filteredAuthors.map((author) => (
               <HStack key={author.name} justifyContent="space-between" gap="16px">
-                <Checkbox checked={selectedAuthors.includes(author.name)} onChange={() => toggleAuthor(author.name)}>
+                <Checkbox checked={selectedAuthors.includes(author.name)} onCheckedChange={(e) => handleAuthorChange(author.name, !!e.checked)}>
                   {author.name} {author.flag && author.flag}
                 </Checkbox>
                 <Badge colorPalette="gray" variant="subtle">
