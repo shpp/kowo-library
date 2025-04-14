@@ -1,27 +1,30 @@
-// import type { NextApiRequest, NextApiResponse } from 'next';
-
-// type ResponseData = {
-//   result: unknown;
-// };
-
-// export default async function handler(_: NextApiRequest, res: NextApiResponse<ResponseData>) {
-//   try {
-//     const response = await fetch('https://nano.kowo.space/books.kowo.me/db/');
-//     const data = await response.json();
-//     res.status(200).json({ result: data });
-//   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-//   } catch (e: unknown) {
-//     res.status(500).json({ result: [] });
-//   }
-// }
+import {auth} from "@/shared/config/auth";
 
 export const GET = async () => {
   try {
     const response = await fetch('https://nano.kowo.space/books.kowo.me/db/');
     const data = await response.json();
     return Response.json({ data: data.items });
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  } catch (e: unknown) {
+  } catch {
     Response.json({ data: [] });
   }
 };
+
+// API call example
+// fetch("/api/books", {
+//   method: "POST",
+//   headers: {
+//     "Content-Type": "application/json",
+//   },
+//   body: JSON.stringify({ id: 123 }),
+// })
+
+export const POST = auth(async (req) => {
+  if (!req.auth) {
+    return Response.json({ message: "Not authenticated" }, { status: 401 })
+  }
+  
+  const {id} = await req.json();
+
+  return Response.json({ user: req.auth.user, bookId: id })
+})

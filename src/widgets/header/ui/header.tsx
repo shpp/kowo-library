@@ -7,15 +7,12 @@ import { DrawerMenu } from '@/features/drawer-menu';
 import { LogoLink } from '@/widgets/logo-link';
 import { Navigation } from '@/widgets/navigation';
 import { SearchBar } from '@/widgets/search-bar';
-import { ModalWindow } from '@/shared/ui/modal-window';
-import { GoogleLogIn } from '@/features/google-log-in';
-
-import CabinetIcon from '@/shared/assets/icons/cabinet-icon';
 import FavoriteIcon from '@/shared/assets/icons/favorite-icon';
 import MenuIcon from '@/shared/assets/icons/menu-icon';
+import { DrawerWrapper } from '@/shared/ui/drawer';
+import {AuthButton} from "@/widgets/header/ui/auth-button";
 
 import styles from './header.module.css';
-import { DrawerWrapper } from '@/shared/ui/drawer';
 
 export const Header = () => {
   return (
@@ -38,15 +35,7 @@ export const Header = () => {
         <SearchBar />
         <Navigation />
         <HStack gap={'4px'}>
-          <ModalWindow
-            trigger={
-              <Button gap="0" p="4px 8px" rounded="lg" height="100%" color="#030712" variant="ghost" flexDirection="column">
-                <CabinetIcon width="32px" height={'32px'} />
-                Кабінет
-              </Button>
-            }
-            content={<GoogleLogIn />}
-          />
+          <AuthButton />
           <Button gap="0" p="4px 8px" rounded="lg" height="100%" color="#030712" variant="ghost" flexDirection="column">
             <FavoriteIcon />
             Обране
