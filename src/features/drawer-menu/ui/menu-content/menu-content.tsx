@@ -1,18 +1,18 @@
 import React from "react";
 import Link from 'next/link';
-import { Box, Button, DrawerContext, Separator, Stack, Text, VStack } from '@chakra-ui/react';
+import { Box, Button, DrawerContext, Separator, VStack } from '@chakra-ui/react';
 
-import { Illustration } from '@/shared/ui/illustration';
+// import { Illustration } from '@/shared/ui/illustration';
 import { DrawerBody, DrawerCloseTrigger, DrawerFooter, DrawerHeader } from '@/shared/ui/drawer';
 import { LogoLink } from '@/widgets/logo-link';
 import { Navigation } from '@/widgets/navigation';
 import { SearchBar } from '@/widgets/search-bar';
 
 import CatalogIcon from '@/shared/assets/icons/catalog-icon';
-import FavoriteIcon from '@/shared/assets/icons/favorite-icon';
-import books from '@/shared/assets/illustrations/books.svg';
-import { ArrowIcon } from '../ArrowIcon';
-import {AuthButton} from "@/widgets/header/ui/auth-button";
+// import FavoriteIcon from '@/shared/assets/icons/favorite-icon';
+// import books from '@/shared/assets/illustrations/books.svg';
+// import { ArrowIcon } from '../ArrowIcon';
+// import {AuthButton} from "@/widgets/header/ui/auth-button";
 
 export const MenuContent = ({ setStep }: { setStep: (step: number) => void }) => {
   return (
@@ -29,23 +29,23 @@ export const MenuContent = ({ setStep }: { setStep: (step: number) => void }) =>
             <VStack height="16px" justifyContent="center">
               <Separator width="100%" />
             </VStack>
-            <VStack alignItems="flex-start">
+            {/* <VStack alignItems="flex-start">
               <AuthButton />
               <Button gap="8px" p="4px 8px" rounded="lg" height="100%" color="#030712" variant="ghost">
                 <FavoriteIcon width="24px" height="24px" />
                 Обране
               </Button>
-            </VStack>
+            </VStack> */}
             <Link href="#">
-              <Stack alignItems="start" padding="8px">
+              {/* <Stack alignItems="start" padding="8px">
                 <Illustration src={books.src} alt={'Books'} width={137} height={136} />
                 <Stack direction="row" justify="space-between">
                   <Text fontWeight="semibold">Зробіть добру справу!</Text>
                   <ArrowIcon />
                 </Stack>
                 <Text fontSize="sm">Залиште свою книгу в бібліотеці і вона знайде нового читача!</Text>
-              </Stack>
-              <Separator />
+              </Stack> */}
+              {/* <Separator /> */}
             </Link>
           </DrawerBody>
           <DrawerFooter>

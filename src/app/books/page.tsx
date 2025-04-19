@@ -49,7 +49,7 @@ export default async function Books({ searchParams }: { searchParams: SearchPara
   }
 
   if (years) {
-    const [min, max] = years.split(',').map(Number);
+    const [min, max] = years.split(' - ').map(Number);
     if (!isNaN(min) && !isNaN(max) && min <= max) {
       filteredBooks = filteredBooks.filter((book) => book.year >= min && book.year <= max);
     }
@@ -101,10 +101,10 @@ export default async function Books({ searchParams }: { searchParams: SearchPara
           <SimpleGrid columns={{ base: 2, md: 3, xl: 4 }} gap="16px">
             {paginatedBooks.length > 0 ? paginatedBooks.map((item) => <KowoBook key={item.id} data={item} width={`100%`} />) : <Text>No books to display</Text>}
           </SimpleGrid>
-          <Flex justify={'space-between'} alignItems={'center'}>
-            <Button bgColor={'white'} fontSize={{ base: '14px', sm: '16px' }} color={'rgba(102, 165, 43, 1)'} border={'1px solid rgba(212, 213, 217, 1)'} borderRadius={'8px'}>
+          <Flex justify={'end'} alignItems={'center'}>
+            {/* <Button bgColor={'white'} fontSize={{ base: '14px', sm: '16px' }} color={'rgba(102, 165, 43, 1)'} border={'1px solid rgba(212, 213, 217, 1)'} borderRadius={'8px'}>
               Завантажити ще
-            </Button>
+            </Button> */}
             <Box hideFrom={'lg'}>
               <CustomPagination type="compact" count={totalBooks} pageSize={pageSize} page={currentPage} />
             </Box>
