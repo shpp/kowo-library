@@ -11,9 +11,10 @@ export const FilterTags = () => {
 
   const handleRemoveTag = (tagToRemove: Array<string>) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.delete(tagToRemove[0], tagToRemove[1])
+    params.delete(tagToRemove[0], tagToRemove[1]);
+    params.delete('page');
     const queryString = params.toString();
-    router.push(queryString ? `?${queryString}` : '/', { scroll: false });
+    router.push(queryString ? `?page=1&${queryString}` : '?page=1', { scroll: false });
   };
 
   const handleClearTags = () => {
@@ -26,27 +27,23 @@ export const FilterTags = () => {
         <Text fontSize="20px" fontWeight="semibold">
           Фільтри
         </Text>
-        {!!tags?.length && (
+        {tags.length > 1 && (
           <Button variant="plain" css={{ color: '#4B8020' }} onClick={handleClearTags}>
             Очистити
           </Button>
         )}
       </HStack>
       <HStack flexWrap="wrap" mt={2}>
-        {tags.length > 1 ? (
-          tags.filter(([key]) => key !== 'page').map((tag, index) => (
+        {tags
+          .filter(([key]) => key !== 'page')
+          .map((tag, index) => (
             <Tag.Root key={index} variant="outline" padding="6px">
               <Tag.Label>{tag[1]}</Tag.Label>
               <Tag.EndElement>
                 <Tag.CloseTrigger onClick={() => handleRemoveTag(tag)} aria-label={`Видалити тег ${tag}`} />
               </Tag.EndElement>
             </Tag.Root>
-          ))
-        ) : (
-          <Text width="100%" textAlign="center" marginBlock="12px">
-            Тут поки нічого немає...
-          </Text>
-        )}
+          ))}
       </HStack>
     </Box>
   );

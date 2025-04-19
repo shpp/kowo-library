@@ -1,15 +1,15 @@
 import React from 'react';
-import { Badge, Box, Button, Flex, Heading, RatingGroup, Span, Text } from '@chakra-ui/react';
+import { Badge, Box, Button, Flex, Heading, Span, Text } from '@chakra-ui/react';
 import Image from 'next/image';
 
 import { BookStatus } from '@/shared/ui/book-status';
 import { KeyConcepts } from '@/widgets/key-concepts';
-import { BookComments } from '@/widgets/book-comments';
+// import { BookComments } from '@/widgets/book-comments';
 import { BookRecommendations } from '@/widgets/book-recommendations';
 import { ModalWindow } from '@/shared/ui/modal-window';
 import { QueueUp } from '@/features/queue-up';
 
-import HeartIcon from '@/shared/assets/icons/heart-icon';
+// import HeartIcon from '@/shared/assets/icons/heart-icon';
 import { DescriptionBlock } from '../ui/description-block/description-block';
 import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 
@@ -48,7 +48,7 @@ export default async function Book({ params }: { params: Promise<{ slug: string 
             <Text fontFamily={'Inter'} fontSize={'20px'} fontWeight={400} lineHeight={'150%'} marginBottom={'16px'}>
               {currentBookData?.authors.join(', ')}
             </Text>
-            <Flex marginBottom={'24px'} gap={'8px'}>
+            {/* <Flex marginBottom={'24px'} gap={'8px'}>
               <RatingGroup.Root readOnly defaultValue={0} count={5} colorPalette={'yellow'}>
                 <RatingGroup.HiddenInput />
                 <RatingGroup.Control>
@@ -62,7 +62,7 @@ export default async function Book({ params }: { params: Promise<{ slug: string 
               <Text fontFamily={'Inter'} fontSize={'16px'} fontWeight={400} lineHeight={'150%'} color={'rgba(75, 128, 32, 1)'}>
                 0 відгуків
               </Text>
-            </Flex>
+            </Flex> */}
             <Flex gap={'8px'} marginBottom={'24px'} flexWrap={'wrap'}>
               <Badge borderRadius={'8px'} bgColor={'rgba(247, 248, 248, 1)'} display={'flex'} flexDir={'column'} alignItems={'start'} padding={'8px'}>
                 <Text color={'rgba(3, 7, 18, 1)'} fontSize={'16px'} fontWeight={600} lineHeight={'150%'} fontFamily={'Inter'}>
@@ -95,12 +95,12 @@ export default async function Book({ params }: { params: Promise<{ slug: string 
                 }
                 content={<QueueUp book={currentBookData} />}
               />
-              <Button border={'1px solid rgba(212, 213, 217, 1)'} borderRadius={'8px'} bgColor={'white'}>
+              {/* <Button border={'1px solid rgba(212, 213, 217, 1)'} borderRadius={'8px'} bgColor={'white'}>
                 <HeartIcon />
-              </Button>
+              </Button> */}
             </Flex>
             <DescriptionBlock description={currentBookData?.description} />
-            <BookComments />
+            {/* <BookComments /> */}
           </Flex>
         </Flex>
         {/* <BookRecommendations type="history" /> */}

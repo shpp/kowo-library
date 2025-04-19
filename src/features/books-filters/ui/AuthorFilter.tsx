@@ -15,6 +15,7 @@ export const AuthorFilter = ({ books }: { books: BooksApiResponse | undefined })
 
   const [isOpen, setIsOpen] = useState(true);
   const [search, setSearch] = useState('');
+
   const [selectedAuthors, setSelectedAuthors] = useState<string[]>(searchParams.getAll('authors'));
 
   const authors = useMemo(() => {
@@ -46,11 +47,16 @@ export const AuthorFilter = ({ books }: { books: BooksApiResponse | undefined })
     params.delete('search');
     params.delete('page');
 
+    if (authors.length == 0) {
+      router.push(`?page=1`, { scroll: false });
+      return;
+    }
+
     authors.forEach((author) => {
       params.append('authors', author);
     });
 
-    router.push(`?page=1${params.toString()}`, { scroll: false });
+    router.push(`?page=1&${params.toString()}`, { scroll: false });
   };
 
   const handleAuthorChange = (author: string, checked: boolean) => {

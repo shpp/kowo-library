@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { Box, Button, Collapsible, Separator, Stack, Text, Link as ChakraLink, useDisclosure } from '@chakra-ui/react';
 
 import CatalogIcon from '@/shared/assets/icons/catalog-icon';
-import { Illustration } from '@/shared/ui/illustration';
+// import { Illustration } from '@/shared/ui/illustration';
 import { ArrowIcon } from './ArrowIcon';
 
-import books from '@/shared/assets/illustrations/books.svg';
+// import books from '@/shared/assets/illustrations/books.svg';
 
 const CATEGORIES = [
   {
@@ -69,7 +69,7 @@ export const MegaMenu = () => {
         </Button>
       </Collapsible.Trigger>
       <Collapsible.Content position="absolute" top="72px" zIndex="100" insetInline="0">
-        <Box bg="#FFFFFF" borderBottom="1px solid #D4D5D9">
+        <Box bg="#FFFFFF" borderBottom="1px solid #D4D5D9" paddingInline={'16px'}>
           <Box bgColor={'white'} gap="16px" columns="240px" maxWidth="1224px" marginX="auto" padding="40px 0">
             <Stack gap="24px" marginBottom="24px" css={{ breakInside: 'avoid' }}>
               <Link href="/books?page=1" onClick={handleLinkClick}>
@@ -83,15 +83,15 @@ export const MegaMenu = () => {
               </Link>
 
               <Link href="#" onClick={handleLinkClick}>
-                <Stack alignItems="start" padding="8px">
+                {/* <Stack alignItems="start" padding="8px">
                   <Illustration src={books.src} alt={'Books'} width={137} height={136} />
                   <Stack direction="row" justify="space-between">
                     <Text fontWeight="semibold">Зробіть добру справу!</Text>
                     <ArrowIcon />
                   </Stack>
                   <Text fontSize="sm">Залиште свою книгу в бібліотеці і вона знайде нового читача!</Text>
-                </Stack>
-                <Separator />
+                </Stack> */}
+                {/* <Separator /> */}
               </Link>
             </Stack>
             {CATEGORIES.map((category) => (
