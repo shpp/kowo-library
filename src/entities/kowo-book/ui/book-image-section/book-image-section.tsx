@@ -1,4 +1,3 @@
-import { IBookStatusProps } from '@/shared/ui/book-status';
 import {AspectRatio, Center, Text} from '@chakra-ui/react';
 import Image from 'next/image';
 import React, {FC, useState} from 'react';
@@ -10,7 +9,7 @@ interface IBookImageSectionProps {
   isLiked: boolean;
 }
 
-export const BookImageSection: FC<IBookImageSectionProps> = ({ image, name, isLiked, authors }) => {
+export const BookImageSection: FC<IBookImageSectionProps> = ({ image, name, authors }) => {
   const [errored, setErrored] = useState(false);
 
   return (

@@ -67,13 +67,9 @@ export const YearsFilter = ({ books }: { books?: BooksApiResponse }) => {
     router.push(`?page=1&${params.toString()}`, { scroll: false });
   };
 
-  const debouncedUpdateQueryParams = useMemo(
-    () =>
-      debounce((min: number, max: number) => {
-        updateQueryParams(min, max);
-      }, 300),
-    []
-  );
+  const debouncedUpdateQueryParams = debounce((min: number, max: number) => {
+    updateQueryParams(min, max);
+  }, 300);
 
   const handleValueChange = (newValues: number[]) => {
     setValues(newValues);
