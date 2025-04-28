@@ -50,3 +50,5 @@ export const POST = async (req: Request) => {
     return Response.json({ success: false })
   }
 }
+
+export const runtime = 'edge';
