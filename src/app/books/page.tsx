@@ -8,6 +8,7 @@ import { CustomPagination } from '@/shared/ui/pagination-lib/customPagination';
 // import { BooksSorting } from '@/features/books-sorting/ui/BooksSorting';
 import { FiFilter } from 'react-icons/fi';
 import { DrawerWrapper } from '@/shared/ui/drawer';
+import {NextPage} from "next";
 
 async function fetchBooks() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books`, {
@@ -30,8 +31,12 @@ type SearchParamsType = {
   languages?: string | string[];
 };
 
-export default async function Books({ searchParams }: { searchParams: SearchParamsType }) {
-  const { page, years, authors, availability, languages, search } = await searchParams; // used because of https://nextjs.org/docs/messages/sync-dynamic-apis
+type PageProps = {
+  searchParams: Record<string, string | string[] | undefined> & Promise<unknown> ;
+};
+
+const Books: NextPage<PageProps> = async ({ searchParams }: PageProps)=> {
+  const { page, years, authors, availability, languages, search } = await searchParams as SearchParamsType; // used because of https://nextjs.org/docs/messages/sync-dynamic-apis
   const allBooks: BooksApiResponse = await fetchBooks();
 
   const authorsArray = Array.isArray(authors) ? authors : authors ? [authors] : [];
@@ -144,3 +149,5 @@ const BooksHeader = ({ books }: { books: BooksApiResponse }) => {
     </Flex>
   );
 };
+
+export default Books;
