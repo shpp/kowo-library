@@ -18,7 +18,7 @@ export const BookRecommendations: FC<IBookRecommendationsProps> = ({ type }) => 
       </Heading>
       <SimpleGrid columns={columns} gap={'16px'}>
         {booksRecommendationsMockData.slice(0, columns).map((item) => (
-          <KowoBook data={item} key={item.id} width={'100%'} />
+          <KowoBook data={item} key={item.id} width={'100%'} type={'compact'} />
         ))}
       </SimpleGrid>
     </Flex>

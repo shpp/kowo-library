@@ -10,6 +10,7 @@ export const booksRecommendationsMockData = [
     authors: ['Dan Brown'],
     year: 2008,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/58921dc840598d1ceaf8aa7ad976d78f.jpeg',
+    available: true,
   },
   {
     id: 414,
@@ -22,6 +23,7 @@ export const booksRecommendationsMockData = [
     authors: ['Роберт Лафоре'],
     year: 2017,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/f54f96bc9b68a156a0eb67d197d6ed5c.jpeg',
+    available: true,
   },
   {
     id: 177,
@@ -34,6 +36,7 @@ export const booksRecommendationsMockData = [
     authors: ['О. Є. Чижевський'],
     year: 2005,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/cd59ded4e648e5e8a867922477d419d9.jpeg',
+    available: true,
   },
   {
     id: 80,
@@ -46,6 +49,7 @@ export const booksRecommendationsMockData = [
     authors: ['Пол Клейнман'],
     year: 2016,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/b610883831bd82c3a3d3388f0a36abf2.jpeg',
+    available: true,
   },
   {
     id: 87,
@@ -58,5 +62,6 @@ export const booksRecommendationsMockData = [
     authors: ['Девід Херрон'],
     year: 2012,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/0e5e9d91d09d77e94ac5b685c0071835.jpeg',
+    available: true,
   },
 ];

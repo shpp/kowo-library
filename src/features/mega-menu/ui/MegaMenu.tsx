@@ -68,7 +68,7 @@ export const MegaMenu = () => {
           Каталог
         </Button>
       </Collapsible.Trigger>
-      <Collapsible.Content position="absolute" top="72px" zIndex="100" insetInline="0">
+      <Collapsible.Content position="absolute" top="72px" zIndex="1000" insetInline="0">
         <Box bg="#FFFFFF" borderBottom="1px solid #D4D5D9" paddingInline={'16px'}>
           <Box bgColor={'white'} gap="16px" columns="240px" maxWidth="1224px" marginX="auto" padding="40px 0">
             <Stack gap="24px" marginBottom="24px" css={{ breakInside: 'avoid' }}>

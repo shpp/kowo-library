@@ -12,12 +12,13 @@ import { DrawerWrapper } from '@/shared/ui/drawer';
 async function fetchBooks() {
   const res = await fetch(`http://localhost:3000/api/books`, {
     cache: 'force-cache',
+    next: { revalidate: 3600 },
   });
   if (!res.ok) {
     throw new Error('Failed to fetch books');
   }
   const data = await res.json();
-  return data.data.slice(31, data.data.length);
+  return data.data;
 }
 
 type SearchParamsType = {
@@ -43,8 +44,7 @@ export default async function Books({ searchParams }: { searchParams: SearchPara
     const searchLower = search.toLowerCase();
     filteredBooks = filteredBooks.filter((item) => {
       if (item.name.toLowerCase().includes(searchLower)) return true;
-      if (item.authors.some((author) => author.toLowerCase().includes(searchLower))) return true;
-      return false;
+      return item.authors.some((author) => author.toLowerCase().includes(searchLower));
     });
   }
 
@@ -61,10 +61,10 @@ export default async function Books({ searchParams }: { searchParams: SearchPara
 
   if (availabilityArray.length > 0) {
     filteredBooks = filteredBooks.filter((book) => {
-      if (availabilityArray.includes('В наявності') && book.status === 'open') {
+      if (availabilityArray.includes('В наявності') && book.available) {
         return true;
       }
-      if (availabilityArray.includes('На руках') && book.status === 'hidden') {
+      if (availabilityArray.includes('На руках') && !book.available) {
         return true;
       }
       return false;
@@ -99,7 +99,7 @@ export default async function Books({ searchParams }: { searchParams: SearchPara
             <BooksHeader books={filteredBooks} />
           </Box>
           <SimpleGrid columns={{ base: 2, md: 3, xl: 4 }} gap="16px">
-            {paginatedBooks.length > 0 ? paginatedBooks.map((item) => <KowoBook key={item.id} data={item} width={`100%`} />) : <Text>No books to display</Text>}
+            {paginatedBooks.length > 0 ? paginatedBooks.map((item) => <KowoBook key={item.id} data={item} width={`100%`} type='full' />) : <Text>No books to display</Text>}
           </SimpleGrid>
           <Flex justify={'end'} alignItems={'center'}>
             {/* <Button bgColor={'white'} fontSize={{ base: '14px', sm: '16px' }} color={'rgba(102, 165, 43, 1)'} border={'1px solid rgba(212, 213, 217, 1)'} borderRadius={'8px'}>

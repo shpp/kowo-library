@@ -10,6 +10,7 @@ export const booksWhatsNewMockData = [
     authors: ['Стівен Кінг'],
     year: 2016,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/a878aa50b22615c32c48c1d21df67693.jpeg',
+    available: true,
   },
   {
     id: 171,
@@ -22,6 +23,7 @@ export const booksWhatsNewMockData = [
     authors: ['Бхаргава Адітья'],
     year: 2017,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/633a22a3ab8d7a68d3bc26736803ca97.jpeg',
+    available: true,
   },
   {
     id: 145,
@@ -34,6 +36,7 @@ export const booksWhatsNewMockData = [
     authors: ['Чарльз Дікенс'],
     year: 2016,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/388635d8a0f95d64b9026e6b38d9df89.image',
+    available: true,
   },
   {
     id: 109,
@@ -46,6 +49,7 @@ export const booksWhatsNewMockData = [
     authors: ['Віктор Франкл'],
     year: 2004,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/64bf9318d0dc85012825d11f5e24424f.jpeg',
+    available: true,
   },
   {
     id: 97,
@@ -58,6 +62,7 @@ export const booksWhatsNewMockData = [
     authors: ['KORO'],
     year: 2019,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/77d32f5b29fc4990e1636b10db844ddc.jpeg',
+    available: true,
   },
   {
     id: 116,
@@ -70,6 +75,7 @@ export const booksWhatsNewMockData = [
     authors: ['Джекмен Я.'],
     year: 2010,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/583af5b4f50f86793c0434c2598cdae5.jpeg',
+    available: true,
   },
   {
     id: 126,
@@ -82,5 +88,6 @@ export const booksWhatsNewMockData = [
     authors: ['Михайло Краснов'],
     year: 2002,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/2beb08b4ea8d428a8c19ea4354bdacd4.jpeg',
+    available: true,
   },
 ];

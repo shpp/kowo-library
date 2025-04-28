@@ -10,6 +10,7 @@ export const booksMostInterestingMockData = [
     authors: ['Гаррі Беквіт'],
     year: 2018,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/5d84b6ebda4958b21b7e1bacc02f25d0.png',
+    available: true,
   },
   {
     id: 341,
@@ -22,6 +23,7 @@ export const booksMostInterestingMockData = [
     authors: ['Паттерсон', 'Гренні', 'Макмиллан', 'Світцлер'],
     year: 2014,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/535277209dd2f0838e2ab89018a4b7f7.jpeg',
+    available: true,
   },
   {
     id: 337,
@@ -34,6 +36,7 @@ export const booksMostInterestingMockData = [
     authors: ['Дж. К. Роллінг', 'Джон Тіффані та Джек Торн'],
     year: 2020,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/e11ac3f8dcb6bda32beb3ab9cb313f16.jpeg',
+    available: true,
   },
   {
     id: 328,
@@ -46,6 +49,7 @@ export const booksMostInterestingMockData = [
     authors: ['Збірка'],
     year: 2012,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/2f18f2a158a132102ed6a4effecdcc6f.jpeg',
+    available: true,
   },
   {
     id: 309,
@@ -58,6 +62,7 @@ export const booksMostInterestingMockData = [
     authors: ['Деніел Ґоулман'],
     year: 2020,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/612c29ab567f91225f6dba97282ba1cb.jpeg',
+    available: true,
   },
   {
     id: 280,
@@ -70,6 +75,7 @@ export const booksMostInterestingMockData = [
     authors: ['Максим Дорофєєв'],
     year: 2017,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/c472d4eff9e75f9bc86392cd51d1712c.jpeg',
+    available: true,
   },
   {
     id: 269,
@@ -82,5 +88,6 @@ export const booksMostInterestingMockData = [
     authors: ['Стівен Р. Кові'],
     year: 2020,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/df110845cea5f5b11030d19288744c88.jpeg',
+    available: true,
   },
 ];
