@@ -10,7 +10,7 @@ import { FiFilter } from 'react-icons/fi';
 import { DrawerWrapper } from '@/shared/ui/drawer';
 
 async function fetchBooks() {
-  const res = await fetch(`http://localhost:3000/api/books`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books`, {
     cache: 'force-cache',
     next: { revalidate: 3600 },
   });

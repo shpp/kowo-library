@@ -12,9 +12,10 @@ import { QueueUp } from '@/features/queue-up';
 // import HeartIcon from '@/shared/assets/icons/heart-icon';
 import { DescriptionBlock } from '../ui/description-block/description-block';
 import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
+import {redirect} from "next/navigation";
 
 async function fetchBooks() {
-  const res = await fetch(`http://localhost:3000/api/books`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books`, {
     cache: 'force-cache',
     next: { revalidate: 3600}
   });
@@ -22,7 +23,7 @@ async function fetchBooks() {
     throw new Error('Failed to fetch books');
   }
   const data = await res.json();
-  return data.data.slice(31, data.data.length);
+  return data.data;
 }
 
 export default async function Book({ params }: { params: Promise<{ slug: string }> }) {
@@ -30,6 +31,9 @@ export default async function Book({ params }: { params: Promise<{ slug: string 
   const books: BooksApiResponse = await fetchBooks();
 
   const currentBookData = books.find((item) => item.id === +resolvedParams.slug);
+  if (!currentBookData) {
+    return redirect('/');
+  }
 
   return (
     <Flex flexDir={'column'}>

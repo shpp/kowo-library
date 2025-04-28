@@ -9,7 +9,7 @@ export const { auth, handlers, signIn, signOut } = NextAuth({
       authorization: {
         params: {
           response_type: "code",
-          redirect_uri: `${process.env.NEXTAUTH_URL}/api/auth/callback/google`
+          redirect_uri: `${process.env.NEXT_PUBLIC_APP_URL}/api/auth/callback/google`
         }
       }
     })
