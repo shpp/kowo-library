@@ -30,7 +30,7 @@ const defaultValues: Inputs = {
 };
 
 async function makeBooking(bookingData: { bookId: number, person: Omit<Inputs, 'policy'>  }) {
-  return fetch(`http://localhost:3000/api/books`, {
+  return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books`, {
     method: 'POST',
     body: JSON.stringify(bookingData)
   });
