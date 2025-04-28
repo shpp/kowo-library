@@ -15,8 +15,8 @@ export const AvailabilityFilter = ({ books }: { books?: BooksApiResponse }) => {
 
   const { onHands, available } = useMemo(() => {
     if (!books) return { onHands: 0, available: 0 };
-    const onHands = books.filter((book) => book.status === 'hidden').length;
-    const available = books.filter((book) => book.status === 'open').length;
+    const onHands = books.filter((book) => !book.available).length;
+    const available = books.filter((book) => book.available).length;
     return { onHands: onHands, available: available };
   }, [books]);
 
