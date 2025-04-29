@@ -14,10 +14,7 @@ import dynamic from 'next/dynamic';
 const KowoBook = dynamic(() => import('@/entities/kowo-book/ui/kowo-book'));
 
 async function fetchBooks() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books`, {
-    cache: 'default',
-    next: { revalidate: 3600 },
-  });
+  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books`);
   if (!res.ok) {
     throw new Error('Failed to fetch books');
   }
