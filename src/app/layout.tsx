@@ -23,6 +23,7 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: "Бібліотека KOWO",
   description: "",
+  icons: '/favicon.png',
 };
 
 export default function RootLayout({
@@ -32,7 +33,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${inter.variable} ${podkova.variable}`}>
+    <body className={`${inter.variable} ${podkova.variable}`}>
         <Providers>
           <div className={styles.layout}>
             <Header/>

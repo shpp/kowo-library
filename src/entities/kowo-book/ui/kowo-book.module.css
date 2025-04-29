@@ -1,0 +1,139 @@
+.kowo_book {
+  position: relative;
+  border-radius: 8px;
+  gap: none;
+  border: 1px solid rgba(212, 213, 217, 1);
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.kowo_book:hover {
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+  z-index: 999;
+}
+
+.likeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 6px 12px;
+
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 10;
+
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.kowo_book:hover .likeBtn {
+  background-color: white;
+}
+
+.likeBtn:hover {
+  box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.likeBtn svg path {
+  transition: fill 0.2s, stroke 0.2s;
+}
+
+.likeBtn.default svg path {
+  fill: transparent;
+  stroke: transparent;
+}
+
+.kowo_book:hover .likeBtn.default svg path {
+  fill: white;
+  stroke: #8c8f9a;
+}
+
+.likeBtn.liked svg path {
+  fill: #fc4141;
+}
+
+.kowo_book:hover .likeBtn.liked svg path {
+  stroke: #fc4141;
+}
+
+.kowo_book .likeBtn.liked svg path {
+  stroke: white;
+}
+
+.mobileLikeBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  padding: 6px 12px;
+
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  z-index: 10;
+
+  transition: background-color 0.2s, box-shadow 0.2s;
+}
+
+.mobileLikeBtn svg path {
+  transition: fill 0.2s, stroke 0.2s;
+}
+
+.mobileLikeBtn svg path {
+  fill: transparent;
+  stroke: #8c8f9a;
+}
+
+.mobileLikeBtn.liked svg path {
+  fill: #fc4141;
+  stroke: #fc4141;
+}
+
+.book_buttons {
+  border-bottom-right-radius: 8px;
+  border-bottom-left-radius: 8px;
+  background-color: white;
+  border: 1px solid rgba(212, 213, 217, 1);
+  border-top-style: none;
+  padding-top: 0;
+  margin-top: -8px;
+  position: absolute;
+  top: 100%;
+  right: -1px;
+  left: -1px;
+  opacity: 0;
+  max-height: 0;
+  transition: none;
+}
+
+.book_buttons::before {
+  content: '';
+  position: absolute;
+  top: -6px;
+  left: 0;
+  height: 6px;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
+}
+
+.kowo_book:hover .book_buttons {
+  transition: border-color 0.2s, box-shadow 0.2s, max-height 0.2s, opacity 0.2s;
+  max-height: none;
+  opacity: 1;
+  border-color: rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  padding: 0 16px 16px 16px;
+}
+
+.kowo_book_button {
+  width: 100%;
+  max-height: 0;
+  transition: none;
+}
+
+.kowo_book:hover .kowo_book_button {
+  transition: max-height 0.2s;
+  max-height: 33px;
+}
