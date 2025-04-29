@@ -2,13 +2,16 @@ import React from 'react';
 import { Box, Button, Flex, Heading, SimpleGrid, Text } from '@chakra-ui/react';
 
 import { BooksFilters, DrawerBookFilters } from '@/features/books-filters';
-import { BooksApiResponse, KowoBook } from '@/entities/kowo-book/ui/kowo-book';
+import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 import { CustomPagination } from '@/shared/ui/pagination-lib/customPagination';
 
 // import { BooksSorting } from '@/features/books-sorting/ui/BooksSorting';
 import { FiFilter } from 'react-icons/fi';
 import { DrawerWrapper } from '@/shared/ui/drawer';
 import {NextPage} from "next";
+import dynamic from 'next/dynamic';
+
+const KowoBook = dynamic(() => import('@/entities/kowo-book/ui/kowo-book'));
 
 async function fetchBooks() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books`, {
