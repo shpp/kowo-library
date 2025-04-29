@@ -97,3 +97,5 @@ export const KowoBook: FC<IKowoBookProps> = ({ data, width = '232px', type = 'fu
     </Stack>
   );
 };
+
+export default KowoBook;
