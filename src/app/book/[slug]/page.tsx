@@ -16,7 +16,7 @@ import {redirect} from "next/navigation";
 
 async function fetchBooks() {
   const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books`, {
-    cache: 'force-cache',
+    cache: 'default',
     next: { revalidate: 3600}
   });
   if (!res.ok) {
