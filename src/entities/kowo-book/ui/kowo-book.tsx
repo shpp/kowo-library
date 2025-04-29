@@ -66,7 +66,7 @@ export const KowoBook: FC<IKowoBookProps> = ({ data, width = '232px', type = 'fu
               {name}
             </Heading>
           </Stack>
-          <BookStatus {...{ isAvailable: true, whenAvailable: 'now' }} />
+          <BookStatus isAvailable={available} whenAvailable='now' />
         </Stack>
         {type === 'full' && <BookButtons available={{ isAvailable: available, whenAvailable: 'now' }} bookData={data} />}
         {/* <Box onClick={(e) => LikeBtnHandler(e)} className={`${styles.likeBtn} ${isLikedLocal ? styles.liked : styles.default}`}>
@@ -88,7 +88,7 @@ export const KowoBook: FC<IKowoBookProps> = ({ data, width = '232px', type = 'fu
             {name}
           </Heading>
         </Stack>
-        <BookStatus {...{ isAvailable: true, whenAvailable: 'now' }} />
+        <BookStatus isAvailable={available} whenAvailable='now' />
         <BookButtonsMobile available={{ isAvailable: available, whenAvailable: 'now' }} bookData={data} />
       </Stack>
       {/* <Box onClick={(e) => LikeBtnHandler(e)} className={`${styles.mobileLikeBtn} ${isLikedLocal && styles.liked}`}>
