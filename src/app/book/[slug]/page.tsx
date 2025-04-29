@@ -88,7 +88,7 @@ export default async function Book({ params }: { params: Promise<{ slug: string 
               </Badge>
             </Flex>
             <Span marginBottom={'16px'}>
-              <BookStatus isAvailable={true} whenAvailable="21.11.21" />
+              <BookStatus isAvailable={currentBookData.available} whenAvailable="now" />
             </Span>
             <Flex gap={'16px'} mb={'48px'}>
               <ModalWindow
