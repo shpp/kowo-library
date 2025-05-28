@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import Link from 'next/link';
 import { Box, Button, Collapsible, Separator, Stack, Text, Link as ChakraLink, useDisclosure } from '@chakra-ui/react';
 
@@ -6,60 +6,52 @@ import CatalogIcon from '@/shared/assets/icons/catalog-icon';
 // import { Illustration } from '@/shared/ui/illustration';
 import { ArrowIcon } from './ArrowIcon';
 
-// import books from '@/shared/assets/illustrations/books.svg';
-
-const CATEGORIES = [
-  {
-    title: 'Художня література',
-    items: [
-      'Сучасна українська проза',
-      'Сучасна світова проза',
-      'Класична українська проза',
-      'Класична світова проза',
-      'Детективи та трилери',
-      'Горор',
-      'Романтична проза',
-      'Антології та коротка проза',
-      'Історична проза',
-      'Міфи, легенди, фольклор',
-      'Сучасна українська поезія',
-      'Класична українська поезія',
-      'Світова поезія',
-      'Різдвяні книги для дорослих',
-      'Підліткова література',
-    ],
-  },
-  {
-    title: 'Нон-фікшн література',
-    items: ['Дизайн', 'Креативність', 'Ілюстрація', 'Психологія', 'Копірайтинг'],
-  },
-  {
-    title: 'Бізнес та саморозвиток',
-    items: [
-      'Історії бізнесів та бізнесменів',
-      'Менеджмент та лідерство',
-      'Тайм-менеджмент',
-      'Мотивація',
-      "Кар'єра та професійні навички",
-      'Підприємництво',
-      'Маркетинг та реклама',
-      'Продажі',
-      'Економіка',
-    ],
-  },
-  {
-    title: 'Програмування',
-    items: ['Java', 'PHP', 'C#', 'C++', 'JavaScript', 'Arduino', 'Computer Science', 'Go', 'Ajax', 'Python'],
-  },
-];
+type Category = {
+  title: string;
+  items: string[];
+}
 
 export const MegaMenu = () => {
   const { open, onToggle, onClose } = useDisclosure();
-
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+  
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("/api/config");
+        const { config } = await response.json();
+        
+        const transformedCategories = Object.entries(config.categories).map(
+          ([title, items]) => ({
+            title,
+            items: items as string[]
+          })
+        );
+        
+        setCategories(transformedCategories);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    
+    fetchCategories();
+  }, []);
+  
   const handleLinkClick = () => {
     onClose();
   };
-
+  
+  if (loading) {
+    return (
+      <Button colorPalette="kowo" rounded="lg" color="#FFF" fontWeight="600" loading>
+        Каталог
+      </Button>
+    );
+  }
+  
   return (
     <Collapsible.Root open={open} onToggle={onToggle} unmountOnExit>
       <Collapsible.Trigger asChild>
@@ -94,7 +86,7 @@ export const MegaMenu = () => {
                 {/* <Separator /> */}
               </Link>
             </Stack>
-            {CATEGORIES.map((category) => (
+            {categories.map((category) => (
               <Stack key={category.title} marginBottom="24px" css={{ breakInside: 'avoid' }}>
                 <ChakraLink asChild>
                   <Link href={`books?page=1&category=${category.title}`} onClick={handleLinkClick}>
