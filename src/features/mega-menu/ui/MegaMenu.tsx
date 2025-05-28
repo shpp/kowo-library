@@ -88,11 +88,11 @@ export const MegaMenu = () => {
             </Stack>
             {categories.map((category) => (
               <Stack key={category.title} marginBottom="24px" css={{ breakInside: 'avoid' }}>
-                <ChakraLink asChild>
-                  <Link href={`books?page=1&category=${category.title}`} onClick={handleLinkClick}>
+                {/*<ChakraLink asChild>*/}
+                  {/*<Link href={`books?page=1&category=${category.title}`} onClick={handleLinkClick}>*/}
                     <Text fontWeight="semibold">{category.title}</Text>
-                  </Link>
-                </ChakraLink>
+                  {/*</Link>*/}
+                {/*</ChakraLink>*/}
                 <Separator />
                 {category.items.map((item) => (
                   <ChakraLink asChild key={item}>
