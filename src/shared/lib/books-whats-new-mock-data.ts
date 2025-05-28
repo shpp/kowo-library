@@ -4,7 +4,7 @@ export const booksWhatsNewMockData = [
     name: 'Куджо',
     description:
       'Маленька безвідповідальність жінки, що необачно обрала коханця… Маленька безвідповідальність чоловіка, що вчасно не відремонтував авто… Маленька безвідповідальність господарів, що не зробили щеплення псу… А Куджо, добрий слинявій велетень-сенбернар, лише, граючись, погнався за летючою мишею. Мікроскопічний вірус сказу перетворив гіганта на страшного монстра, що в нестямі буде вбивати всіх, хто опиниться на його шляху. Капканом під палючим сонцем стане поламана машина для Донни Трентон і її маленького сина. Хто переможе у двобої скаженої люті тварини і матері, що рятуватиме від смерті своє дитя?',
-    status: 'hidden',
+    status: 'open',
     categories: [],
     language: 'ua',
     authors: ['Стівен Кінг'],
@@ -13,16 +13,18 @@ export const booksWhatsNewMockData = [
     available: true,
   },
   {
-    id: 171,
-    name: 'Грокаем алгоритмы',
+    id: 560,
+    name: 'Проблема трьох тіл',
     description:
-      'Алгоритми — це всього лише покрокові інструкції вирішення завдань, і більшість таких задач вже були кимось вирішені, протестовані і перевірені. Можна, звичайно, зануриться в глибоку філософію геніального Кнута, вивчити багатосторінкові фоліанти з доказами і обгрунтуваннями, але чи хочете ви витрачати на це свій час? Відкрийте чудово ілюстровану книгу і ви відразу зрозумієте, що алгоритми — це просто. А грокати алгоритми — це веселе і захоплююче заняття. ',
-    status: 'hidden',
+      'Дія роману починається на тлі подій Культурної революції в Китаї. Засекречена військова база надсилає сигнали в космос для встановлення контактів із позаземними цивілізаціями.' +
+      'Десь у безкрайньому Всесвіті цивілізація, яка перебуває на межі знищення, перехоплює сигнал і починає планувати вторгнення на Землю.' +
+      'Тим часом на Землі розгортається протистояння між ворогуючими таборами, ладними як допомогти загарбникам захопити Землю, так і протистояти вторгненню.',
+    status: 'open',
     categories: [],
-    language: 'ru',
-    authors: ['Бхаргава Адітья'],
-    year: 2017,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/633a22a3ab8d7a68d3bc26736803ca97.jpeg',
+    language: 'ua',
+    authors: ['Лю Цисінь'],
+    year: 2025,
+    cover: 'https://prod-files-secure.s3.us-west-2.amazonaws.com/603d6c78-dd21-40bd-a783-1d07e3704c50/250ffab6-4261-41ac-9b66-97ea44545a8d/Scan10010.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4662SMOIXH3%2F20250528%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250528T172141Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJGMEQCIAxwu8xWqKFLmYJzn9GZHFzUglzd7aZ48ekkSbY%2FmcxYAiA0dSySTBhyIsbLRIfacu5FJV3ZHeBPJxaABMpbVia6rir%2FAwh6EAAaDDYzNzQyMzE4MzgwNSIMblqk%2BU1Jpm9zCEZIKtwDZBctudOw8fdBJiJqY%2FDJ2WWeE3vJhHvtOu24Zn7OZFWtXKSsC7ERY5Fjl1qWv1NQTdIvNLCI1pZecusRNfbjbEMllPc4flF7Ie%2FHY%2Fkys7NTXIV%2FxfQ3zAYCQPrZyYXf5%2F2yRP0L78%2FKPfwvLNX13Z1uoVMN9FIwHxRGlwkGMNTp%2BHQHWe6OyonliysRBhwWXpY%2BJuW4UyV2qrJMTnuGfvokLsI%2BV53aPiKz2rSOvA3QvgBSvlUArBED%2BXGTlS2qFCtsPDTICQ0e3iMkCuEi8oP9usIaBxGIziuZDKzn%2B%2BrO%2FQZTBSZ0PVpTDB4Xrw1YKcN7XJ%2BIIsp7qNtNVI6lQSFkAHHhYIs3olHuVZ%2BZc%2FV6tsMIjcUuvLn2VCLmWF6mB7ajgX6uHk8hqQDyD9c1LNcqaiMR4FRSlqhys%2FUXcLd%2Bqwlp%2BAP9qTFeI1jkehLsIrgm6jyQOrCrkJOvAFG9ekE1uSkMWzjDge0SOnkgn9u254BK06%2B%2BlincniPh%2FXuObluaYPeIdw0kduf36KuBGPvcYHxTPb3bDQa8PhbEpSQnqvw8Lxf9EpkvD0l4eMnkMUE7zGIzImGBSTZCJYikIGvmMDhAF5npKkV1HVUGeMBomT8BSmqhc1rCyTEw7oDdwQY6pgFtUjmBf6k8snzcVmW%2BYp2Icqz8wBrzHQbk265U%2BqwJ3CouYHWdz3GIP3%2FOgArArMbXskD%2Fi%2FTN6%2FKVF%2BVwjHR1dG%2BAfugbWVDZltJQWd3DuriMS4m7ztCUubBLaZ0rV0wODZCESab8PnIM7r5TCbYA81iLqVXME81ZvMYKx3yQCjofu50BTsOtlUrvPIbLwRyQ%2FR1p5qgiIyyuykl3Kq9lSAgCkAHi&X-Amz-Signature=3cfd5c2940c7cef4aa77eb8d1756e7bb3a155149c3de1ec9abfb65a7dea97b5d&X-Amz-SignedHeaders=host&x-id=GetObject',
     available: true,
   },
   {
@@ -71,23 +73,10 @@ export const booksWhatsNewMockData = [
       'Ось уже стільки часу мільйони глядачів по всьому світу захоплено стежать за історією мізантропічного геніального доктора на ім\'я Грегорі Хаус і його команди фахівців. Щотижня група лікарів на чолі з доктором Хаусом розкриває медичні загадки, які поставили б у безвихідь найкращі уми медицини. Головний герой —  персонаж, який неперевершений своєю суперечливістю — він грубий, безтактний, часом абсолютно неетичний по відношенню до пацієнтів, але при цьому настільки привабливий для глядачів серіалу.Завдяки блискучій грі Хью Лорі, який зіграв доктора Хауса, і приголомшливому поєднанню драми і гумору, серіал отримав нагороду "Emmy". У автора книги Яна Джекмена була унікальна можливість вільного доступу до знімальної групи серіалу, що дозволило йому написати цей гід. Він пропонує нам побачити зсередини світ "Доктора Хауса". Актори, сценаристи, продюсери, створюють шоу, розповідають з перших вуст про знімальну кухню серіалу. Книга містить велику кількість ексклюзивних фотографій зі знімального майданчика!',
     status: 'hidden',
     categories: [],
-    language: 'ru',
+    language: 'ua',
     authors: ['Джекмен Я.'],
     year: 2010,
     cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/583af5b4f50f86793c0434c2598cdae5.jpeg',
     available: true,
-  },
-  {
-    id: 126,
-    name: 'DirectX. Графіка в проєктах Delphi',
-    description:
-      "Книга присвячена використанню модулів DirectX в додатках, що розробляються в Delphi. Починаючи з простих прикладів, послідовно і детально розглядається створення об'єктів двовимірної і тривимірної графіки, візуальні і кольорові ефекти, а також обговорюються додаткові теми, такі як швидка робота з пристроями введення. Велика увага приділяється питанням оптимізації та прискорення роботи додатків. Книга містить практичні рішення проблем, що виникають при програмуванні ігор та інших програм, які потребують високої швидкості виведення графіків в середовищі Windows.  ",
-    status: 'hidden',
-    categories: [],
-    language: 'ru',
-    authors: ['Михайло Краснов'],
-    year: 2002,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/2beb08b4ea8d428a8c19ea4354bdacd4.jpeg',
-    available: true,
-  },
+  }
 ];
