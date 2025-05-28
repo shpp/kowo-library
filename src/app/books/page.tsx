@@ -26,6 +26,7 @@ type SearchParamsType = {
   page?: string;
   years?: string;
   search?: string;
+  sub_category?: string;
   authors?: string | string[];
   availability?: string | string[];
   languages?: string | string[];
@@ -36,7 +37,7 @@ type PageProps = {
 };
 
 const Books: NextPage<PageProps> = async ({ searchParams }: PageProps)=> {
-  const { page, years, authors, availability, languages, search } = await searchParams as SearchParamsType; // used because of https://nextjs.org/docs/messages/sync-dynamic-apis
+  const { page, years, authors, availability, languages, search, sub_category } = await searchParams as SearchParamsType; // used because of https://nextjs.org/docs/messages/sync-dynamic-apis
   const allBooks: BooksApiResponse = await fetchBooks();
 
   const authorsArray = Array.isArray(authors) ? authors : authors ? [authors] : [];
@@ -50,6 +51,12 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps)=> {
     filteredBooks = filteredBooks.filter((item) => {
       if (item.name.toLowerCase().includes(searchLower)) return true;
       return item.authors.some((author) => author.toLowerCase().includes(searchLower));
+    });
+  }
+  
+  if (sub_category) {
+    filteredBooks = filteredBooks.filter((book) => {
+      return book.categories.includes(`.${sub_category}`);
     });
   }
 
