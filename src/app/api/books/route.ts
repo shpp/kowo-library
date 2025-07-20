@@ -1,5 +1,7 @@
 // import {auth} from "@/shared/config/auth";
 
+import {auth} from "@/shared/config/auth";
+
 export type Book = {
   id: number
   name: string
@@ -31,8 +33,17 @@ export const GET = async () => {
 //   body: JSON.stringify({ id: 123 }),
 // })
 
-// export const POST = auth(async (req) => {
-export const POST = async (req: Request) => {
+export const POST = auth(async (req) => {
+  console.log('req.auth');
+  console.log(req.auth);
+  // {
+  //   user: {
+  //     name: 'Andrii Chudinovskykh',
+  //       email: 'andron989@gmail.com',
+  //       image: 'https://lh3.googleusercontent.com/a/ACg8ocJD8o0hFsknEGAjYceu5weJebm1rTJ6IvCpZtwzJ2QYLQNAQY84=s96-c'
+  //   },
+  //   expires: '2025-08-19T10:33:59.422Z'
+  // }
   try {
     const data = await req.json();
     const response = await fetch('https://REMOVED/books.kowo.me/bookings/make/', {
@@ -49,6 +60,6 @@ export const POST = async (req: Request) => {
   } catch {
     return Response.json({ success: false })
   }
-}
+})
 
 export const runtime = 'edge';

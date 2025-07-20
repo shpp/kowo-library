@@ -1,17 +1,13 @@
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
-import {Box, Button, HStack} from '@chakra-ui/react';
+import {Avatar, Box, Button, HStack} from '@chakra-ui/react';
 import React from "react";
 
 import { ModalWindow } from '@/shared/ui/modal-window';
 import { GoogleLogIn } from '@/features/google-log-in';
 import CabinetIcon from '@/shared/assets/icons/cabinet-icon';
 
-type CabinetButtonProps = {
-  onClick?: () => void;
-}
-
-const CabinetButton: React.FC<CabinetButtonProps> = ({ onClick }) => (
+const CabinetButton: React.FC = () => (
   <Button
     gap={{base: '8px', lg: 0}}
     p="4px 8px"
@@ -23,7 +19,6 @@ const CabinetButton: React.FC<CabinetButtonProps> = ({ onClick }) => (
       base: 'row',
       lg: 'column',
     }}
-    onClick={onClick}
   >
     <Box hideFrom='lg'>
       <CabinetIcon width="24px" height="24px" />
@@ -38,13 +33,39 @@ const CabinetButton: React.FC<CabinetButtonProps> = ({ onClick }) => (
 export function AuthButton() {
   const { data: session } = useSession();
   const router = useRouter();
-  
+
   return (
     <HStack gap="4px">
       {session?.user ? (
-        <CabinetButton onClick={() => {
-          router.push('/cabinet')
-        }} />
+          <Button
+            gap={{base: '8px', lg: 0}}
+            p="4px 8px"
+            rounded="lg"
+            height="100%"
+            color="#030712"
+            variant="ghost"
+            flexDirection={{
+              base: 'row',
+              lg: 'column',
+            }}
+            onClick={() => {
+              router.push('/cabinet')
+            }}
+          >
+            <Box hideFrom='lg' width="24px" height="24px">
+              <Avatar.Root size={'full'}>
+                <Avatar.Fallback name={session?.user?.name ?? ''} />
+                <Avatar.Image src={session?.user?.image ?? ''} />
+              </Avatar.Root>
+            </Box>
+            <Box hideBelow='lg' width="32px" height="32px">
+              <Avatar.Root size={'full'}>
+                <Avatar.Fallback name={session?.user?.name ?? ''} />
+                <Avatar.Image src={session?.user?.image ?? ''} />
+              </Avatar.Root>
+            </Box>
+            Кабінет
+          </Button>
       ) : (
         <ModalWindow
           trigger={<CabinetButton />}

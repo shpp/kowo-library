@@ -9,10 +9,10 @@ import { Navigation } from '@/widgets/navigation';
 import { SearchBar } from '@/widgets/search-bar';
 
 import CatalogIcon from '@/shared/assets/icons/catalog-icon';
-// import FavoriteIcon from '@/shared/assets/icons/favorite-icon';
+import FavoriteIcon from '@/shared/assets/icons/favorite-icon';
 // import books from '@/shared/assets/illustrations/books.svg';
 // import { ArrowIcon } from '../ArrowIcon';
-// import {AuthButton} from "@/widgets/header/ui/auth-button";
+import {AuthButton} from "@/widgets/header/ui/auth-button";
 
 export const MenuContent = ({ setStep }: { setStep: (step: number) => void }) => {
   return (
@@ -29,13 +29,13 @@ export const MenuContent = ({ setStep }: { setStep: (step: number) => void }) =>
             <VStack height="16px" justifyContent="center">
               <Separator width="100%" />
             </VStack>
-            {/* <VStack alignItems="flex-start">
+            <VStack alignItems="flex-start">
               <AuthButton />
               <Button gap="8px" p="4px 8px" rounded="lg" height="100%" color="#030712" variant="ghost">
                 <FavoriteIcon width="24px" height="24px" />
                 Обране
               </Button>
-            </VStack> */}
+            </VStack>
             <Link href="#">
               {/* <Stack alignItems="start" padding="8px">
                 <Illustration src={books.src} alt={'Books'} width={137} height={136} />
