@@ -16,11 +16,6 @@ export const FooterNavigation = () => {
           Як це працює
         </Link>
       </ChakraLink>
-      <ChakraLink asChild>
-        <Link href='/support'>
-          Підтримка проєкту
-        </Link>
-      </ChakraLink>
     </Stack>
   )
 }
