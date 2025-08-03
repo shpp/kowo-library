@@ -45,6 +45,10 @@ export const KowoBook: FC<IKowoBookProps> = ({ data, width = '232px', type = 'fu
   //   // API request functionality
   // };
 
+  const eventStopPropagation = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+  }
+
   if (isDesktop) {
     return (
       <Stack
@@ -67,9 +71,11 @@ export const KowoBook: FC<IKowoBookProps> = ({ data, width = '232px', type = 'fu
               {name}
             </Heading>
           </Stack>
-          <BookStatus isAvailable={available} whenAvailable='now' />
+          <BookStatus isAvailable={available} whenAvailable='now'/>
         </Stack>
-        {type === 'full' && <BookButtons available={{ isAvailable: available, whenAvailable: 'now' }} bookData={data} />}
+        <div onClick={eventStopPropagation}>
+          {type === 'full' && <BookButtons available={{isAvailable: available, whenAvailable: 'now'}} bookData={data}/>}
+        </div>
         {/* <Box onClick={(e) => LikeBtnHandler(e)} className={`${styles.likeBtn} ${isLikedLocal ? styles.liked : styles.default}`}>
           <HeartIcon />
         </Box> */}
@@ -91,7 +97,9 @@ export const KowoBook: FC<IKowoBookProps> = ({ data, width = '232px', type = 'fu
           </Heading>
         </Stack>
         <BookStatus isAvailable={available} whenAvailable='now' />
-        <BookButtonsMobile available={{ isAvailable: available, whenAvailable: 'now' }} bookData={data} />
+        <div onClick={eventStopPropagation}>
+          <BookButtonsMobile available={{ isAvailable: available, whenAvailable: 'now' }} bookData={data} />
+        </div>
       </Stack>
       {/* <Box onClick={(e) => LikeBtnHandler(e)} className={`${styles.mobileLikeBtn} ${isLikedLocal && styles.liked}`}>
         <HeartIcon />
