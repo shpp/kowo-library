@@ -111,7 +111,7 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps)=> {
             <BooksHeader books={filteredBooks} />
           </Box>
           <SimpleGrid columns={{ base: 2, md: 3, xl: 4 }} gap="16px">
-            {paginatedBooks.length > 0 ? paginatedBooks.map((item) => <KowoBook key={item.id} data={item} width={`100%`} type='full' />) : <Text>No books to display</Text>}
+            {paginatedBooks.length > 0 ? paginatedBooks.map((item) => <KowoBook key={item.id} data={item} width={`100%`} type='full' />) : <Text>Не знайдено книг для відображення</Text>}
           </SimpleGrid>
           <Flex justify={'end'} alignItems={'center'}>
             {/* <Button bgColor={'white'} fontSize={{ base: '14px', sm: '16px' }} color={'rgba(102, 165, 43, 1)'} border={'1px solid rgba(212, 213, 217, 1)'} borderRadius={'8px'}>
