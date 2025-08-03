@@ -45,6 +45,10 @@ export const KowoBook: FC<IKowoBookProps> = ({ data, width = '232px', type = 'fu
   //   // API request functionality
   // };
 
+  const eventStopPropagation = (e: React.MouseEvent<HTMLDivElement, MouseEvent>) => {
+    e.stopPropagation();
+  }
+
   if (isDesktop) {
     return (
       <Stack
@@ -56,28 +60,32 @@ export const KowoBook: FC<IKowoBookProps> = ({ data, width = '232px', type = 'fu
         }}
         onClick={() => router.push(`/book/${id}`)}
       >
-        <BookImageSection authors={authors} isLiked={isLikedLocal} name={name} image={cover} />
+        <BookImageSection authors={authors} isLiked={isLikedLocal} name={name} image={cover}/>
         <Stack bgColor={'white'} rounded={'0px 0px 8px 8px'} gap={'8px'} p={'16px'} w={'100%'}>
           <Stack gap={'4px'}>
             <Text lineClamp={1} color={'rgba(102, 106, 121, 1)'} fontWeight={400} fontSize={'14px'} lineHeight={'20px'}>
               {authors.join(', ')}
             </Text>
-            <Heading height={'48px'} color={'rgba(3, 7, 18, 1)'} fontWeight={600} fontSize={'16px'} lineHeight={'24px'} fontFamily={'inter'} lineClamp={2}>
+            <Heading height={'48px'} color={'rgba(3, 7, 18, 1)'} fontWeight={600} fontSize={'16px'} lineHeight={'24px'}
+                     fontFamily={'inter'} lineClamp={2}>
               {name}
             </Heading>
           </Stack>
-          <BookStatus isAvailable={available} whenAvailable='now' />
+          <BookStatus isAvailable={available} whenAvailable='now'/>
         </Stack>
-        {type === 'full' && <BookButtons available={{ isAvailable: available, whenAvailable: 'now' }} bookData={data} />}
+        <div onClick={eventStopPropagation}>
+          {type === 'full' && <BookButtons available={{isAvailable: available, whenAvailable: 'now'}} bookData={data}/>}
+        </div>
         {/* <Box onClick={(e) => LikeBtnHandler(e)} className={`${styles.likeBtn} ${isLikedLocal ? styles.liked : styles.default}`}>
           <HeartIcon />
         </Box> */}
       </Stack>
     );
   }
-
+  
   return (
-    <Stack minW={width} maxW={width} pos={'relative'} borderRadius={'8px'} gap={'none'} border={'1px solid rgba(212, 213, 217, 1)'} onClick={() => router.push('/book')}>
+    <Stack minW={width} maxW={width} pos={'relative'} borderRadius={'8px'} gap={'none'}
+           border={'1px solid rgba(212, 213, 217, 1)'} onClick={() => router.push(`/book/${id}`)}>
       <BookImageSection authors={authors} isLiked={isLikedLocal} name={name} image={cover} />
       <Stack bgColor={'white'} rounded={'0px 0px 8px 8px'} gap={'6px'} p={'12px'} w={'100%'}>
         <Stack gap={'4px'}>
@@ -89,7 +97,9 @@ export const KowoBook: FC<IKowoBookProps> = ({ data, width = '232px', type = 'fu
           </Heading>
         </Stack>
         <BookStatus isAvailable={available} whenAvailable='now' />
-        <BookButtonsMobile available={{ isAvailable: available, whenAvailable: 'now' }} bookData={data} />
+        <div onClick={eventStopPropagation}>
+          <BookButtonsMobile available={{ isAvailable: available, whenAvailable: 'now' }} bookData={data} />
+        </div>
       </Stack>
       {/* <Box onClick={(e) => LikeBtnHandler(e)} className={`${styles.mobileLikeBtn} ${isLikedLocal && styles.liked}`}>
         <HeartIcon />
