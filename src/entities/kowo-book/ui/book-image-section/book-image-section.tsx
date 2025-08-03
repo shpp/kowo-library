@@ -23,8 +23,8 @@ export const BookImageSection: FC<IBookImageSectionProps> = ({ image, name, auth
               height={400}
               width={300}
               style={{
-                objectFit: 'fill',
-                width: '75%',
+                objectFit: 'contain',
+                width: '100%',
                 height: '100%'
               }}
               onError={() => setErrored(true)}
