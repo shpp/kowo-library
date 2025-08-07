@@ -18,7 +18,7 @@ export const GET = async () => {
     const [{items}, {bookings}] = await Promise.all([fetch('https://REMOVED/books.kowo.me/db/').then((response) => response.json()), fetch('https://REMOVED/books.kowo.me/bookings/frontend/').then((response) => response.json())]);
     return Response.json({ data: items.filter((item: Book) => item.status === 'open').map((item: Book) => ({...item, available: !bookings[item.id]})) });
   } catch {
-    Response.json({ data: [] });
+    return Response.json({ data: [] });
   }
 };
 
