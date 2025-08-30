@@ -1,6 +1,6 @@
 'use client';
-import React, { useEffect, useMemo, useState } from 'react';
-import { Collapsible, HStack, IconButton, Input, Stack, Text } from '@chakra-ui/react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
+import {Box, Collapsible, HStack, IconButton, Input, Stack, Text} from '@chakra-ui/react';
 import { Slider } from '@/shared/ui/slider';
 import ChevronUp from '@/shared/assets/icons/chevron-up';
 import ChevronDown from '@/shared/assets/icons/chevron-down';
@@ -67,13 +67,15 @@ export const YearsFilter = ({ books }: { books?: BooksApiResponse }) => {
     router.push(`?page=1&${params.toString()}`, { scroll: false });
   };
 
-  const debouncedUpdateQueryParams = debounce((min: number, max: number) => {
-    updateQueryParams(min, max);
-  }, 300);
+  const debouncedUpdateQueryParamsRef = useRef(
+    debounce((min: number, max: number) => {
+      updateQueryParams(min, max);
+    }, 300)
+  );
 
   const handleValueChange = (newValues: number[]) => {
     setValues(newValues);
-    debouncedUpdateQueryParams(newValues[0], newValues[1]);
+    debouncedUpdateQueryParamsRef.current(newValues[0], newValues[1]);
   };
 
   const handleInputChange = (index: number, value: string) => {
@@ -104,9 +106,9 @@ export const YearsFilter = ({ books }: { books?: BooksApiResponse }) => {
 
   useEffect(() => {
     return () => {
-      debouncedUpdateQueryParams.cancel();
+      debouncedUpdateQueryParamsRef.current.cancel();
     };
-  }, [debouncedUpdateQueryParams]);
+  }, []);
 
   return (
     <Collapsible.Root open={isOpen} onOpenChange={({ open }) => setIsOpen(open)}>
@@ -127,7 +129,9 @@ export const YearsFilter = ({ books }: { books?: BooksApiResponse }) => {
             <Input min={minYear} max={maxYear} type="number" value={values[1]} onChange={(e) => handleInputChange(1, e.target.value)} />
           </Stack>
 
-          <Slider min={minYear} max={maxYear} width="100%" value={values} onValueChange={({ value }) => handleValueChange(value)} />
+          <Box px="12px">
+            <Slider min={minYear} max={maxYear} width="100%" value={values} onValueChange={(details) => handleValueChange(details.value)} />
+          </Box>
         </Stack>
       </Collapsible.Content>
     </Collapsible.Root>
