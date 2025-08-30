@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useRef} from 'react';
 import Link from 'next/link';
 import { Box, Button, Collapsible, Separator, Stack, Text, Link as ChakraLink, useDisclosure } from '@chakra-ui/react';
 
@@ -15,6 +15,7 @@ export const MegaMenu = () => {
   const { open, onToggle, onClose } = useDisclosure();
   const [categories, setCategories] = useState<Category[]>([]);
   const [loading, setLoading] = useState(true);
+  const menuRef = useRef<HTMLDivElement>(null);
   
   useEffect(() => {
     const fetchCategories = async () => {
@@ -39,6 +40,23 @@ export const MegaMenu = () => {
     
     fetchCategories();
   }, []);
+
+  // Handle clicks outside the menu
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (menuRef.current && !menuRef.current.contains(event.target as Node)) {
+        onClose();
+      }
+    };
+
+    if (open) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [open, onClose]);
   
   const handleLinkClick = () => {
     onClose();
@@ -53,16 +71,17 @@ export const MegaMenu = () => {
   }
   
   return (
-    <Collapsible.Root open={open} onToggle={onToggle} unmountOnExit>
-      <Collapsible.Trigger asChild>
-        <Button colorPalette="kowo" rounded="lg" color="#FFF" fontWeight="600" onClick={onToggle}>
-          <CatalogIcon />
-          Каталог
-        </Button>
-      </Collapsible.Trigger>
-      <Collapsible.Content position="absolute" top="72px" zIndex="1000" insetInline="0">
-        <Box bg="#FFFFFF" borderBottom="1px solid #D4D5D9" paddingInline={'16px'}>
-          <Box bgColor={'white'} gap="16px" columns="240px" maxWidth="1224px" marginX="auto" padding="40px 0">
+    <div ref={menuRef}>
+      <Collapsible.Root open={open} onToggle={onToggle} unmountOnExit>
+        <Collapsible.Trigger asChild>
+          <Button colorPalette="kowo" rounded="lg" color="#FFF" fontWeight="600" onClick={onToggle}>
+            <CatalogIcon />
+            Каталог
+          </Button>
+        </Collapsible.Trigger>
+        <Collapsible.Content position="absolute" top="72px" zIndex="1000" insetInline="0">
+          <Box bg="#FFFFFF" borderBottom="1px solid #D4D5D9" paddingInline={'16px'}>
+            <Box bgColor={'white'} gap="16px" columns="240px" maxWidth="1224px" marginX="auto" padding="40px 0">
             <Stack gap="24px" marginBottom="24px" css={{ breakInside: 'avoid' }}>
               <Link href="/books?page=1" onClick={handleLinkClick}>
                 <Stack bg="#F7F8F8" padding="8px" borderRadius="8px">
@@ -107,5 +126,6 @@ export const MegaMenu = () => {
         </Box>
       </Collapsible.Content>
     </Collapsible.Root>
+    </div>
   );
 };
