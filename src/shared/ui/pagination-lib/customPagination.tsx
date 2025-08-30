@@ -21,6 +21,10 @@ export const CustomPagination: FC<ICustomPaginationProps> = ({ pageSize, count, 
     router.push(`/books?${params.toString()}`);
   };
 
+  if (count < 2) {
+    return null;
+  }
+
   if (type === 'default') {
     return (
       <PaginationRoot onPageChange={(e) => updatePage(e.page)} page={page} count={count} pageSize={pageSize}>
