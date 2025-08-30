@@ -1,6 +1,8 @@
 'use client';
-import {Button, Center, Checkbox, Dialog, Flex, Heading, Text} from '@chakra-ui/react';
+import {Button, Center, Dialog, Flex, Heading, Text} from '@chakra-ui/react';
+import {Checkbox} from '@/shared/ui/checkbox';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 import kowoBg from '@/shared/assets/backgrounds/kowo-bg-green.png';
@@ -11,12 +13,16 @@ import {StyledInput} from '@/shared/ui/styled-input';
 import {BookApiResponse} from '@/entities/kowo-book/ui/kowo-book';
 
 const userInfoSchema = z.object({
-  name: z.string().min(1, "Ім'я обов’язкове"),
-  email: z.string().email('Невірний формат пошти').min(1, 'Пошта обов’язкова'),
+  name: z.string()
+    .transform((val) => val.trim())
+    .refine((val) => val.length > 0, "Ім'я обов'язкове"),
+  email: z.string().email("Невірний формат пошти").min(1, "Пошта обов'язкова"),
   phone: z
     .string()
-    .min(1, 'Телефон обов’язковий')
-    .regex(/^[0-9]+$/, 'Дозволені тільки цифри'),
+    .min(1, "Телефон обов'язковий")
+    .regex(/^[+]?[0-9]+$/, "Дозволені тільки цифри та символ +")
+    .refine((val) => val.length >= 10 && val.length <= 13, "Телефон повинен містити від 10 до 13 символів")
+    .refine((val) => val.startsWith("0") || val.startsWith("380") || val.startsWith("+380"), "Телефон повинен починатися з 0, 380 або +380"),
   policy: z.boolean(),
 });
 
@@ -38,24 +44,41 @@ async function makeBooking(bookingData: { bookId: number, person: Omit<Inputs, '
 
 export const QueueUp = ({book, type = 'book'}: { book: BookApiResponse; type?: 'book' | 'queue' }) => {
   const [booked, setBooked] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
   
   const {
     control,
     handleSubmit,
+    watch,
     formState: {errors},
   } = useForm<Inputs>({
     defaultValues: defaultValues,
     resolver: zodResolver(userInfoSchema),
+    mode: 'onChange',
   });
-  
+
+  const watchedValues = watch();
+  const isFormValid = watchedValues.name?.trim() && watchedValues.email && watchedValues.phone && watchedValues.policy;
+
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
+    setError(null);
     try {
-      const res = await makeBooking({bookId: book.id, person: {email: data.email, name: data.name, phone: data.phone}});
+      const res = await makeBooking({bookId: book.id, person: {email: data.email, name: data.name.trim(), phone: data.phone}});
       if (res.ok) {
-        setBooked(true)
+        const result = await res.json();
+        if (result.success) {
+          setBooked(true)
+        } else {
+          setBooked(false)
+          setError('Щось пішло не так, спробуйте ще раз')
+        }
+      } else {
+        setBooked(false)
+        setError('Щось пішло не так, спробуйте ще раз')
       }
     } catch {
       setBooked(false)
+      setError('Щось пішло не так, спробуйте ще раз')
     }
   };
   
@@ -94,7 +117,7 @@ export const QueueUp = ({book, type = 'book'}: { book: BookApiResponse; type?: '
               </Heading>
               <Flex height={'100%'} alignItems={'center'} justifyContent={'center'}>
                 <Text fontSize="20px" fontWeight={500}>
-                  Заброньовано
+                  Заброньовано. Приходь до KOWO протягом 2 днів та забирай книжку.
                 </Text>
               </Flex>
             </Flex>
@@ -105,6 +128,11 @@ export const QueueUp = ({book, type = 'book'}: { book: BookApiResponse; type?: '
                 <Heading fontSize={'32px'} fontWeight={600}>
                   {type === 'book' ? 'Забронювати книгу' : 'Стати в чергу'}
                 </Heading>
+                {error && (
+                  <Text color="red.500" fontSize="14px" textAlign="center">
+                    {error}
+                  </Text>
+                )}
                 <Controller
                   name="name"
                   control={control}
@@ -135,23 +163,34 @@ export const QueueUp = ({book, type = 'book'}: { book: BookApiResponse; type?: '
                   name="policy"
                   control={control}
                   render={({field}) => (
-                    <Checkbox.Root>
-                      <Checkbox.HiddenInput/>
-                      <Checkbox.Control {...field} />
-                      <Checkbox.Label>
-                        <Text fontFamily={'Inter'} fontSize={'14px'} lineHeight={'20px'} color={'rgba(3, 7, 18, 1)'}>
-                          Я згоден з{' '}
-                          <Text _hover={{textDecoration: 'underline'}} as="span" color={'rgba(41, 91, 255, 1)'}>
+                    <Checkbox
+                      inputProps={{
+                        checked: field.value,
+                        onChange: field.onChange,
+                        onBlur: field.onBlur,
+                        name: field.name
+                      }}
+                      rootRef={field.ref}
+                    >
+                      <Text fontFamily={'Inter'} fontSize={'14px'} lineHeight={'20px'} color={'rgba(3, 7, 18, 1)'}>
+                        Я згоден з{' '}
+                        <Link href="/how-it-works">
+                          <Text _hover={{textDecoration: 'underline'}} as="span" color={'rgba(41, 91, 255, 1)'} cursor="pointer">
                             правилами
-                          </Text>{' '}
-                          користування
-                        </Text>
-                      </Checkbox.Label>
-                    </Checkbox.Root>
+                          </Text>
+                        </Link>{' '}
+                        користування
+                      </Text>
+                    </Checkbox>
                   )}
                 />
                 <Flex gap={'8px'} flexDir={{base: 'column', sm: 'row'}}>
-                  <Button visual={'kowo_red'} w={{base: '100%', sm: 'fit-content'}} type="submit">
+                  <Button 
+                    visual={'kowo_red'} 
+                    w={{base: '100%', sm: 'fit-content'}} 
+                    type="submit"
+                    disabled={!isFormValid}
+                  >
                     {type === 'book' ? 'Забронювати' : 'Стати в чергу'}
                   </Button>
                   <Dialog.Context>
