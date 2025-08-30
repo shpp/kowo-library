@@ -17,7 +17,7 @@ export const FooterNavigation = () => {
         </Link>
       </ChakraLink>
       <ChakraLink asChild>
-        <Link href='/support'>
+        <Link target='_blank' href='https://donate.kowo.me/help'>
           Підтримка проєкту
         </Link>
       </ChakraLink>
