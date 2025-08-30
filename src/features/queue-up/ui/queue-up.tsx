@@ -38,6 +38,7 @@ async function makeBooking(bookingData: { bookId: number, person: Omit<Inputs, '
 
 export const QueueUp = ({book, type = 'book'}: { book: BookApiResponse; type?: 'book' | 'queue' }) => {
   const [booked, setBooked] = React.useState(false);
+  const [error, setError] = React.useState<string | null>(null);
   
   const {
     control,
@@ -49,13 +50,24 @@ export const QueueUp = ({book, type = 'book'}: { book: BookApiResponse; type?: '
   });
   
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
+    setError(null);
     try {
       const res = await makeBooking({bookId: book.id, person: {email: data.email, name: data.name, phone: data.phone}});
       if (res.ok) {
-        setBooked(true)
+        const result = await res.json();
+        if (result.success) {
+          setBooked(true)
+        } else {
+          setBooked(false)
+          setError('Щось пішло не так, спробуйте ще раз')
+        }
+      } else {
+        setBooked(false)
+        setError('Щось пішло не так, спробуйте ще раз')
       }
     } catch {
       setBooked(false)
+      setError('Щось пішло не так, спробуйте ще раз')
     }
   };
   
@@ -105,6 +117,11 @@ export const QueueUp = ({book, type = 'book'}: { book: BookApiResponse; type?: '
                 <Heading fontSize={'32px'} fontWeight={600}>
                   {type === 'book' ? 'Забронювати книгу' : 'Стати в чергу'}
                 </Heading>
+                {error && (
+                  <Text color="red.500" fontSize="14px" textAlign="center">
+                    {error}
+                  </Text>
+                )}
                 <Controller
                   name="name"
                   control={control}
