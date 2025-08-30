@@ -10,9 +10,10 @@ import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 
 interface BooksFiltersProps {
   books: BooksApiResponse;
+  originalBooks?: BooksApiResponse;
 }
 
-export const BooksFilters: React.FC<BooksFiltersProps> = ({ books }) => {
+export const BooksFilters: React.FC<BooksFiltersProps> = ({ books, originalBooks }) => {
   return (
     <Stack width="100%" maxW={{ base: 'none', mdOnly: '172px', md: '264px' }} minW={{ base: 'none', mdOnly: '172px', md: '264px' }} gap="16px">
       <FilterTags />
@@ -23,7 +24,7 @@ export const BooksFilters: React.FC<BooksFiltersProps> = ({ books }) => {
       <Separator />
       <LanguageFilter books={books} />
       <Separator />
-      <YearsFilter books={books} />
+      <YearsFilter books={books} originalBooks={originalBooks} />
     </Stack>
   );
 };
