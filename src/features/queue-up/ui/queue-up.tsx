@@ -117,7 +117,7 @@ export const QueueUp = ({book, type = 'book'}: { book: BookApiResponse; type?: '
               </Heading>
               <Flex height={'100%'} alignItems={'center'} justifyContent={'center'}>
                 <Text fontSize="20px" fontWeight={500}>
-                  Заброньовано
+                  Заброньовано. Приходь до KOWO протягом 2 днів та забирай книжку.
                 </Text>
               </Flex>
             </Flex>
