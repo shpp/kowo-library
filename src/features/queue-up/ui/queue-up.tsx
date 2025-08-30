@@ -1,6 +1,8 @@
 'use client';
-import {Button, Center, Checkbox, Dialog, Flex, Heading, Text} from '@chakra-ui/react';
+import {Button, Center, Dialog, Flex, Heading, Text} from '@chakra-ui/react';
+import {Checkbox} from '@/shared/ui/checkbox';
 import Image from 'next/image';
+import Link from 'next/link';
 import React from 'react';
 
 import kowoBg from '@/shared/assets/backgrounds/kowo-bg-green.png';
@@ -43,12 +45,17 @@ export const QueueUp = ({book, type = 'book'}: { book: BookApiResponse; type?: '
   const {
     control,
     handleSubmit,
+    watch,
     formState: {errors},
   } = useForm<Inputs>({
     defaultValues: defaultValues,
     resolver: zodResolver(userInfoSchema),
+    mode: 'onChange',
   });
-  
+
+  const watchedValues = watch();
+  const isFormValid = watchedValues.name && watchedValues.email && watchedValues.phone && watchedValues.policy;
+
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     setError(null);
     try {
@@ -152,23 +159,34 @@ export const QueueUp = ({book, type = 'book'}: { book: BookApiResponse; type?: '
                   name="policy"
                   control={control}
                   render={({field}) => (
-                    <Checkbox.Root>
-                      <Checkbox.HiddenInput/>
-                      <Checkbox.Control {...field} />
-                      <Checkbox.Label>
-                        <Text fontFamily={'Inter'} fontSize={'14px'} lineHeight={'20px'} color={'rgba(3, 7, 18, 1)'}>
-                          Я згоден з{' '}
-                          <Text _hover={{textDecoration: 'underline'}} as="span" color={'rgba(41, 91, 255, 1)'}>
+                    <Checkbox
+                      inputProps={{
+                        checked: field.value,
+                        onChange: field.onChange,
+                        onBlur: field.onBlur,
+                        name: field.name
+                      }}
+                      rootRef={field.ref}
+                    >
+                      <Text fontFamily={'Inter'} fontSize={'14px'} lineHeight={'20px'} color={'rgba(3, 7, 18, 1)'}>
+                        Я згоден з{' '}
+                        <Link href="/how-it-works">
+                          <Text _hover={{textDecoration: 'underline'}} as="span" color={'rgba(41, 91, 255, 1)'} cursor="pointer">
                             правилами
-                          </Text>{' '}
-                          користування
-                        </Text>
-                      </Checkbox.Label>
-                    </Checkbox.Root>
+                          </Text>
+                        </Link>{' '}
+                        користування
+                      </Text>
+                    </Checkbox>
                   )}
                 />
                 <Flex gap={'8px'} flexDir={{base: 'column', sm: 'row'}}>
-                  <Button visual={'kowo_red'} w={{base: '100%', sm: 'fit-content'}} type="submit">
+                  <Button 
+                    visual={'kowo_red'} 
+                    w={{base: '100%', sm: 'fit-content'}} 
+                    type="submit"
+                    disabled={!isFormValid}
+                  >
                     {type === 'book' ? 'Забронювати' : 'Стати в чергу'}
                   </Button>
                   <Dialog.Context>
