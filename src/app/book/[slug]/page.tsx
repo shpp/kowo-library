@@ -123,8 +123,8 @@ const BookImage = ({ cover }: { cover?: string }) => {
         alt="some image"
         style={{
           height: '100%',
-          width: '70%',
-          objectFit: 'fill',
+          width: '100%',
+          objectFit: 'contain',
         }}
       />
     </Flex>
