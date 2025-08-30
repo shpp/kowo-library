@@ -13,12 +13,16 @@ import {StyledInput} from '@/shared/ui/styled-input';
 import {BookApiResponse} from '@/entities/kowo-book/ui/kowo-book';
 
 const userInfoSchema = z.object({
-  name: z.string().min(1, "Ім'я обов’язкове"),
-  email: z.string().email('Невірний формат пошти').min(1, 'Пошта обов’язкова'),
+  name: z.string()
+    .transform((val) => val.trim())
+    .refine((val) => val.length > 0, "Ім'я обов'язкове"),
+  email: z.string().email("Невірний формат пошти").min(1, "Пошта обов'язкова"),
   phone: z
     .string()
-    .min(1, 'Телефон обов’язковий')
-    .regex(/^[0-9]+$/, 'Дозволені тільки цифри'),
+    .min(1, "Телефон обов'язковий")
+    .regex(/^[+]?[0-9]+$/, "Дозволені тільки цифри та символ +")
+    .refine((val) => val.length >= 10 && val.length <= 13, "Телефон повинен містити від 10 до 13 символів")
+    .refine((val) => val.startsWith("0") || val.startsWith("380") || val.startsWith("+380"), "Телефон повинен починатися з 0, 380 або +380"),
   policy: z.boolean(),
 });
 
@@ -54,12 +58,12 @@ export const QueueUp = ({book, type = 'book'}: { book: BookApiResponse; type?: '
   });
 
   const watchedValues = watch();
-  const isFormValid = watchedValues.name && watchedValues.email && watchedValues.phone && watchedValues.policy;
+  const isFormValid = watchedValues.name?.trim() && watchedValues.email && watchedValues.phone && watchedValues.policy;
 
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     setError(null);
     try {
-      const res = await makeBooking({bookId: book.id, person: {email: data.email, name: data.name, phone: data.phone}});
+      const res = await makeBooking({bookId: book.id, person: {email: data.email, name: data.name.trim(), phone: data.phone}});
       if (res.ok) {
         const result = await res.json();
         if (result.success) {
