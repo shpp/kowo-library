@@ -8,7 +8,7 @@ import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 import ArrowLeftIcon from '@/shared/assets/icons/arrow-left-icon';
 import FilterIcon from '@/shared/assets/icons/filter-icon';
 
-export const DrawerBookFilters = ({ books }: { books: BooksApiResponse }) => {
+export const DrawerBookFilters = ({ books, originalBooks }: { books: BooksApiResponse; originalBooks?: BooksApiResponse }) => {
   return (
     <>
       <DrawerHeader>
@@ -24,7 +24,7 @@ export const DrawerBookFilters = ({ books }: { books: BooksApiResponse }) => {
         </HStack>
       </DrawerHeader>
       <DrawerBody>
-        <BooksFilters books={books} />
+        <BooksFilters books={books} originalBooks={originalBooks} />
       </DrawerBody>
     </>
   );

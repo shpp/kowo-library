@@ -104,7 +104,7 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps)=> {
       </Box>
       <Flex gap={'16px'}>
         <Box hideBelow={'md'}>
-          <BooksFilters books={filteredBooks} />
+          <BooksFilters books={filteredBooks} originalBooks={allBooks} />
         </Box>
         <Flex flexDirection={'column'} gap={'16px'} w={'100%'}>
           <Box hideBelow={'sm'}>
@@ -144,7 +144,7 @@ const BooksHeader = ({ books }: { books: BooksApiResponse }) => {
               Фільтри
             </Button>
           }
-          content={<DrawerBookFilters books={books} />}
+          content={<DrawerBookFilters books={books} originalBooks={books} />}
         />
       </Box>
       {/* <Flex alignItems={{ mdDown: 'end', md: 'center' }} gap={'16px'} w={{ mdDown: '100%' }}>

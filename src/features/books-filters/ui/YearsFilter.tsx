@@ -32,23 +32,26 @@ function debounce<T extends (...args: any[]) => void>(func: T, wait: number) {
   return debounced;
 }
 
-export const YearsFilter = ({ books }: { books?: BooksApiResponse }) => {
+export const YearsFilter = ({ books, originalBooks }: { books?: BooksApiResponse; originalBooks?: BooksApiResponse }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(true);
 
   const { minYear, maxYear } = useMemo(() => {
-    if (!books || books.length === 0) {
+    // Use originalBooks for the full date range, fallback to books if originalBooks is not provided
+    const booksToUse = originalBooks || books;
+    
+    if (!booksToUse || booksToUse.length === 0) {
       return { minYear: 1900, maxYear: new Date().getFullYear() };
     }
 
-    const years = books.map((book) => book.year).filter((year): year is number => typeof year === 'number' && !isNaN(year));
+    const years = booksToUse.map((book) => book.year).filter((year): year is number => typeof year === 'number' && !isNaN(year));
 
     return {
       minYear: years.length > 0 ? Math.min(...years) : 1900,
       maxYear: years.length > 0 ? Math.max(...years) : new Date().getFullYear(),
     };
-  }, [books]);
+  }, [books, originalBooks]);
 
   const initialMinYear = searchParams.get('years') ? Number(searchParams.get('years')?.split(' - ')[0]) : minYear;
   const initialMaxYear = searchParams.get('years') ? Number(searchParams.get('years')?.split(' - ')[1]) : maxYear;
