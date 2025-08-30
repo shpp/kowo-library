@@ -18,7 +18,12 @@ export const GET = async () => {
   try {
     const [{items}, {bookings}] = await Promise.all([fetch(`${env.KOWO_API_BASE_URL}/db/`).then((response) => response.json()), fetch(`${env.KOWO_API_BASE_URL}/bookings/frontend/`).then((response) => response.json())]);
     return Response.json({ data: items.filter((item: Book) => item.status === 'open').map((item: Book) => ({...item, available: !bookings[item.id]})) });
-  } catch {
+  } catch (error) {
+    console.error('[API] GET /api/books - Failed to fetch books data:', {
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+      timestamp: new Date().toISOString()
+    });
     return Response.json({ data: [] });
   }
 };
@@ -46,8 +51,19 @@ export const POST = async (req: Request) => {
     if (response.ok) {
       return Response.json({ success: true })
     }
+    console.error('[API] POST /api/books - External API returned error status:', {
+      status: response.status,
+      statusText: response.statusText,
+      timestamp: new Date().toISOString(),
+      requestData: data
+    });
     return Response.json({ success: false })
-  } catch {
+  } catch (error) {
+    console.error('[API] POST /api/books - Failed to make booking:', {
+      error: error instanceof Error ? error.message : String(error),
+      stack: error instanceof Error ? error.stack : undefined,
+      timestamp: new Date().toISOString()
+    });
     return Response.json({ success: false })
   }
 }
