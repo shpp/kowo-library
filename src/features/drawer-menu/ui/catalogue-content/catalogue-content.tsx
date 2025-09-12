@@ -6,53 +6,42 @@ import { DrawerBody, DrawerCloseTrigger, DrawerHeader } from '@/shared/ui/drawer
 import ArrowLeftIcon from '@/shared/assets/icons/arrow-left-icon';
 import MenuGreyIcon from '@/shared/assets/icons/menu-grey-icon';
 import { ArrowIcon } from '../ArrowIcon';
+import { useEffect, useState } from 'react';
 
-const CATEGORIES = [
-  {
-    title: 'Художня література',
-    items: [
-      'Сучасна українська проза',
-      'Сучасна світова проза',
-      'Класична українська проза',
-      'Класична світова проза',
-      'Детективи та трилери',
-      'Горор',
-      'Романтична проза',
-      'Антології та коротка проза',
-      'Історична проза',
-      'Міфи, легенди, фольклор',
-      'Сучасна українська поезія',
-      'Класична українська поезія',
-      'Світова поезія',
-      'Різдвяні книги для дорослих',
-      'Підліткова література',
-    ],
-  },
-  {
-    title: 'Нон-фікшн література',
-    items: ['Дизайн', 'Креативність', 'Ілюстрація', 'Психологія', 'Копірайтинг'],
-  },
-  {
-    title: 'Бізнес та саморозвиток',
-    items: [
-      'Історії бізнесів та бізнесменів',
-      'Менеджмент та лідерство',
-      'Тайм-менеджмент',
-      'Мотивація',
-      "Кар'єра та професійні навички",
-      'Підприємництво',
-      'Маркетинг та реклама',
-      'Продажі',
-      'Економіка',
-    ],
-  },
-  {
-    title: 'Програмування',
-    items: ['Java', 'PHP', 'C#', 'C++', 'JavaScript', 'Arduino', 'Computer Science', 'Go', 'Ajax', 'Python'],
-  },
-];
+type Category = {
+  title: string;
+  items: string[];
+}
 
 export const CatalogueContent = ({ setStep }: { setStep: (step: number) => void }) => {
+  const [categories, setCategories] = useState<Category[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const fetchCategories = async () => {
+      try {
+        const response = await fetch("/api/config");
+        const { config } = await response.json();
+
+        const transformedCategories = Object.entries(config.categories).map(
+          ([title, items]) => ({
+            title,
+            items: items as string[]
+          })
+        );
+
+        setCategories(transformedCategories);
+      } catch (error) {
+        console.error("Failed to fetch categories:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchCategories();
+  }, []);
+
+
   return (
     <DrawerContext>
       {(store) => (
@@ -81,7 +70,12 @@ export const CatalogueContent = ({ setStep }: { setStep: (step: number) => void 
                 <Text fontSize="sm">Переглянути всю бібліотеку</Text>
               </Stack>
             </Link>
-            {CATEGORIES.map((category) => (
+            {loading && (
+              <div>
+                <Text>Йде завантаження...</Text>
+              </div>
+            )}
+            {categories.map((category) => (
               <Stack key={category.title} marginBottom="24px" css={{ breakInside: 'avoid' }}>
                 <ChakraLink asChild>
                   <Link onClick={() => store.setOpen(false)} href={`books?page=1&category=${category.title}`}>

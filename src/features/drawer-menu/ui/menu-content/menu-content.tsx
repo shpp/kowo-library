@@ -24,19 +24,18 @@ export const MenuContent = ({ setStep }: { setStep: (step: number) => void }) =>
               <LogoLink height={24} width={200} />
             </Box>
           </DrawerHeader>
-          <DrawerFooter>
+          <DrawerBody>
             <VStack width="100%">
               <Button colorPalette="kowo" rounded="lg" color="#FFF" fontWeight="600" width="100%" onClick={() => setStep(1)}>
                 <CatalogIcon />
                 Каталог
               </Button>
               <SearchBar onDrawerCLose={() => store.setOpen(false)} />
-            </VStack>
-          </DrawerFooter>
-          <DrawerBody>
-            <Navigation onClose={() => store.setOpen(false)} direction="column" />
-            <VStack height="16px" justifyContent="center">
-              <Separator width="100%" />
+
+              <Navigation onClose={() => store.setOpen(false)} direction="column" style={{ width: '100%' }} />
+              <VStack height="16px" justifyContent="center" width="100%">
+                <Separator width="100%" />
+              </VStack>
             </VStack>
             {/* <VStack alignItems="flex-start">
               <AuthButton />

@@ -11,10 +11,11 @@ const NAVIGATION_LINKS = [
 type NavigationProps = {
   direction?: 'row' | 'column';
   onClose?: () => void;
+  style?: React.CSSProperties;
 };
 
-export const Navigation: FC<NavigationProps> = ({ direction = 'row', onClose }) => (
-  <nav>
+export const Navigation: FC<NavigationProps> = ({ direction = 'row', onClose, style }) => (
+  <nav style={style}>
     <List.Root flexDirection={direction} gap="12px" listStyleType="none" width="max-content" px="12px">
       {NAVIGATION_LINKS.map(({ href, title, target }) => (
         <List.Item key={title} flexShrink="0">

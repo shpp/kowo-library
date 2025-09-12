@@ -16,7 +16,18 @@ export type Book = {
 
 export const GET = async () => {
   try {
-    const [{items}, {bookings}] = await Promise.all([fetch(`${env.KOWO_API_BASE_URL}/db/`).then((response) => response.json()), fetch(`${env.KOWO_API_BASE_URL}/bookings/frontend/`).then((response) => response.json())]);
+    const [{items}, {bookings}] = await Promise.all([
+      fetch(`${env.KOWO_API_BASE_URL}/db/`, {
+        headers: {
+          'Authorization': `Bearer ${env.KOWO_API_AUTH_TOKEN}`,
+        },
+      }).then((response) => response.json()),
+      fetch(`${env.KOWO_API_BASE_URL}/bookings/frontend/`, {
+        headers: {
+          'Authorization': `Bearer ${env.KOWO_API_AUTH_TOKEN}`,
+        },
+      }).then((response) => response.json())
+    ]);
     return Response.json({ data: items.filter((item: Book) => item.status === 'open').map((item: Book) => ({...item, available: !bookings[item.id]})) });
   } catch (error) {
     console.error('[API] GET /api/books - Failed to fetch books data:', {
@@ -45,6 +56,7 @@ export const POST = async (req: Request) => {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${env.KOWO_API_AUTH_TOKEN}`,
       },
       body: JSON.stringify(data),
     });
