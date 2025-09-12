@@ -15,7 +15,7 @@ export default function About() {
       <Container maxW={{ md: '2xl', lg: '3xl', xl: '5xl' }}>
         <Flex gap={{ base: '16px', md: '32px' }} direction="column">
           <KowoHeading textAlign={{ base: 'center', md: 'start' }} size={{ base: '4xl', md: '5xl' }}>
-            Вітаємо у бібліотеці креативного IT-простору KOWO
+            Вітаємо у бібліотеці креативного простору KOWO
           </KowoHeading>
           <Flex gap={{ base: '12px', md: '20px' }} direction="column">
             {textParagraphs.map((item, index) => (
