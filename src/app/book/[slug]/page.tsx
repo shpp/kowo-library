@@ -23,6 +23,12 @@ async function fetchBooks() {
   return data.data;
 }
 
+export const revalidate = 2592000; // 30 days
+export const dynamic = 'force-static';
+export function generateStaticParams() {
+    return [];
+}
+
 export default async function Book({ params }: { params: Promise<{ slug: string }> }) {
   const resolvedParams = await params;
   const books: BooksApiResponse = await fetchBooks();
