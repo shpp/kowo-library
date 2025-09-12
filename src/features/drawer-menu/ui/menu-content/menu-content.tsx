@@ -3,7 +3,7 @@ import Link from 'next/link';
 import { Box, Button, DrawerContext, Separator, VStack } from '@chakra-ui/react';
 
 // import { Illustration } from '@/shared/ui/illustration';
-import { DrawerBody, DrawerCloseTrigger, DrawerFooter, DrawerHeader } from '@/shared/ui/drawer';
+import { DrawerBody, DrawerCloseTrigger, DrawerHeader } from '@/shared/ui/drawer';
 import { LogoLink } from '@/widgets/logo-link';
 import { Navigation } from '@/widgets/navigation';
 import { SearchBar } from '@/widgets/search-bar';
