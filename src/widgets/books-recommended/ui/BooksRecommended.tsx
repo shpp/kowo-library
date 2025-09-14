@@ -10,9 +10,13 @@ export const BooksRecommended = () => {
   });
   if (isLoading) return null;
 
-  const items = allBooks.toSorted((a, b) => a.year - b.year).slice(0, 5);
+  const items = allBooks
+    .filter(book => book.isRecommended)
+    .toSorted((a, b) => b.createdTime - a.createdTime)
+    .slice(0, 8);
   return (
     <SliderBlock
+      allItemsUrl="/books?isRecommended=true"
       items={items}
       theme="white"
       title="Що варто прочитати?"

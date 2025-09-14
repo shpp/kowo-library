@@ -12,6 +12,8 @@ export type Book = {
   year: number;
   cover: string;
   available: boolean;
+  isRecommended: boolean;
+  createdTime: number;
 };
 
 export const GET = async () => {

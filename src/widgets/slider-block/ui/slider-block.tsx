@@ -20,19 +20,21 @@ import { KowoBook } from '@/entities/kowo-book/ui/kowo-book';
 
 import kowoBg from '@/shared/assets/backgrounds/kowo-bg.png';
 import ArrowRight from '@/shared/assets/icons/arrow-right-icon';
-import { useRouter } from 'next/navigation';
 import { Book } from '@/app/api/books/route';
+import Link from 'next/link';
 
 interface ISliderBlockProps {
   theme: 'green' | 'white';
   title: string;
   subTitle: string;
   items: Book[];
+  allItemsUrl: string;
 }
 
 export const SliderBlock: FC<ISliderBlockProps> = ({
   theme,
   title,
+  allItemsUrl,
   subTitle,
   items,
 }) => {
@@ -109,6 +111,7 @@ export const SliderBlock: FC<ISliderBlockProps> = ({
               scrollNext={scrollNext}
               scrollPrev={scrollPrev}
               theme={theme}
+              url={allItemsUrl}
             />
           </Box>
         </Stack>
@@ -134,6 +137,7 @@ export const SliderBlock: FC<ISliderBlockProps> = ({
             scrollNext={scrollNext}
             scrollPrev={scrollPrev}
             theme={theme}
+            url={allItemsUrl}
           />
         </Box>
       </Flex>
@@ -144,9 +148,9 @@ export const SliderBlock: FC<ISliderBlockProps> = ({
 const NavigationButtons: FC<{
   scrollPrev: () => void;
   scrollNext: () => void;
+  url: string;
   theme: string;
-}> = ({ scrollPrev, scrollNext, theme }) => {
-  const router = useRouter();
+}> = ({ scrollPrev, scrollNext, theme, url }) => {
   return (
     <Flex
       flexDir={{ base: 'row', xl: 'column' }}
@@ -155,13 +159,11 @@ const NavigationButtons: FC<{
       gap={{ xl: '90px' }}
       w="100%"
     >
-      <Button
-        onClick={() => router.push('/books')}
-        visual={'kowo_white'}
-        border={theme === 'white' ? '' : 'none'}
-      >
-        Переглянути більше
-      </Button>
+      <Link href={url}>
+        <Button visual={'kowo_white'} border={theme === 'white' ? '' : 'none'}>
+          Переглянути більше
+        </Button>
+      </Link>
       <Flex gap="16px">
         <IconButton
           onClick={scrollPrev}

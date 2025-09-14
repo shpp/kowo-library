@@ -10,10 +10,13 @@ export const BooksNews = () => {
   });
   if (isLoading) return null;
 
-  const items = allBooks.toSorted((a, b) => b.year - a.year).slice(0, 5);
+  const items = allBooks
+    .toSorted((a, b) => b.createdTime - a.createdTime)
+    .slice(0, 8);
   return (
     <SliderBlock
       items={items}
+      allItemsUrl="/books?sort=createdTime"
       theme="green"
       title="Оновлення нашої бібліотеки!"
       subTitle="Книги вже на полицях. Знайдіть щось для себе"

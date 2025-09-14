@@ -6,6 +6,9 @@ export async function fetchBooks(): Promise<Book[]> {
     throw new Error('Failed to fetch books');
   }
   const data = await res.json();
+  data.data.forEach((book: Book) => {
+    book.createdTime = new Date(book.createdTime).getTime();
+  });
   return data.data;
 }
 
