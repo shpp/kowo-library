@@ -3,7 +3,6 @@ import { Box, Center, Container, Heading, Stack, Text } from '@chakra-ui/react';
 
 import { KeyConcepts } from '@/widgets/key-concepts';
 import { Illustration } from '@/shared/ui/illustration';
-import { SliderBlock } from '@/widgets/slider-block';
 
 import kowoBg from '@/shared/assets/backgrounds/kowo-bg.png';
 import bookClub from '@/shared/assets/illustrations/book-club.png';

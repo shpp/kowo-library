@@ -1,5 +1,6 @@
 'use client';
 import { fetchBooks } from '@/actions';
+import { KOWO_RECOMMENDED_LABEL } from '@/app/books/page';
 import { SliderBlock } from '@/widgets/slider-block';
 import { useQuery } from '@tanstack/react-query';
 
@@ -19,7 +20,7 @@ export const BooksRecommended = () => {
 
   return (
     <SliderBlock
-      allItemsUrl="/books?isRecommended=true"
+      allItemsUrl={encodeURI(`/books?recommendation=${KOWO_RECOMMENDED_LABEL}`)}
       items={items}
       theme="white"
       title="Що варто прочитати?"

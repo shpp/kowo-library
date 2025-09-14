@@ -42,11 +42,9 @@ export const AuthorFilter = ({
       return [];
     }
 
-    const authorMap = books.reduce(
-      (
-        acc: { [key: string]: { count: number; flag?: string } },
-        book: BookApiResponse
-      ) => {
+    type AuthorMap = Record<string, { count: number; flag?: string }>;
+    const authorMap: AuthorMap = books.reduce(
+      (acc: AuthorMap, book: BookApiResponse) => {
         const authorsNames = book.authors;
         authorsNames.forEach(authorName => {
           if (!acc[authorName]) {
@@ -59,11 +57,13 @@ export const AuthorFilter = ({
       {}
     );
 
-    return Object.entries(authorMap).map(([name, value]) => ({
-      name,
-      count: (value as { count: number; flag?: string }).count,
-      flag: (value as { count: number; flag?: string }).flag,
-    }));
+    return Object.entries(authorMap)
+      .toSorted((a, b) => b[1].count - a[1].count)
+      .map(([name, value]) => ({
+        name,
+        count: (value as { count: number; flag?: string }).count,
+        flag: (value as { count: number; flag?: string }).flag,
+      }));
   }, [books]);
 
   const updateQueryParams = (authors: string[]) => {

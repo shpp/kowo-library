@@ -106,27 +106,25 @@ export const LanguageFilter = ({
       </Collapsible.Trigger>
       <Collapsible.Content>
         <Stack gap="10px" maxHeight="190px" overflowY="auto" pt="8px">
-          {languages
-            .filter(language => language.name !== 'Москворота')
-            .map(language => (
-              <HStack
-                key={language.name}
-                justifyContent="space-between"
-                gap="16px"
+          {languages.map(language => (
+            <HStack
+              key={language.name}
+              justifyContent="space-between"
+              gap="16px"
+            >
+              <Checkbox
+                checked={selectedLanguages.includes(language.name)}
+                onCheckedChange={e =>
+                  handleLanguageChange(language.name, !!e.checked)
+                }
               >
-                <Checkbox
-                  checked={selectedLanguages.includes(language.name)}
-                  onCheckedChange={e =>
-                    handleLanguageChange(language.name, !!e.checked)
-                  }
-                >
-                  {language.name}
-                </Checkbox>
-                <Badge colorPalette="gray" variant="subtle">
-                  {language.count}
-                </Badge>
-              </HStack>
-            ))}
+                {language.name}
+              </Checkbox>
+              <Badge colorPalette="gray" variant="subtle">
+                {language.count}
+              </Badge>
+            </HStack>
+          ))}
         </Stack>
       </Collapsible.Content>
     </Collapsible.Root>

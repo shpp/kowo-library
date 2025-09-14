@@ -13,6 +13,9 @@ import dynamic from 'next/dynamic';
 import { fetchBooks } from '@/actions';
 
 const KowoBook = dynamic(() => import('@/entities/kowo-book/ui/kowo-book'));
+export const KOWO_RECOMMENDED_LABEL = 'KOWO рекомендує';
+
+type SortType = 'createdTime' | 'name' | 'year';
 
 type SearchParamsType = {
   page?: string;
@@ -22,6 +25,8 @@ type SearchParamsType = {
   authors?: string | string[];
   availability?: string | string[];
   languages?: string | string[];
+  recommendation?: string;
+  sort?: SortType;
 };
 
 type PageProps = {
@@ -36,6 +41,7 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
     authors,
     availability,
     languages,
+    recommendation,
     search,
     sub_category,
   } = (await searchParams) as SearchParamsType; // used because of https://nextjs.org/docs/messages/sync-dynamic-apis
@@ -82,6 +88,15 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
         book => book.year >= min && book.year <= max
       );
     }
+  }
+
+  console.log(KOWO_RECOMMENDED_LABEL.toString(), {
+    recommendation,
+    KOWO_RECOMMENDED_LABEL,
+    eq: recommendation === KOWO_RECOMMENDED_LABEL,
+  });
+  if (recommendation && recommendation === KOWO_RECOMMENDED_LABEL) {
+    filteredBooks = filteredBooks.filter(book => book.isRecommended);
   }
 
   if (authorsArray.length > 0) {

@@ -24,6 +24,8 @@ export type BookApiResponse = {
   year: number;
   cover: string;
   available: boolean;
+  isRecommended: boolean;
+  createdTime: number;
 };
 
 interface IKowoBookProps {
