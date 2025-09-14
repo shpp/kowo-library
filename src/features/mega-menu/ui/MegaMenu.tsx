@@ -138,7 +138,7 @@ export const MegaMenu = () => {
                   {category.items.map(item => (
                     <ChakraLink asChild key={item}>
                       <Link
-                        href={`books?page=1&category=${encodeQueryParam(category.title)}&sub_category=${encodeQueryParam(item)}`}
+                        href={`books?page=1&sub_category=${encodeQueryParam(item)}`}
                         onClick={handleLinkClick}
                       >
                         <Text fontSize="sm">{item}</Text>
