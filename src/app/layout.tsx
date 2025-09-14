@@ -9,6 +9,7 @@ import {Header} from "@/widgets/header";
 import {Footer} from "@/widgets/footer";
 
 import styles from "./layout.module.css";
+import Script from "next/script";
 
 const podkova = Podkova({
   variable: "--font-podkova",
@@ -34,6 +35,24 @@ export default function RootLayout({
   return (
     <html lang="en">
     <body className={`${inter.variable} ${podkova.variable}`}>
+      <Script
+        strategy="afterInteractive"
+        src={`https://www.googletagmanager.com/gtag/js?id=G-ZPMNNVBR8S`}
+      />
+      <Script
+          strategy="afterInteractive"
+          id="gtag-init-page-specific"
+          dangerouslySetInnerHTML={{
+            __html: `
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-ZPMNNVBR8S', {
+              page_path: window.location.pathname,
+            });
+          `
+          }}
+        />
         <Providers>
           <div className={styles.layout}>
             <Header/>
