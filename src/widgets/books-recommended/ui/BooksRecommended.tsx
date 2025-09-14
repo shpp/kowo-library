@@ -1,20 +1,26 @@
 'use client';
 import { fetchBooks } from '@/actions';
-import { KOWO_RECOMMENDED_LABEL } from '@/app/books/page';
+import { KOWO_RECOMMENDED_LABEL } from '@/utils';
 import { SliderBlock } from '@/widgets/slider-block';
 import { useQuery } from '@tanstack/react-query';
+import { useMemo } from 'react';
 
 export const BooksRecommended = () => {
   const { data: allBooks = [], isLoading } = useQuery({
     queryKey: ['books'],
     queryFn: fetchBooks,
   });
-  if (isLoading) return null;
 
-  const items = allBooks
-    .filter(book => book.isRecommended)
-    .toSorted((a, b) => b.createdTime - a.createdTime)
-    .slice(0, 8);
+  const items = useMemo(
+    () =>
+      allBooks
+        .filter(book => book.isRecommended)
+        .toSorted((a, b) => b.createdTime - a.createdTime)
+        .slice(0, 8),
+    [allBooks]
+  );
+
+  if (isLoading) return null;
 
   if (items.length === 0) return null;
 

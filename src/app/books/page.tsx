@@ -93,11 +93,6 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
     }
   }
 
-  console.log(KOWO_RECOMMENDED_LABEL.toString(), {
-    recommendation,
-    KOWO_RECOMMENDED_LABEL,
-    eq: recommendation === KOWO_RECOMMENDED_LABEL,
-  });
   if (recommendation && recommendation === KOWO_RECOMMENDED_LABEL) {
     filteredBooks = filteredBooks.filter(book => book.isRecommended);
   }

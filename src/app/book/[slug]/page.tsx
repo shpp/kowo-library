@@ -179,7 +179,10 @@ export default async function Book({
           </Flex>
         </Flex>
         {/* <BookRecommendations type="history" /> */}
-        <BookRecommendations type="recommendations" />
+        <BookRecommendations
+          type="recommendations"
+          currentBookCreatedTime={currentBookData?.createdTime}
+        />
       </Flex>
       <KeyConcepts />
     </Flex>

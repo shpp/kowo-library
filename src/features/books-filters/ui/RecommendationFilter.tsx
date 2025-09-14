@@ -5,7 +5,7 @@ import { Badge, HStack, Stack, Text } from '@chakra-ui/react';
 import { Checkbox } from '@/shared/ui/checkbox';
 import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { KOWO_RECOMMENDED_LABEL } from '@/app/books/page';
+import { KOWO_RECOMMENDED_LABEL } from '@/utils';
 
 export const RecommendationFilter = ({
   books,
