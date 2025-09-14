@@ -27,6 +27,7 @@ type SearchParamsType = {
   languages?: string | string[];
   recommendation?: string;
   sort?: SortType;
+  order?: 'asc' | 'desc';
 };
 
 type PageProps = {
@@ -44,6 +45,8 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
     recommendation,
     search,
     sub_category,
+    sort,
+    order,
   } = (await searchParams) as SearchParamsType; // used because of https://nextjs.org/docs/messages/sync-dynamic-apis
   const allBooks: BooksApiResponse = await fetchBooks();
 
@@ -126,6 +129,34 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
             ? 'Москворота'
             : 'Англійська';
       return languagesArray.includes(bookLanguage);
+    });
+  }
+
+  if (sort) {
+    filteredBooks = filteredBooks.toSorted((a, b) => {
+      const sortKey = sort ?? 'createdTime';
+      const sortDirection = (order ?? 'asc') === 'asc' ? 1 : -1;
+      const leftSortValue = a[sortKey];
+      const rightSortValue = b[sortKey];
+      if (
+        typeof leftSortValue === 'string' &&
+        typeof rightSortValue === 'string'
+      ) {
+        return leftSortValue.localeCompare(rightSortValue) * sortDirection;
+      }
+      if (
+        typeof leftSortValue === 'number' &&
+        typeof rightSortValue === 'number'
+      ) {
+        return (leftSortValue - rightSortValue) * sortDirection;
+      }
+      if (
+        typeof leftSortValue === 'boolean' &&
+        typeof rightSortValue === 'boolean'
+      ) {
+        return (leftSortValue ? 1 : -1) * sortDirection;
+      }
+      return 0;
     });
   }
 

@@ -7,7 +7,9 @@ export const FilterTags = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const tags = Array.from(searchParams.entries());
+  const tags = Array.from(
+    searchParams.entries().filter(([key]) => !['sort', 'order'].includes(key))
+  );
 
   const handleRemoveTag = (tagToRemove: Array<string>) => {
     const params = new URLSearchParams(searchParams.toString());

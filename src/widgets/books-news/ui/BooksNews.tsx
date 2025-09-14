@@ -19,7 +19,7 @@ export const BooksNews = () => {
   return (
     <SliderBlock
       items={items}
-      allItemsUrl="/books?sort=createdTime"
+      allItemsUrl="/books?sort=createdTime&order=desc"
       theme="green"
       title="Оновлення нашої бібліотеки!"
       subTitle="Книги вже на полицях. Знайдіть щось для себе"
