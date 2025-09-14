@@ -13,6 +13,9 @@ export const BooksNews = () => {
   const items = allBooks
     .toSorted((a, b) => b.createdTime - a.createdTime)
     .slice(0, 8);
+
+  if (items.length === 0) return null;
+
   return (
     <SliderBlock
       items={items}
