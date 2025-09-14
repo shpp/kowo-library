@@ -7,7 +7,7 @@ export type Book = {
   description: string;
   status: string;
   categories: string[];
-  language: string;
+  language: 'ua' | 'ru' | 'en';
   authors: string[];
   year: number;
   cover: string;

@@ -58,7 +58,7 @@ export const CatalogueContent = ({
             </HStack>
           </DrawerHeader>
           <DrawerBody>
-            <Link onClick={() => store.setOpen(false)} href="/books?page=1">
+            <Link onClick={() => store.setOpen(false)} href="/books">
               <Stack
                 bg="#F7F8F8"
                 padding="8px"
@@ -89,7 +89,7 @@ export const CatalogueContent = ({
                   <ChakraLink asChild key={item}>
                     <Link
                       onClick={() => store.setOpen(false)}
-                      href={`books?page=1&sub_category=${encodeQueryParam(item)}`}
+                      href={`books?sub_category=${encodeQueryParam(item)}`}
                     >
                       <Text fontSize="sm">{item}</Text>
                     </Link>

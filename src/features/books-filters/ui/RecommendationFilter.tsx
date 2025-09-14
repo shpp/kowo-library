@@ -26,17 +26,17 @@ export const RecommendationFilter = ({
     return recommended;
   }, [books]);
 
-  const updateQueryParams = (available: boolean) => {
+  const updateQueryParams = (recommendation: boolean) => {
     const params = new URLSearchParams(searchParams.toString());
-    params.delete('availability');
+    params.delete('recommendation');
     params.delete('search');
     params.delete('page');
 
-    if (available) {
+    if (recommendation) {
       params.append('recommendation', KOWO_RECOMMENDED_LABEL);
     }
 
-    router.push(`?page=1&${params.toString()}`, { scroll: false });
+    router.push(`?${params.toString()}`, { scroll: false });
   };
 
   const handleRecommendedChange = (checked: boolean) => {
@@ -61,7 +61,7 @@ export const RecommendationFilter = ({
           checked={recommendedCheckboxStatus}
           onCheckedChange={e => handleRecommendedChange(!!e.checked)}
         >
-          KOWO рекомендує
+          {KOWO_RECOMMENDED_LABEL}
         </Checkbox>
         <Badge colorPalette="gray" variant="subtle">
           {recommendedAmount}

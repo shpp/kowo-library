@@ -11,10 +11,13 @@ import { DrawerWrapper } from '@/shared/ui/drawer';
 import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import { fetchBooks } from '@/actions';
-import { decodeQueryParam } from '@/utils';
+import {
+  decodeQueryParam,
+  KOWO_RECOMMENDED_LABEL,
+  languageCodeToNameMap,
+} from '@/utils';
 
 const KowoBook = dynamic(() => import('@/entities/kowo-book/ui/kowo-book'));
-export const KOWO_RECOMMENDED_LABEL = 'KOWO рекомендує';
 
 type SortType = 'createdTime' | 'name' | 'year';
 
@@ -93,7 +96,8 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
     }
   }
 
-  if (recommendation && recommendation === KOWO_RECOMMENDED_LABEL) {
+  const recommendationDecoded = decodeQueryParam(recommendation);
+  if (recommendation && recommendationDecoded === KOWO_RECOMMENDED_LABEL) {
     filteredBooks = filteredBooks.filter(book => book.isRecommended);
   }
 
@@ -117,13 +121,7 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
 
   if (languagesArray.length > 0) {
     filteredBooks = filteredBooks.filter(book => {
-      const bookLanguage =
-        book.language === 'ua'
-          ? 'Українська'
-          : book.language === 'ru'
-            ? 'Москворота'
-            : 'Англійська';
-      return languagesArray.includes(bookLanguage);
+      return languagesArray.includes(languageCodeToNameMap[book.language]);
     });
   }
 

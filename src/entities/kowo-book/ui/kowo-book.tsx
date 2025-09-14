@@ -19,7 +19,7 @@ export type BookApiResponse = {
   description: string;
   status: string;
   categories: Array<string>;
-  language: string;
+  language: 'ua' | 'ru' | 'en';
   authors: Array<string>;
   year: number;
   cover: string;

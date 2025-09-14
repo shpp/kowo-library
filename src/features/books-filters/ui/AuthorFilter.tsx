@@ -73,7 +73,7 @@ export const AuthorFilter = ({
     params.delete('page');
 
     if (authors.length == 0) {
-      router.push(`?page=1&${params.toString()}`, { scroll: false });
+      router.push(`?${params.toString()}`, { scroll: false });
       return;
     }
 
@@ -81,7 +81,7 @@ export const AuthorFilter = ({
       params.append('authors', author);
     });
 
-    router.push(`?page=1&${params.toString()}`, { scroll: false });
+    router.push(`?${params.toString()}`, { scroll: false });
   };
 
   const handleAuthorChange = (author: string, checked: boolean) => {

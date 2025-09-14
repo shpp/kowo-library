@@ -15,7 +15,7 @@ export const SearchBar = ({
 
   const onClickSearch = () => {
     if (query.length <= 2) return;
-    router.push(`/books?page=1&search=${query}`);
+    router.push(`/books?search=${query}`);
     if (onDrawerCLose) onDrawerCLose();
   };
 

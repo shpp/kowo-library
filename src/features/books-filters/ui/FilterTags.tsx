@@ -16,13 +16,13 @@ export const FilterTags = () => {
     params.delete(tagToRemove[0], tagToRemove[1]);
     params.delete('page');
     const queryString = params.toString();
-    router.push(queryString ? `?page=1&${queryString}` : '?page=1', {
+    router.push(queryString ? `?${queryString}` : '', {
       scroll: false,
     });
   };
 
   const handleClearTags = () => {
-    router.push(`?page=1`, { scroll: false });
+    router.push(`?`, { scroll: false });
   };
 
   return (

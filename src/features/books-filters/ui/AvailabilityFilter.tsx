@@ -38,7 +38,7 @@ export const AvailabilityFilter = ({ books }: { books?: BooksApiResponse }) => {
       params.append('availability', 'На руках');
     }
 
-    router.push(`?page=1&${params.toString()}`, { scroll: false });
+    router.push(`?${params.toString()}`, { scroll: false });
   };
 
   const handleAvailableChange = (checked: boolean) => {

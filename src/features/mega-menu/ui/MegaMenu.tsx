@@ -101,7 +101,7 @@ export const MegaMenu = () => {
                 marginBottom="24px"
                 css={{ breakInside: 'avoid' }}
               >
-                <Link href="/books?page=1" onClick={handleLinkClick}>
+                <Link href="/books?" onClick={handleLinkClick}>
                   <Stack bg="#F7F8F8" padding="8px" borderRadius="8px">
                     <Stack direction="row" justify="space-between">
                       <Text fontWeight="semibold">Усі книги</Text>
@@ -130,7 +130,7 @@ export const MegaMenu = () => {
                   css={{ breakInside: 'avoid' }}
                 >
                   {/*<ChakraLink asChild>*/}
-                  {/*<Link href={`books?page=1&category=${category.title}`} onClick={handleLinkClick}>*/}
+                  {/*<Link href={`books?category=${category.title}`} onClick={handleLinkClick}>*/}
                   <Text fontWeight="semibold">{category.title}</Text>
                   {/*</Link>*/}
                   {/*</ChakraLink>*/}
@@ -138,7 +138,7 @@ export const MegaMenu = () => {
                   {category.items.map(item => (
                     <ChakraLink asChild key={item}>
                       <Link
-                        href={`books?page=1&sub_category=${encodeQueryParam(item)}`}
+                        href={`books?sub_category=${encodeQueryParam(item)}`}
                         onClick={handleLinkClick}
                       >
                         <Text fontSize="sm">{item}</Text>

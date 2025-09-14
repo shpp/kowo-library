@@ -14,6 +14,7 @@ import ChevronUp from '@/shared/assets/icons/chevron-up';
 import ChevronDown from '@/shared/assets/icons/chevron-down';
 import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 import { useRouter, useSearchParams } from 'next/navigation';
+import { languageCodeToNameMap } from '@/utils';
 
 export const LanguageFilter = ({
   books,
@@ -35,15 +36,8 @@ export const LanguageFilter = ({
     }
 
     const languageMap = books.reduce((acc: { [key: string]: number }, book) => {
-      const language =
-        book.language === 'ru'
-          ? 'Москворота'
-          : book.language === 'ua'
-            ? 'Українська'
-            : 'Англійська';
-      if (language) {
-        acc[language] = (acc[language] || 0) + 1;
-      }
+      const language = languageCodeToNameMap[book.language];
+      acc[language] = (acc[language] || 0) + 1;
       return acc;
     }, {});
 
@@ -72,7 +66,7 @@ export const LanguageFilter = ({
       params.append('languages', language);
     });
 
-    router.push(`?page=1&${params.toString()}`, { scroll: false });
+    router.push(`?${params.toString()}`, { scroll: false });
   };
 
   const handleLanguageChange = (language: string, checked: boolean) => {

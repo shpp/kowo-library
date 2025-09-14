@@ -89,7 +89,7 @@ export const YearsFilter = ({
       params.set('years', `${min}-${max}`);
     }
 
-    router.push(`?page=1&${params.toString()}`, { scroll: false });
+    router.push(`?${params.toString()}`, { scroll: false });
   };
 
   const debouncedUpdateQueryParamsRef = useRef(

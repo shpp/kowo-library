@@ -22,6 +22,7 @@ import { DescriptionBlock } from '../ui/description-block/description-block';
 import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 import { redirect } from 'next/navigation';
 import { fetchBooks } from '@/actions';
+import { languageCodeToNameMap } from '@/utils';
 
 export const revalidate = 2592000; // 30 days
 export const dynamic = 'force-static';
@@ -122,9 +123,7 @@ export default async function Book({
                   lineHeight={'150%'}
                   fontFamily={'Inter'}
                 >
-                  {currentBookData?.language === 'ru' && 'Москворота'}
-                  {currentBookData?.language === 'ua' && 'Українська'}
-                  {currentBookData?.language === 'en' && 'Англійська'}
+                  {languageCodeToNameMap[currentBookData?.language]}
                 </Text>
               </Badge>
               <Badge
