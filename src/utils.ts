@@ -8,14 +8,21 @@ export const decodeQueryParam = (param: string = '') => {
   return param.replaceAll('+', ' ');
 };
 
-export const languageCodeToNameMap = {
-  ua: 'Українська',
-  ru: 'Москворота',
-  en: 'Англійська',
+const UA_NAME = 'Українська' as const;
+const RU_NAME = 'Москворота' as const;
+const EN_NAME = 'Англійська' as const;
+
+export type LanguageName = typeof UA_NAME | typeof RU_NAME | typeof EN_NAME;
+export type LanguageCode = 'ua' | 'ru' | 'en';
+
+export const languageCodeToNameMap: Record<LanguageCode, LanguageName> = {
+  ua: UA_NAME,
+  ru: RU_NAME,
+  en: EN_NAME,
 } as const;
 
-export const languageNameToCodeMap = {
-  Українська: 'ua',
-  Москворота: 'ru',
-  Англійська: 'en',
+export const languageNameToCodeMap: Record<LanguageName, LanguageCode> = {
+  [UA_NAME]: 'ua',
+  [RU_NAME]: 'ru',
+  [EN_NAME]: 'en',
 } as const;

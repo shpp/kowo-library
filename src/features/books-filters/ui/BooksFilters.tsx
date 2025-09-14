@@ -8,14 +8,17 @@ import { LanguageFilter } from './LanguageFilter';
 import { AvailabilityFilter } from './AvailabilityFilter';
 import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 import { RecommendationFilter } from './RecommendationFilter';
+import { LanguageCode } from '@/utils';
 interface BooksFiltersProps {
   books: BooksApiResponse;
   originalBooks?: BooksApiResponse;
+  potentialBooksCountsByLanguage: Record<LanguageCode, number>;
 }
 
 export const BooksFilters: React.FC<BooksFiltersProps> = ({
   books,
   originalBooks,
+  potentialBooksCountsByLanguage,
 }) => {
   return (
     <Stack
@@ -30,7 +33,10 @@ export const BooksFilters: React.FC<BooksFiltersProps> = ({
       {/* <Separator /> */}
       <AuthorFilter books={books} />
       <Separator />
-      <LanguageFilter books={books} />
+      <LanguageFilter
+        books={books}
+        potentialBooksCountsByLanguage={potentialBooksCountsByLanguage}
+      />
       <Separator />
       <YearsFilter books={books} originalBooks={originalBooks} />
       <Separator />

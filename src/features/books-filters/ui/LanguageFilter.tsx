@@ -14,46 +14,46 @@ import ChevronUp from '@/shared/assets/icons/chevron-up';
 import ChevronDown from '@/shared/assets/icons/chevron-down';
 import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 import { useRouter, useSearchParams } from 'next/navigation';
-import { languageCodeToNameMap } from '@/utils';
+import {
+  LanguageCode,
+  languageCodeToNameMap,
+  LanguageName,
+  languageNameToCodeMap,
+} from '@/utils';
 
 export const LanguageFilter = ({
   books,
+  potentialBooksCountsByLanguage,
 }: {
   books: BooksApiResponse | undefined;
+  potentialBooksCountsByLanguage: Record<LanguageCode, number>;
 }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(true);
-  const [selectedLanguages, setSelectedLanguages] = useState<string[]>([]);
+  const [selectedLanguages, setSelectedLanguages] = useState<LanguageName[]>([
+    languageCodeToNameMap['ua'],
+    languageCodeToNameMap['en'],
+  ]);
 
   const languages = useMemo(() => {
-    if (!books) {
-      return [
-        { name: 'Українська', count: 0 },
-        { name: 'Англійська', count: 0 },
-        { name: 'Москворота', count: 0 },
-      ];
-    }
+    const languageMap = (books ?? []).reduce(
+      (acc: Record<LanguageCode, number>, book) => {
+        const language = book.language;
+        acc[language] = (acc[language] || 0) + 1;
+        return acc;
+      },
+      {
+        ua: 0,
+        en: 0,
+        ru: 0,
+      } as const
+    );
 
-    const languageMap = books.reduce((acc: { [key: string]: number }, book) => {
-      const language = languageCodeToNameMap[book.language];
-      acc[language] = (acc[language] || 0) + 1;
-      return acc;
-    }, {});
-
-    const languageList = [
-      { name: 'Українська', count: languageMap['Українська'] || 0 },
-      { name: 'Англійська', count: languageMap['Англійська'] || 0 },
-      { name: 'Москворота', count: languageMap['Москворота'] || 0 },
-    ];
-
-    Object.keys(languageMap).forEach(lang => {
-      if (!languageList.some(l => l.name === lang)) {
-        languageList.push({ name: lang, count: languageMap[lang] });
-      }
-    });
-
-    return languageList;
+    return Object.entries(languageMap).map(([name, count]) => ({
+      name: languageCodeToNameMap[name as LanguageCode],
+      count,
+    }));
   }, [books]);
 
   const updateQueryParams = (languages: string[]) => {
@@ -69,7 +69,7 @@ export const LanguageFilter = ({
     router.push(`?${params.toString()}`, { scroll: false });
   };
 
-  const handleLanguageChange = (language: string, checked: boolean) => {
+  const handleLanguageChange = (language: LanguageName, checked: boolean) => {
     const updatedLanguages = checked
       ? [...selectedLanguages, language]
       : selectedLanguages.filter(l => l !== language);
@@ -79,8 +79,14 @@ export const LanguageFilter = ({
   };
 
   useEffect(() => {
-    if (!searchParams) return;
-    setSelectedLanguages(searchParams.getAll('languages'));
+    if (searchParams?.has('languages')) {
+      setSelectedLanguages(searchParams.getAll('languages') as LanguageName[]);
+    } else {
+      setSelectedLanguages([
+        languageCodeToNameMap['ua'],
+        languageCodeToNameMap['en'],
+      ]);
+    }
   }, [searchParams]);
 
   return (
@@ -115,7 +121,11 @@ export const LanguageFilter = ({
                 {language.name}
               </Checkbox>
               <Badge colorPalette="gray" variant="subtle">
-                {language.count}
+                {language.count ||
+                  potentialBooksCountsByLanguage[
+                    languageNameToCodeMap[language.name]
+                  ] ||
+                  '0'}
               </Badge>
             </HStack>
           ))}

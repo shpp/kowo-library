@@ -14,7 +14,9 @@ import { fetchBooks } from '@/actions';
 import {
   decodeQueryParam,
   KOWO_RECOMMENDED_LABEL,
+  LanguageCode,
   languageCodeToNameMap,
+  LanguageName,
 } from '@/utils';
 
 const KowoBook = dynamic(() => import('@/entities/kowo-book/ui/kowo-book'));
@@ -64,11 +66,20 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
         ? [availability]
         : []
   ).map(availability => decodeQueryParam(availability));
-  const languagesArray = (
-    Array.isArray(languages) ? languages : languages ? [languages] : []
-  ).map(language => decodeQueryParam(language));
+  const languagesArray: LanguageName[] = (
+    Array.isArray(languages)
+      ? languages
+      : languages
+        ? [languages]
+        : [languageCodeToNameMap['ua'], languageCodeToNameMap['en']]
+  ).map(language => decodeQueryParam(language) as LanguageName);
 
   let filteredBooks: BooksApiResponse = allBooks;
+  const potentialBooksCountsByLanguage: Record<LanguageCode, number> = {
+    ua: 0,
+    en: 0,
+    ru: 0,
+  };
 
   if (search && search.trim()) {
     const searchLower = decodeQueryParam(search).toLowerCase();
@@ -121,7 +132,13 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
 
   if (languagesArray.length > 0) {
     filteredBooks = filteredBooks.filter(book => {
-      return languagesArray.includes(languageCodeToNameMap[book.language]);
+      const result = languagesArray.includes(
+        languageCodeToNameMap[book.language]
+      );
+      if (!result) {
+        potentialBooksCountsByLanguage[book.language]++;
+      }
+      return result;
     });
   }
 
@@ -173,7 +190,11 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
       </Box>
       <Flex gap={'16px'}>
         <Box hideBelow={'md'}>
-          <BooksFilters books={filteredBooks} originalBooks={allBooks} />
+          <BooksFilters
+            books={filteredBooks}
+            potentialBooksCountsByLanguage={potentialBooksCountsByLanguage}
+            originalBooks={allBooks}
+          />
         </Box>
         <Flex flexDirection={'column'} gap={'16px'} w={'100%'}>
           <Box hideBelow={'sm'}>
