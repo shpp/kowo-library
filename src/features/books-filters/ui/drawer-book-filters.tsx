@@ -11,13 +11,16 @@ import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 
 import ArrowLeftIcon from '@/shared/assets/icons/arrow-left-icon';
 import FilterIcon from '@/shared/assets/icons/filter-icon';
+import { LanguageCode } from '@/utils';
 
 export const DrawerBookFilters = ({
   books,
   originalBooks,
+  potentialBooksCountsByLanguage,
 }: {
   books: BooksApiResponse;
   originalBooks?: BooksApiResponse;
+  potentialBooksCountsByLanguage: Record<LanguageCode, number>;
 }) => {
   return (
     <>
@@ -39,7 +42,11 @@ export const DrawerBookFilters = ({
         </HStack>
       </DrawerHeader>
       <DrawerBody>
-        <BooksFilters books={books} originalBooks={originalBooks} />
+        <BooksFilters
+          books={books}
+          originalBooks={originalBooks}
+          potentialBooksCountsByLanguage={potentialBooksCountsByLanguage}
+        />
       </DrawerBody>
     </>
   );

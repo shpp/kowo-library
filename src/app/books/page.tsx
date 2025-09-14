@@ -186,7 +186,10 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
       flexDir={'column'}
     >
       <Box hideFrom={'sm'}>
-        <BooksHeader books={filteredBooks} />
+        <BooksHeader
+          books={filteredBooks}
+          potentialBooksCountsByLanguage={potentialBooksCountsByLanguage}
+        />
       </Box>
       <Flex gap={'16px'}>
         <Box hideBelow={'md'}>
@@ -198,7 +201,10 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
         </Box>
         <Flex flexDirection={'column'} gap={'16px'} w={'100%'}>
           <Box hideBelow={'sm'}>
-            <BooksHeader books={filteredBooks} />
+            <BooksHeader
+              books={filteredBooks}
+              potentialBooksCountsByLanguage={potentialBooksCountsByLanguage}
+            />
           </Box>
           <SimpleGrid columns={{ base: 2, md: 3, xl: 4 }} gap="16px">
             {paginatedBooks.length > 0 ? (
@@ -241,7 +247,13 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
   );
 };
 
-const BooksHeader = ({ books }: { books: BooksApiResponse }) => {
+const BooksHeader = ({
+  books,
+  potentialBooksCountsByLanguage,
+}: {
+  books: BooksApiResponse;
+  potentialBooksCountsByLanguage: Record<LanguageCode, number>;
+}) => {
   return (
     <Flex
       gap={{ mdDown: '10px' }}
@@ -282,7 +294,13 @@ const BooksHeader = ({ books }: { books: BooksApiResponse }) => {
               Фільтри
             </Button>
           }
-          content={<DrawerBookFilters books={books} originalBooks={books} />}
+          content={
+            <DrawerBookFilters
+              books={books}
+              originalBooks={books}
+              potentialBooksCountsByLanguage={potentialBooksCountsByLanguage}
+            />
+          }
         />
       </Box>
       {/* <Flex alignItems={{ mdDown: 'end', md: 'center' }} gap={'16px'} w={{ mdDown: '100%' }}>
