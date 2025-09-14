@@ -129,16 +129,12 @@ export const MegaMenu = () => {
                   marginBottom="24px"
                   css={{ breakInside: 'avoid' }}
                 >
-                  {/*<ChakraLink asChild>*/}
-                  {/*<Link href={`books?category=${category.title}`} onClick={handleLinkClick}>*/}
                   <Text fontWeight="semibold">{category.title}</Text>
-                  {/*</Link>*/}
-                  {/*</ChakraLink>*/}
                   <Separator />
                   {category.items.map(item => (
                     <ChakraLink asChild key={item}>
                       <Link
-                        href={`books?sub_category=${encodeQueryParam(item)}`}
+                        href={`/books?sub_category=${encodeQueryParam(item)}`}
                         onClick={handleLinkClick}
                       >
                         <Text fontSize="sm">{item}</Text>

@@ -89,7 +89,7 @@ export const CatalogueContent = ({
                   <ChakraLink asChild key={item}>
                     <Link
                       onClick={() => store.setOpen(false)}
-                      href={`books?sub_category=${encodeQueryParam(item)}`}
+                      href={`/books?sub_category=${encodeQueryParam(item)}`}
                     >
                       <Text fontSize="sm">{item}</Text>
                     </Link>
