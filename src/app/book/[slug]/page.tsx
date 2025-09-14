@@ -24,12 +24,6 @@ import { redirect } from 'next/navigation';
 import { fetchBooks } from '@/actions';
 import { languageCodeToNameMap } from '@/utils';
 
-export const revalidate = 2592000; // 30 days
-export const dynamic = 'force-static';
-export function generateStaticParams() {
-  return [];
-}
-
 export default async function Book({
   params,
 }: {
