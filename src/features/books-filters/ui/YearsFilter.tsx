@@ -72,10 +72,10 @@ export const YearsFilter = ({
   }, [books, originalBooks]);
 
   const initialMinYear = searchParams.get('years')
-    ? Number(searchParams.get('years')?.split(' - ')[0])
+    ? Number(searchParams.get('years')?.split('-')[0])
     : minYear;
   const initialMaxYear = searchParams.get('years')
-    ? Number(searchParams.get('years')?.split(' - ')[1])
+    ? Number(searchParams.get('years')?.split('-')[1])
     : maxYear;
   const [values, setValues] = useState([initialMinYear, initialMaxYear]);
 
@@ -86,7 +86,7 @@ export const YearsFilter = ({
     params.delete('page');
 
     if (min !== minYear || max !== maxYear) {
-      params.set('years', `${min} - ${max}`);
+      params.set('years', `${min}-${max}`);
     }
 
     router.push(`?page=1&${params.toString()}`, { scroll: false });
@@ -120,7 +120,7 @@ export const YearsFilter = ({
   useEffect(() => {
     const years = searchParams.get('years');
     if (years) {
-      const [min, max] = years.split(' - ').map(Number);
+      const [min, max] = years.split('-').map(Number);
       if (
         !isNaN(min) &&
         !isNaN(max) &&

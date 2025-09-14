@@ -20,6 +20,7 @@ import MenuGreyIcon from '@/shared/assets/icons/menu-grey-icon';
 import { ArrowIcon } from '../ArrowIcon';
 import { getCategories } from '@/actions';
 import { useQuery } from '@tanstack/react-query';
+import { encodeQueryParam } from '@/utils';
 
 export const CatalogueContent = ({
   setStep,
@@ -82,20 +83,13 @@ export const CatalogueContent = ({
                 marginBottom="24px"
                 css={{ breakInside: 'avoid' }}
               >
-                <ChakraLink asChild>
-                  <Link
-                    onClick={() => store.setOpen(false)}
-                    href={`books?page=1&category=${category.title}`}
-                  >
-                    <Text fontWeight="semibold">{category.title}</Text>
-                  </Link>
-                </ChakraLink>
+                <Text fontWeight="semibold">{category.title}</Text>
                 <Separator />
                 {category.items.map(item => (
                   <ChakraLink asChild key={item}>
                     <Link
                       onClick={() => store.setOpen(false)}
-                      href={`books?page=1&category=${category.title}&sub_category=${item}`}
+                      href={`books?page=1&category=${encodeQueryParam(category.title)}&sub_category=${encodeQueryParam(item)}`}
                     >
                       <Text fontSize="sm">{item}</Text>
                     </Link>

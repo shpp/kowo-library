@@ -16,6 +16,7 @@ import CatalogIcon from '@/shared/assets/icons/catalog-icon';
 import { ArrowIcon } from './ArrowIcon';
 import { getCategories } from '@/actions';
 import { useQuery } from '@tanstack/react-query';
+import { encodeQueryParam } from '@/utils';
 
 export const MegaMenu = () => {
   const { open, onToggle, onClose } = useDisclosure();
@@ -137,7 +138,7 @@ export const MegaMenu = () => {
                   {category.items.map(item => (
                     <ChakraLink asChild key={item}>
                       <Link
-                        href={`books?page=1&category=${category.title}&sub_category=${item}`}
+                        href={`books?page=1&category=${encodeQueryParam(category.title)}&sub_category=${encodeQueryParam(item)}`}
                         onClick={handleLinkClick}
                       >
                         <Text fontSize="sm">{item}</Text>

@@ -11,6 +11,7 @@ import { DrawerWrapper } from '@/shared/ui/drawer';
 import { NextPage } from 'next';
 import dynamic from 'next/dynamic';
 import { fetchBooks } from '@/actions';
+import { decodeQueryParam } from '@/utils';
 
 const KowoBook = dynamic(() => import('@/entities/kowo-book/ui/kowo-book'));
 export const KOWO_RECOMMENDED_LABEL = 'KOWO рекомендує';
@@ -50,26 +51,24 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
   } = (await searchParams) as SearchParamsType; // used because of https://nextjs.org/docs/messages/sync-dynamic-apis
   const allBooks: BooksApiResponse = await fetchBooks();
 
-  const authorsArray = Array.isArray(authors)
-    ? authors
-    : authors
-      ? [authors]
-      : [];
-  const availabilityArray = Array.isArray(availability)
-    ? availability
-    : availability
-      ? [availability]
-      : [];
-  const languagesArray = Array.isArray(languages)
-    ? languages
-    : languages
-      ? [languages]
-      : [];
+  const authorsArray = (
+    Array.isArray(authors) ? authors : authors ? [authors] : []
+  ).map(author => decodeQueryParam(author));
+  const availabilityArray = (
+    Array.isArray(availability)
+      ? availability
+      : availability
+        ? [availability]
+        : []
+  ).map(availability => decodeQueryParam(availability));
+  const languagesArray = (
+    Array.isArray(languages) ? languages : languages ? [languages] : []
+  ).map(language => decodeQueryParam(language));
 
   let filteredBooks: BooksApiResponse = allBooks;
 
   if (search && search.trim()) {
-    const searchLower = search.toLowerCase();
+    const searchLower = decodeQueryParam(search).toLowerCase();
     filteredBooks = filteredBooks.filter(item => {
       if (item.name.toLowerCase().includes(searchLower)) return true;
       return item.authors.some(author =>
@@ -79,13 +78,14 @@ const Books: NextPage<PageProps> = async ({ searchParams }: PageProps) => {
   }
 
   if (sub_category) {
+    const sub_category_decoded = decodeQueryParam(sub_category);
     filteredBooks = filteredBooks.filter(book => {
-      return book.categories.includes(`.${sub_category}`);
+      return book.categories.includes(`.${sub_category_decoded}`);
     });
   }
 
   if (years) {
-    const [min, max] = years.split(' - ').map(Number);
+    const [min, max] = years.split('-').map(Number);
     if (!isNaN(min) && !isNaN(max) && min <= max) {
       filteredBooks = filteredBooks.filter(
         book => book.year >= min && book.year <= max

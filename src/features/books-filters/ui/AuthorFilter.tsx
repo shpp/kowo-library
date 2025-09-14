@@ -73,7 +73,7 @@ export const AuthorFilter = ({
     params.delete('page');
 
     if (authors.length == 0) {
-      router.push(`?page=1`, { scroll: false });
+      router.push(`?page=1&${params.toString()}`, { scroll: false });
       return;
     }
 
