@@ -9,7 +9,8 @@ export const booksRecommendationsMockData = [
     language: 'en',
     authors: ['Dan Brown'],
     year: 2008,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/58921dc840598d1ceaf8aa7ad976d78f.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/58921dc840598d1ceaf8aa7ad976d78f.jpeg',
     available: true,
   },
   {
@@ -22,7 +23,8 @@ export const booksRecommendationsMockData = [
     language: 'ua',
     authors: ['О. Є. Чижевський'],
     year: 2005,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/cd59ded4e648e5e8a867922477d419d9.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/cd59ded4e648e5e8a867922477d419d9.jpeg',
     available: true,
   },
   {
@@ -35,7 +37,8 @@ export const booksRecommendationsMockData = [
     language: 'ua',
     authors: ['Пол Клейнман'],
     year: 2016,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/b610883831bd82c3a3d3388f0a36abf2.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/b610883831bd82c3a3d3388f0a36abf2.jpeg',
     available: true,
   },
 ];

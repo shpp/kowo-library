@@ -10,13 +10,18 @@ export const AvailabilityFilter = ({ books }: { books?: BooksApiResponse }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const [availableCheckboxStatus, setAvailableCheckboxStatus] = useState<boolean>(searchParams.getAll('availability').includes('В наявності'));
-  const [onHandsCheckboxStatus, setOnHandsCheckboxStatus] = useState<boolean>(searchParams.getAll('availability').includes('На руках'));
+  const [availableCheckboxStatus, setAvailableCheckboxStatus] =
+    useState<boolean>(
+      searchParams.getAll('availability').includes('В наявності')
+    );
+  const [onHandsCheckboxStatus, setOnHandsCheckboxStatus] = useState<boolean>(
+    searchParams.getAll('availability').includes('На руках')
+  );
 
   const { onHands, available } = useMemo(() => {
     if (!books) return { onHands: 0, available: 0 };
-    const onHands = books.filter((book) => !book.available).length;
-    const available = books.filter((book) => book.available).length;
+    const onHands = books.filter(book => !book.available).length;
+    const available = books.filter(book => book.available).length;
     return { onHands: onHands, available: available };
   }, [books]);
 
@@ -48,8 +53,12 @@ export const AvailabilityFilter = ({ books }: { books?: BooksApiResponse }) => {
 
   useEffect(() => {
     if (!searchParams) return;
-    setAvailableCheckboxStatus(searchParams.getAll('availability').includes('В наявності'));
-    setOnHandsCheckboxStatus(searchParams.getAll('availability').includes('На руках'));
+    setAvailableCheckboxStatus(
+      searchParams.getAll('availability').includes('В наявності')
+    );
+    setOnHandsCheckboxStatus(
+      searchParams.getAll('availability').includes('На руках')
+    );
   }, [searchParams]);
 
   return (
@@ -58,7 +67,10 @@ export const AvailabilityFilter = ({ books }: { books?: BooksApiResponse }) => {
         Наявність
       </Text>
       <HStack justifyContent="space-between" gap="16px">
-        <Checkbox checked={availableCheckboxStatus} onCheckedChange={(e) => handleAvailableChange(!!e.checked)}>
+        <Checkbox
+          checked={availableCheckboxStatus}
+          onCheckedChange={e => handleAvailableChange(!!e.checked)}
+        >
           В наявності
         </Checkbox>
         <Badge colorPalette="gray" variant="subtle">
@@ -66,7 +78,10 @@ export const AvailabilityFilter = ({ books }: { books?: BooksApiResponse }) => {
         </Badge>
       </HStack>
       <HStack justifyContent="space-between" gap="16px">
-        <Checkbox checked={onHandsCheckboxStatus} onCheckedChange={(e) => handleOnHandsChange(!!e.checked)}>
+        <Checkbox
+          checked={onHandsCheckboxStatus}
+          onCheckedChange={e => handleOnHandsChange(!!e.checked)}
+        >
           На руках
         </Checkbox>
         <Badge colorPalette="gray" variant="subtle">

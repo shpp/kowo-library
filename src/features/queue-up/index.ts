@@ -1,1 +1,1 @@
-export { QueueUp } from './ui/queue-up'
+export { QueueUp } from './ui/queue-up';

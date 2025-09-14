@@ -1,4 +1,4 @@
-import { createListCollection } from "@chakra-ui/react";
+import { createListCollection } from '@chakra-ui/react';
 
 export const sortingOptions = createListCollection({
   items: [

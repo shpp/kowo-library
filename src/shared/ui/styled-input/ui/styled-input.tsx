@@ -1,5 +1,5 @@
-import { Field, Input, InputGroup, InputProps, Text } from "@chakra-ui/react";
-import { FC, ReactNode } from "react";
+import { Field, Input, InputGroup, InputProps, Text } from '@chakra-ui/react';
+import { FC, ReactNode } from 'react';
 
 interface IStyledInputProps {
   title: string;
@@ -11,10 +11,24 @@ interface IStyledInputProps {
   field: InputProps;
 }
 
-export const StyledInput: FC<IStyledInputProps> = ({ title, field, placeholder, type, errorText, isRequired, icon }) => {
+export const StyledInput: FC<IStyledInputProps> = ({
+  title,
+  field,
+  placeholder,
+  type,
+  errorText,
+  isRequired,
+  icon,
+}) => {
   return (
     <Field.Root>
-      <Field.Label fontSize={'12px'} fontWeight={400} lineHeight={'150%'} fontFamily={'Inter'} color={'rgba(140, 143, 154, 1)'}>
+      <Field.Label
+        fontSize={'12px'}
+        fontWeight={400}
+        lineHeight={'150%'}
+        fontFamily={'Inter'}
+        color={'rgba(140, 143, 154, 1)'}
+      >
         {title}
         {isRequired && (
           <Text as="span" color="red.500" ml="2px">

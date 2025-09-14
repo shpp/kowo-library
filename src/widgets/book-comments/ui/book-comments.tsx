@@ -2,13 +2,28 @@
 import { CreateComment } from '@/features/create-comment';
 import { ModalWindow } from '@/shared/ui/modal-window';
 import { CustomPagination } from '@/shared/ui/pagination-lib/customPagination';
-import { Box, Button, Center, Flex, Heading, Separator, Text } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  Center,
+  Flex,
+  Heading,
+  Separator,
+  Text,
+} from '@chakra-ui/react';
 import React from 'react';
 
 export const BookComments = () => {
   return (
     <Flex flexDir={'column'}>
-      <Heading mb={'8px'} fontFamily={'Inter'} fontSize={'20px'} fontWeight={600} lineHeight={'150%'} color={'rgba(3, 7, 18, 1)'}>
+      <Heading
+        mb={'8px'}
+        fontFamily={'Inter'}
+        fontSize={'20px'}
+        fontWeight={600}
+        lineHeight={'150%'}
+        color={'rgba(3, 7, 18, 1)'}
+      >
         Відгуки (0)
       </Heading>
       <Separator mb={'16px'} />

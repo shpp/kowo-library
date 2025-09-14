@@ -1,14 +1,18 @@
 :root {
   --background: #ffffff;
-  --background-footer: #F7F8F8;
+  --background-footer: #f7f8f8;
   --foreground: #030712;
   --primary: #66a52b;
   --secondary: #fc4141;
   --text-primary: #030712;
 }
 
-
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-family: var(--font-podkova);
 }
 

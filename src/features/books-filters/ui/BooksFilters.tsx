@@ -13,12 +13,20 @@ interface BooksFiltersProps {
   originalBooks?: BooksApiResponse;
 }
 
-export const BooksFilters: React.FC<BooksFiltersProps> = ({ books, originalBooks }) => {
+export const BooksFilters: React.FC<BooksFiltersProps> = ({
+  books,
+  originalBooks,
+}) => {
   return (
-    <Stack width="100%" maxW={{ base: 'none', mdOnly: '172px', md: '264px' }} minW={{ base: 'none', mdOnly: '172px', md: '264px' }} gap="16px">
+    <Stack
+      width="100%"
+      maxW={{ base: 'none', mdOnly: '172px', md: '264px' }}
+      minW={{ base: 'none', mdOnly: '172px', md: '264px' }}
+      gap="16px"
+    >
       <FilterTags />
       <Separator />
-       <AvailabilityFilter books={books} />
+      <AvailabilityFilter books={books} />
       {/* <Separator /> */}
       <AuthorFilter books={books} />
       <Separator />

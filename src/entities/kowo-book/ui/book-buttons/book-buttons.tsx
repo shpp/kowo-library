@@ -20,7 +20,7 @@ export const BookButtons: FC<IBookButtonsProps> = ({ available, bookData }) => {
           <ModalWindow
             trigger={
               <Button
-                onClick={(e) => {
+                onClick={e => {
                   e.stopPropagation();
                 }}
                 className={styles.kowo_book_button}
@@ -35,11 +35,15 @@ export const BookButtons: FC<IBookButtonsProps> = ({ available, bookData }) => {
         ) : (
           <ModalWindow
             trigger={
-              <Button className={styles.kowo_book_button} visual={'kowo_white'} size={'sm'}>
+              <Button
+                className={styles.kowo_book_button}
+                visual={'kowo_white'}
+                size={'sm'}
+              >
                 Встати в чергу
               </Button>
             }
-            content={<QueueUp book={bookData} type='queue' />}
+            content={<QueueUp book={bookData} type="queue" />}
           />
         )}
       </Center>

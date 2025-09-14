@@ -1,5 +1,13 @@
 import React from 'react';
-import { Badge, Box, Button, Flex, Heading, Span, Text } from '@chakra-ui/react';
+import {
+  Badge,
+  Box,
+  Button,
+  Flex,
+  Heading,
+  Span,
+  Text,
+} from '@chakra-ui/react';
 import Image from 'next/image';
 
 import { BookStatus } from '@/shared/ui/book-status';
@@ -12,47 +20,66 @@ import { QueueUp } from '@/features/queue-up';
 // import HeartIcon from '@/shared/assets/icons/heart-icon';
 import { DescriptionBlock } from '../ui/description-block/description-block';
 import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
-import {redirect} from "next/navigation";
-
-async function fetchBooks() {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books`);
-  if (!res.ok) {
-    throw new Error('Failed to fetch books');
-  }
-  const data = await res.json();
-  return data.data;
-}
+import { redirect } from 'next/navigation';
+import { fetchBooks } from '@/actions';
 
 export const revalidate = 2592000; // 30 days
 export const dynamic = 'force-static';
 export function generateStaticParams() {
-    return [];
+  return [];
 }
 
-export default async function Book({ params }: { params: Promise<{ slug: string }> }) {
+export default async function Book({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}) {
   const resolvedParams = await params;
   const books: BooksApiResponse = await fetchBooks();
 
-  const currentBookData = books.find((item) => item.id === +resolvedParams.slug);
+  const currentBookData = books.find(item => item.id === +resolvedParams.slug);
   if (!currentBookData) {
     return redirect('/');
   }
 
   return (
     <Flex flexDir={'column'}>
-      <Flex maxW="1440px" m="0 auto" p={{ base: '3dvh 16px', xl: '3dvh 108px' }} pb={'64px'} flexDir={'column'} gap={'56px'}>
+      <Flex
+        maxW="1440px"
+        m="0 auto"
+        p={{ base: '3dvh 16px', xl: '3dvh 108px' }}
+        pb={'64px'}
+        flexDir={'column'}
+        gap={'56px'}
+      >
         <Box hideFrom={'md'} width={'100%'}>
           <BookImage cover={currentBookData?.cover} />
         </Box>
-        <Flex gap={{ base: '16px', xl: '120px' }} width={'100%'} alignItems={'start'}>
+        <Flex
+          gap={{ base: '16px', xl: '120px' }}
+          width={'100%'}
+          alignItems={'start'}
+        >
           <Box hideBelow={'md'} width={'45%'}>
             <BookImage cover={currentBookData?.cover} />
           </Box>
-          <Flex flexDir={'column'} width={{base: '100%', md: '55%'}}>
-            <Heading color={'rgba(3, 7, 18, 1)'} fontSize={'48px'} fontWeight={600} lineHeight={'100%'} marginBottom={'8px'}>
+          <Flex flexDir={'column'} width={{ base: '100%', md: '55%' }}>
+            <Heading
+              color={'rgba(3, 7, 18, 1)'}
+              fontSize={'48px'}
+              fontWeight={600}
+              lineHeight={'100%'}
+              marginBottom={'8px'}
+            >
               {currentBookData?.name}
             </Heading>
-            <Text fontFamily={'Inter'} fontSize={'20px'} fontWeight={400} lineHeight={'150%'} marginBottom={'16px'}>
+            <Text
+              fontFamily={'Inter'}
+              fontSize={'20px'}
+              fontWeight={400}
+              lineHeight={'150%'}
+              marginBottom={'16px'}
+            >
               {currentBookData?.authors.join(', ')}
             </Text>
             {/* <Flex marginBottom={'24px'} gap={'8px'}>
@@ -71,27 +98,68 @@ export default async function Book({ params }: { params: Promise<{ slug: string 
               </Text>
             </Flex> */}
             <Flex gap={'8px'} marginBottom={'24px'} flexWrap={'wrap'}>
-              <Badge borderRadius={'8px'} bgColor={'rgba(247, 248, 248, 1)'} display={'flex'} flexDir={'column'} alignItems={'start'} padding={'8px'}>
-                <Text color={'rgba(3, 7, 18, 1)'} fontSize={'16px'} fontWeight={600} lineHeight={'150%'} fontFamily={'Inter'}>
+              <Badge
+                borderRadius={'8px'}
+                bgColor={'rgba(247, 248, 248, 1)'}
+                display={'flex'}
+                flexDir={'column'}
+                alignItems={'start'}
+                padding={'8px'}
+              >
+                <Text
+                  color={'rgba(3, 7, 18, 1)'}
+                  fontSize={'16px'}
+                  fontWeight={600}
+                  lineHeight={'150%'}
+                  fontFamily={'Inter'}
+                >
                   Мова
                 </Text>
-                <Text color={'rgba(3, 7, 18, 1)'} fontSize={'16px'} fontWeight={400} lineHeight={'150%'} fontFamily={'Inter'}>
+                <Text
+                  color={'rgba(3, 7, 18, 1)'}
+                  fontSize={'16px'}
+                  fontWeight={400}
+                  lineHeight={'150%'}
+                  fontFamily={'Inter'}
+                >
                   {currentBookData?.language === 'ru' && 'Москворота'}
                   {currentBookData?.language === 'ua' && 'Українська'}
                   {currentBookData?.language === 'en' && 'Англійська'}
                 </Text>
               </Badge>
-              <Badge borderRadius={'8px'} bgColor={'rgba(247, 248, 248, 1)'} display={'flex'} flexDir={'column'} alignItems={'start'} padding={'8px'}>
-                <Text color={'rgba(3, 7, 18, 1)'} fontSize={'16px'} fontWeight={600} lineHeight={'150%'} fontFamily={'Inter'}>
+              <Badge
+                borderRadius={'8px'}
+                bgColor={'rgba(247, 248, 248, 1)'}
+                display={'flex'}
+                flexDir={'column'}
+                alignItems={'start'}
+                padding={'8px'}
+              >
+                <Text
+                  color={'rgba(3, 7, 18, 1)'}
+                  fontSize={'16px'}
+                  fontWeight={600}
+                  lineHeight={'150%'}
+                  fontFamily={'Inter'}
+                >
                   Рік видання
                 </Text>
-                <Text color={'rgba(3, 7, 18, 1)'} fontSize={'16px'} fontWeight={400} lineHeight={'150%'} fontFamily={'Inter'}>
+                <Text
+                  color={'rgba(3, 7, 18, 1)'}
+                  fontSize={'16px'}
+                  fontWeight={400}
+                  lineHeight={'150%'}
+                  fontFamily={'Inter'}
+                >
                   {currentBookData?.year}
                 </Text>
               </Badge>
             </Flex>
             <Span marginBottom={'16px'}>
-              <BookStatus isAvailable={currentBookData.available} whenAvailable="now" />
+              <BookStatus
+                isAvailable={currentBookData.available}
+                whenAvailable="now"
+              />
             </Span>
             <Flex gap={'16px'} mb={'48px'}>
               <ModalWindow
@@ -120,7 +188,13 @@ export default async function Book({ params }: { params: Promise<{ slug: string 
 
 const BookImage = ({ cover }: { cover?: string }) => {
   return (
-    <Flex w={'100%'} aspectRatio={'525/500'} bgColor={'rgba(0, 0, 0, 0.1)'} justifyContent={'center'} borderRadius={'8px'}>
+    <Flex
+      w={'100%'}
+      aspectRatio={'525/500'}
+      bgColor={'rgba(0, 0, 0, 0.1)'}
+      justifyContent={'center'}
+      borderRadius={'8px'}
+    >
       <Image
         loading="lazy"
         width={300}

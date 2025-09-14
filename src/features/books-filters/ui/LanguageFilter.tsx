@@ -1,6 +1,13 @@
 'use client';
 import React, { useEffect, useMemo, useState } from 'react';
-import { Badge, Collapsible, HStack, IconButton, Stack, Text } from '@chakra-ui/react';
+import {
+  Badge,
+  Collapsible,
+  HStack,
+  IconButton,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
 
 import { Checkbox } from '@/shared/ui/checkbox';
 import ChevronUp from '@/shared/assets/icons/chevron-up';
@@ -8,7 +15,11 @@ import ChevronDown from '@/shared/assets/icons/chevron-down';
 import { BooksApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 import { useRouter, useSearchParams } from 'next/navigation';
 
-export const LanguageFilter = ({ books }: { books: BooksApiResponse | undefined }) => {
+export const LanguageFilter = ({
+  books,
+}: {
+  books: BooksApiResponse | undefined;
+}) => {
   const router = useRouter();
   const searchParams = useSearchParams();
   const [isOpen, setIsOpen] = useState(true);
@@ -24,7 +35,12 @@ export const LanguageFilter = ({ books }: { books: BooksApiResponse | undefined 
     }
 
     const languageMap = books.reduce((acc: { [key: string]: number }, book) => {
-      const language = book.language === 'ru' ? 'Москворота' : book.language === 'ua' ? 'Українська' : 'Англійська';
+      const language =
+        book.language === 'ru'
+          ? 'Москворота'
+          : book.language === 'ua'
+            ? 'Українська'
+            : 'Англійська';
       if (language) {
         acc[language] = (acc[language] || 0) + 1;
       }
@@ -37,8 +53,8 @@ export const LanguageFilter = ({ books }: { books: BooksApiResponse | undefined 
       { name: 'Москворота', count: languageMap['Москворота'] || 0 },
     ];
 
-    Object.keys(languageMap).forEach((lang) => {
-      if (!languageList.some((l) => l.name === lang)) {
+    Object.keys(languageMap).forEach(lang => {
+      if (!languageList.some(l => l.name === lang)) {
         languageList.push({ name: lang, count: languageMap[lang] });
       }
     });
@@ -52,7 +68,7 @@ export const LanguageFilter = ({ books }: { books: BooksApiResponse | undefined 
     params.delete('search');
     params.delete('page');
 
-    languages.forEach((language) => {
+    languages.forEach(language => {
       params.append('languages', language);
     });
 
@@ -60,7 +76,9 @@ export const LanguageFilter = ({ books }: { books: BooksApiResponse | undefined 
   };
 
   const handleLanguageChange = (language: string, checked: boolean) => {
-    const updatedLanguages = checked ? [...selectedLanguages, language] : selectedLanguages.filter((l) => l !== language);
+    const updatedLanguages = checked
+      ? [...selectedLanguages, language]
+      : selectedLanguages.filter(l => l !== language);
 
     setSelectedLanguages(updatedLanguages);
     updateQueryParams(updatedLanguages);
@@ -72,7 +90,10 @@ export const LanguageFilter = ({ books }: { books: BooksApiResponse | undefined 
   }, [searchParams]);
 
   return (
-    <Collapsible.Root open={isOpen} onOpenChange={({ open }) => setIsOpen(open)}>
+    <Collapsible.Root
+      open={isOpen}
+      onOpenChange={({ open }) => setIsOpen(open)}
+    >
       <Collapsible.Trigger asChild>
         <HStack justify="space-between" css={{ cursor: 'pointer' }}>
           <Text fontSize="20px" fontWeight="semibold">
@@ -85,16 +106,27 @@ export const LanguageFilter = ({ books }: { books: BooksApiResponse | undefined 
       </Collapsible.Trigger>
       <Collapsible.Content>
         <Stack gap="10px" maxHeight="190px" overflowY="auto" pt="8px">
-          {languages.filter((language) => language.name !== 'Москворота').map((language) => (
-            <HStack key={language.name} justifyContent="space-between" gap="16px">
-              <Checkbox checked={selectedLanguages.includes(language.name)} onCheckedChange={(e) => handleLanguageChange(language.name, !!e.checked)}>
-                {language.name}
-              </Checkbox>
-              <Badge colorPalette="gray" variant="subtle">
-                {language.count}
-              </Badge>
-            </HStack>
-          ))}
+          {languages
+            .filter(language => language.name !== 'Москворота')
+            .map(language => (
+              <HStack
+                key={language.name}
+                justifyContent="space-between"
+                gap="16px"
+              >
+                <Checkbox
+                  checked={selectedLanguages.includes(language.name)}
+                  onCheckedChange={e =>
+                    handleLanguageChange(language.name, !!e.checked)
+                  }
+                >
+                  {language.name}
+                </Checkbox>
+                <Badge colorPalette="gray" variant="subtle">
+                  {language.count}
+                </Badge>
+              </HStack>
+            ))}
         </Stack>
       </Collapsible.Content>
     </Collapsible.Root>

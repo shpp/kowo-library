@@ -10,17 +10,29 @@ export default async function Account() {
     redirect('/');
   }
   return (
-    <Stack gap={'16px'} p={{ base: '16px', lg: '24px 108px 64px 108px' }} minH={{ base: 'none', lg: '624px' }}>
+    <Stack
+      gap={'16px'}
+      p={{ base: '16px', lg: '24px 108px 64px 108px' }}
+      minH={{ base: 'none', lg: '624px' }}
+    >
       <Breadcrumb.Root>
         <Breadcrumb.List>
           <Breadcrumb.Item>
-            <Breadcrumb.Link _hover={{ textDecoration: 'underline' }} color={'black'} href="/">
+            <Breadcrumb.Link
+              _hover={{ textDecoration: 'underline' }}
+              color={'black'}
+              href="/"
+            >
               Головна
             </Breadcrumb.Link>
           </Breadcrumb.Item>
           <Breadcrumb.Separator color={'black'} />
           <Breadcrumb.Item>
-            <Breadcrumb.Link _hover={{ textDecoration: 'underline' }} color={'black'} href="/account">
+            <Breadcrumb.Link
+              _hover={{ textDecoration: 'underline' }}
+              color={'black'}
+              href="/account"
+            >
               Кабінет користувача
             </Breadcrumb.Link>
           </Breadcrumb.Item>

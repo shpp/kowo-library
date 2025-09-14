@@ -95,12 +95,24 @@ const pageTabs = [
 ];
 
 export const AccountTabs = () => {
-  const [currentValue, setCurrentValue] = useState<string | null>(pageTabs[0].value);
+  const [currentValue, setCurrentValue] = useState<string | null>(
+    pageTabs[0].value
+  );
   return (
-    <Tabs.Root value={currentValue} onValueChange={(e) => setCurrentValue(e.value)} orientation="vertical" variant="plain" gap={{ base: '16px', lg: '120px' }}>
+    <Tabs.Root
+      value={currentValue}
+      onValueChange={e => setCurrentValue(e.value)}
+      orientation="vertical"
+      variant="plain"
+      gap={{ base: '16px', lg: '120px' }}
+    >
       <Tabs.List gap={'16px'} maxW={'210px'} minW={'210px'}>
         {pageTabs.map((item, index) => (
-          <AccountTabsTrigger key={index} item={item} currentValue={currentValue} />
+          <AccountTabsTrigger
+            key={index}
+            item={item}
+            currentValue={currentValue}
+          />
         ))}
       </Tabs.List>
       {pageTabs.map((item, index) => (
@@ -123,7 +135,10 @@ type AccountTabsTriggerProps = {
   currentValue: string | null;
 };
 
-const AccountTabsTrigger: FC<AccountTabsTriggerProps> = ({ item, currentValue }) => {
+const AccountTabsTrigger: FC<AccountTabsTriggerProps> = ({
+  item,
+  currentValue,
+}) => {
   const { value, title, icon: Icon } = item;
   return (
     <Tabs.Trigger
@@ -132,14 +147,20 @@ const AccountTabsTrigger: FC<AccountTabsTriggerProps> = ({ item, currentValue })
       fontSize={'20px'}
       lineHeight={'24px'}
       fontWeight={600}
-      bgColor={value === currentValue ? 'rgba(242, 248, 233, 1)' : 'rgba(247, 248, 248, 1)'}
+      bgColor={
+        value === currentValue
+          ? 'rgba(242, 248, 233, 1)'
+          : 'rgba(247, 248, 248, 1)'
+      }
       p={'8px'}
       rounded={'8px'}
       gap={'8px'}
       _hover={{ bgColor: 'rgba(242, 248, 233, 1)' }}
       value={value}
     >
-      <Icon color={value === currentValue ? 'rgba(102, 165, 43, 1)' : 'black'} />
+      <Icon
+        color={value === currentValue ? 'rgba(102, 165, 43, 1)' : 'black'}
+      />
       {title}
     </Tabs.Trigger>
   );

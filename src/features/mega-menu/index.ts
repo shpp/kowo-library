@@ -1,1 +1,1 @@
-export { MegaMenu } from './ui/MegaMenu'
+export { MegaMenu } from './ui/MegaMenu';

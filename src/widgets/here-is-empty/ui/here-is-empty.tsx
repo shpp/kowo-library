@@ -73,8 +73,13 @@ export const HereIsEmpty: FC<IHereIsEmptyProps> = ({ type }) => {
       borderRadius={'8px'}
       gap={'64px'}
     >
-      <Box hideBelow={'md'} >
-        <Image src={setup.image.src} width={setup.image.width} height={setup.image.height} alt="kowo light green background" />
+      <Box hideBelow={'md'}>
+        <Image
+          src={setup.image.src}
+          width={setup.image.width}
+          height={setup.image.height}
+          alt="kowo light green background"
+        />
       </Box>
       <Stack gap={'24px'}>
         <Stack gap={'8px'}>

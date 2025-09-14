@@ -1,7 +1,7 @@
-import { useRouter } from "next/navigation";
-import { useSession } from "next-auth/react";
-import {Box, Button, HStack} from '@chakra-ui/react';
-import React from "react";
+import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import { Box, Button, HStack } from '@chakra-ui/react';
+import React from 'react';
 
 import { ModalWindow } from '@/shared/ui/modal-window';
 import { GoogleLogIn } from '@/features/google-log-in';
@@ -9,11 +9,11 @@ import CabinetIcon from '@/shared/assets/icons/cabinet-icon';
 
 type CabinetButtonProps = {
   onClick?: () => void;
-}
+};
 
 const CabinetButton: React.FC<CabinetButtonProps> = ({ onClick }) => (
   <Button
-    gap={{base: '8px', lg: 0}}
+    gap={{ base: '8px', lg: 0 }}
     p="4px 8px"
     rounded="lg"
     height="100%"
@@ -25,10 +25,10 @@ const CabinetButton: React.FC<CabinetButtonProps> = ({ onClick }) => (
     }}
     onClick={onClick}
   >
-    <Box hideFrom='lg'>
+    <Box hideFrom="lg">
       <CabinetIcon width="24px" height="24px" />
     </Box>
-    <Box hideBelow='lg'>
+    <Box hideBelow="lg">
       <CabinetIcon width="32px" height="32px" />
     </Box>
     Кабінет
@@ -38,18 +38,17 @@ const CabinetButton: React.FC<CabinetButtonProps> = ({ onClick }) => (
 export function AuthButton() {
   const { data: session } = useSession();
   const router = useRouter();
-  
+
   return (
     <HStack gap="4px">
       {session?.user ? (
-        <CabinetButton onClick={() => {
-          router.push('/cabinet')
-        }} />
-      ) : (
-        <ModalWindow
-          trigger={<CabinetButton />}
-          content={<GoogleLogIn />}
+        <CabinetButton
+          onClick={() => {
+            router.push('/cabinet');
+          }}
         />
+      ) : (
+        <ModalWindow trigger={<CabinetButton />} content={<GoogleLogIn />} />
       )}
     </HStack>
   );

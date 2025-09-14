@@ -17,11 +17,25 @@ import styles from './header.module.css';
 export const Header = () => {
   return (
     <header className={styles.header}>
-      <Flex height="100%" padding="0 16px" align="center" justify="space-between" hideFrom="lg">
+      <Flex
+        height="100%"
+        padding="0 16px"
+        align="center"
+        justify="space-between"
+        hideFrom="lg"
+      >
         <LogoLink height={24} width={200} />
         <DrawerWrapper
           trigger={
-            <Button gap="0" p="4px 8px" rounded="lg" height="100%" color="#030712" variant="ghost" flexDirection="column">
+            <Button
+              gap="0"
+              p="4px 8px"
+              rounded="lg"
+              height="100%"
+              color="#030712"
+              variant="ghost"
+              flexDirection="column"
+            >
               <MenuIcon />
               Меню
             </Button>
@@ -29,7 +43,15 @@ export const Header = () => {
           content={<DrawerMenu />}
         />
       </Flex>
-      <Flex height="100%" maxWidth="1440px" margin="0 auto" padding="11px 32px;" align="center" gap="12px" hideBelow="lg">
+      <Flex
+        height="100%"
+        maxWidth="1440px"
+        margin="0 auto"
+        padding="11px 32px;"
+        align="center"
+        gap="12px"
+        hideBelow="lg"
+      >
         <LogoLink height={24} width={200} />
         <MegaMenu />
         <SearchBar />

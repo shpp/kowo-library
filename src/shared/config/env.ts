@@ -11,4 +11,3 @@ if (!env.KOWO_API_BASE_URL) {
 if (!env.KOWO_API_AUTH_TOKEN) {
   throw new Error('KOWO_API_AUTH_TOKEN environment variable is required');
 }
-

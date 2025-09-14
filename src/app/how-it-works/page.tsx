@@ -1,5 +1,15 @@
 import React from 'react';
-import { Box, Center, Container, Flex, Highlight, ListItem, ListRoot, Separator, Stack } from '@chakra-ui/react';
+import {
+  Box,
+  Center,
+  Container,
+  Flex,
+  Highlight,
+  ListItem,
+  ListRoot,
+  Separator,
+  Stack,
+} from '@chakra-ui/react';
 
 import { Marker } from './ui/marker';
 import { ImageMarker } from './ui/image-marker';
@@ -61,7 +71,8 @@ const howItWorksPoints = [
             whiteSpace: 'nowrap',
           }}
         >
-          Або Стати в чергу щоб бути в курсі, коли книжка повернеться до бібліотеки.
+          Або Стати в чергу щоб бути в курсі, коли книжка повернеться до
+          бібліотеки.
         </Highlight>
       </Box>
     ),
@@ -83,14 +94,36 @@ const howItWorksPoints = [
 
 export default function HowItWorks() {
   return (
-    <Center pt={{ base: '24px', lg: '120px' }} pb={{ base: '24px', lg: '80px' }}>
-      <Container maxW="7xl" style={{ display: 'flex', flexDirection: 'column', gap: '36px', paddingInline: '16px' }}>
+    <Center
+      pt={{ base: '24px', lg: '120px' }}
+      pb={{ base: '24px', lg: '80px' }}
+    >
+      <Container
+        maxW="7xl"
+        style={{
+          display: 'flex',
+          flexDirection: 'column',
+          gap: '36px',
+          paddingInline: '16px',
+        }}
+      >
         <Flex gap="64px" justify="space-between" align="flex-start">
-          <Flex direction="column" gap={{ base: '16px', lg: '32px' }} maxW={{ lg: '3xl' }}>
-            <KowoHeading textAlign={{base: 'center', lg: 'start'}} size="5xl">Як це працює</KowoHeading>
+          <Flex
+            direction="column"
+            gap={{ base: '16px', lg: '32px' }}
+            maxW={{ lg: '3xl' }}
+          >
+            <KowoHeading textAlign={{ base: 'center', lg: 'start' }} size="5xl">
+              Як це працює
+            </KowoHeading>
             <Stack gap="16px" fontSize="20px">
               {howItWorksPoints.map((item, index) => (
-                <Flex key={index} gap="16px" justify="flex-start" align="center">
+                <Flex
+                  key={index}
+                  gap="16px"
+                  justify="flex-start"
+                  align="center"
+                >
                   {item.image}
                   {item.text}
                 </Flex>
@@ -98,22 +131,41 @@ export default function HowItWorks() {
             </Stack>
           </Flex>
           <Box hideBelow={'lg'} width={{ base: '60%' }}>
-            <Illustration src={boyWithBook.src} alt={'Boy with book'} width={boyWithBook.width} height={boyWithBook.height} />
+            <Illustration
+              src={boyWithBook.src}
+              alt={'Boy with book'}
+              width={boyWithBook.width}
+              height={boyWithBook.height}
+            />
           </Box>
         </Flex>
         <Flex justify="space-between" gap={'16px'} align="flex-start">
           <Box hideBelow={'lg'}>
-            <Illustration src={girlWithBook.src} alt={'Boy with book'} width={girlWithBook.width} height={girlWithBook.height} />
+            <Illustration
+              src={girlWithBook.src}
+              alt={'Boy with book'}
+              width={girlWithBook.width}
+              height={girlWithBook.height}
+            />
           </Box>
-          <Flex direction="column" gap={{ base: '16px', lg: '32px' }} w={{ lg: '600px' }}>
-            <KowoHeading textAlign={{base: 'center', lg: 'start'}} size="5xl">Декілька правил</KowoHeading>
+          <Flex
+            direction="column"
+            gap={{ base: '16px', lg: '32px' }}
+            w={{ lg: '600px' }}
+          >
+            <KowoHeading textAlign={{ base: 'center', lg: 'start' }} size="5xl">
+              Декілька правил
+            </KowoHeading>
             <ListRoot listStyle="none" gap="16px">
               {RULES.map((item, index) => {
                 return (
                   <Stack key={index} gap="16px">
                     {!!index && <Separator />}
                     <ListItem>
-                      <Flex alignItems={{base: 'center', lg: 'start'}} gap="12px">
+                      <Flex
+                        alignItems={{ base: 'center', lg: 'start' }}
+                        gap="12px"
+                      >
                         <Marker value={String(index + 1)} />
                         {item}
                       </Flex>

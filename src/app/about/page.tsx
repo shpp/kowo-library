@@ -11,10 +11,16 @@ const textParagraphs = [
 
 export default function About() {
   return (
-    <Center pt={{ base: '24px', md: '80px' }} paddingBottom={{ base: '24px', md: '120px' }}>
+    <Center
+      pt={{ base: '24px', md: '80px' }}
+      paddingBottom={{ base: '24px', md: '120px' }}
+    >
       <Container maxW={{ md: '2xl', lg: '3xl', xl: '5xl' }}>
         <Flex gap={{ base: '16px', md: '32px' }} direction="column">
-          <KowoHeading textAlign={{ base: 'center', md: 'start' }} size={{ base: '4xl', md: '5xl' }}>
+          <KowoHeading
+            textAlign={{ base: 'center', md: 'start' }}
+            size={{ base: '4xl', md: '5xl' }}
+          >
             Вітаємо у бібліотеці креативного простору KOWO
           </KowoHeading>
           <Flex gap={{ base: '12px', md: '20px' }} direction="column">

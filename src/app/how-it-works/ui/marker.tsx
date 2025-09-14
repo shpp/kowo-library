@@ -1,24 +1,23 @@
-import React from "react";
-import {Flex} from "@chakra-ui/react";
+import React from 'react';
+import { Flex } from '@chakra-ui/react';
 
-export const Marker = ({value}: {
-  value: string;
-}) => {
+export const Marker = ({ value }: { value: string }) => {
   return (
     <Flex
-        p='4px'
-        w='24px'
-        h='24px'
-        minW='24px'
-        minH='24px'
-        justify='center'
-        align='center'
-        bg='#F2F8E9'
-        color='#4B8020'
-        borderRadius='50%'
-        fontFamily='Podkova'
-        fontWeight='700'>
+      p="4px"
+      w="24px"
+      h="24px"
+      minW="24px"
+      minH="24px"
+      justify="center"
+      align="center"
+      bg="#F2F8E9"
+      color="#4B8020"
+      borderRadius="50%"
+      fontFamily="Podkova"
+      fontWeight="700"
+    >
       {value}
     </Flex>
-  )
-}
+  );
+};

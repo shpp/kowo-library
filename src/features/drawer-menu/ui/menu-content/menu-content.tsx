@@ -1,9 +1,19 @@
-import React from "react";
+import React from 'react';
 import Link from 'next/link';
-import { Box, Button, DrawerContext, Separator, VStack } from '@chakra-ui/react';
+import {
+  Box,
+  Button,
+  DrawerContext,
+  Separator,
+  VStack,
+} from '@chakra-ui/react';
 
 // import { Illustration } from '@/shared/ui/illustration';
-import { DrawerBody, DrawerCloseTrigger, DrawerHeader } from '@/shared/ui/drawer';
+import {
+  DrawerBody,
+  DrawerCloseTrigger,
+  DrawerHeader,
+} from '@/shared/ui/drawer';
 import { LogoLink } from '@/widgets/logo-link';
 import { Navigation } from '@/widgets/navigation';
 import { SearchBar } from '@/widgets/search-bar';
@@ -14,10 +24,14 @@ import CatalogIcon from '@/shared/assets/icons/catalog-icon';
 // import { ArrowIcon } from '../ArrowIcon';
 // import {AuthButton} from "@/widgets/header/ui/auth-button";
 
-export const MenuContent = ({ setStep }: { setStep: (step: number) => void }) => {
+export const MenuContent = ({
+  setStep,
+}: {
+  setStep: (step: number) => void;
+}) => {
   return (
     <DrawerContext>
-      {(store) => (
+      {store => (
         <>
           <DrawerHeader>
             <Box onClick={() => store.setOpen(false)}>
@@ -26,13 +40,24 @@ export const MenuContent = ({ setStep }: { setStep: (step: number) => void }) =>
           </DrawerHeader>
           <DrawerBody>
             <VStack width="100%">
-              <Button colorPalette="kowo" rounded="lg" color="#FFF" fontWeight="600" width="100%" onClick={() => setStep(1)}>
+              <Button
+                colorPalette="kowo"
+                rounded="lg"
+                color="#FFF"
+                fontWeight="600"
+                width="100%"
+                onClick={() => setStep(1)}
+              >
                 <CatalogIcon />
                 Каталог
               </Button>
               <SearchBar onDrawerCLose={() => store.setOpen(false)} />
 
-              <Navigation onClose={() => store.setOpen(false)} direction="column" style={{ width: '100%' }} />
+              <Navigation
+                onClose={() => store.setOpen(false)}
+                direction="column"
+                style={{ width: '100%' }}
+              />
               <VStack height="16px" justifyContent="center" width="100%">
                 <Separator width="100%" />
               </VStack>

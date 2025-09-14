@@ -1,1 +1,1 @@
-export { SocialNetworks } from './ui/social-networks'
+export { SocialNetworks } from './ui/social-networks';

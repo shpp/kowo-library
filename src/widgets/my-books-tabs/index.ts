@@ -1,1 +1,1 @@
-export { MyBooksTabs } from './ui/my-books-tabs'
+export { MyBooksTabs } from './ui/my-books-tabs';

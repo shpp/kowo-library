@@ -9,7 +9,8 @@ export const booksWhatsNewMockData = [
     language: 'ua',
     authors: ['Стівен Кінг'],
     year: 2016,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/a878aa50b22615c32c48c1d21df67693.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/a878aa50b22615c32c48c1d21df67693.jpeg',
     available: true,
   },
   {
@@ -24,7 +25,8 @@ export const booksWhatsNewMockData = [
     language: 'ua',
     authors: ['Лю Цисінь'],
     year: 2025,
-    cover: 'https://prod-files-secure.s3.us-west-2.amazonaws.com/603d6c78-dd21-40bd-a783-1d07e3704c50/250ffab6-4261-41ac-9b66-97ea44545a8d/Scan10010.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4662SMOIXH3%2F20250528%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250528T172141Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJGMEQCIAxwu8xWqKFLmYJzn9GZHFzUglzd7aZ48ekkSbY%2FmcxYAiA0dSySTBhyIsbLRIfacu5FJV3ZHeBPJxaABMpbVia6rir%2FAwh6EAAaDDYzNzQyMzE4MzgwNSIMblqk%2BU1Jpm9zCEZIKtwDZBctudOw8fdBJiJqY%2FDJ2WWeE3vJhHvtOu24Zn7OZFWtXKSsC7ERY5Fjl1qWv1NQTdIvNLCI1pZecusRNfbjbEMllPc4flF7Ie%2FHY%2Fkys7NTXIV%2FxfQ3zAYCQPrZyYXf5%2F2yRP0L78%2FKPfwvLNX13Z1uoVMN9FIwHxRGlwkGMNTp%2BHQHWe6OyonliysRBhwWXpY%2BJuW4UyV2qrJMTnuGfvokLsI%2BV53aPiKz2rSOvA3QvgBSvlUArBED%2BXGTlS2qFCtsPDTICQ0e3iMkCuEi8oP9usIaBxGIziuZDKzn%2B%2BrO%2FQZTBSZ0PVpTDB4Xrw1YKcN7XJ%2BIIsp7qNtNVI6lQSFkAHHhYIs3olHuVZ%2BZc%2FV6tsMIjcUuvLn2VCLmWF6mB7ajgX6uHk8hqQDyD9c1LNcqaiMR4FRSlqhys%2FUXcLd%2Bqwlp%2BAP9qTFeI1jkehLsIrgm6jyQOrCrkJOvAFG9ekE1uSkMWzjDge0SOnkgn9u254BK06%2B%2BlincniPh%2FXuObluaYPeIdw0kduf36KuBGPvcYHxTPb3bDQa8PhbEpSQnqvw8Lxf9EpkvD0l4eMnkMUE7zGIzImGBSTZCJYikIGvmMDhAF5npKkV1HVUGeMBomT8BSmqhc1rCyTEw7oDdwQY6pgFtUjmBf6k8snzcVmW%2BYp2Icqz8wBrzHQbk265U%2BqwJ3CouYHWdz3GIP3%2FOgArArMbXskD%2Fi%2FTN6%2FKVF%2BVwjHR1dG%2BAfugbWVDZltJQWd3DuriMS4m7ztCUubBLaZ0rV0wODZCESab8PnIM7r5TCbYA81iLqVXME81ZvMYKx3yQCjofu50BTsOtlUrvPIbLwRyQ%2FR1p5qgiIyyuykl3Kq9lSAgCkAHi&X-Amz-Signature=3cfd5c2940c7cef4aa77eb8d1756e7bb3a155149c3de1ec9abfb65a7dea97b5d&X-Amz-SignedHeaders=host&x-id=GetObject',
+    cover:
+      'https://prod-files-secure.s3.us-west-2.amazonaws.com/603d6c78-dd21-40bd-a783-1d07e3704c50/250ffab6-4261-41ac-9b66-97ea44545a8d/Scan10010.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=ASIAZI2LB4662SMOIXH3%2F20250528%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20250528T172141Z&X-Amz-Expires=3600&X-Amz-Security-Token=IQoJb3JpZ2luX2VjELH%2F%2F%2F%2F%2F%2F%2F%2F%2F%2FwEaCXVzLXdlc3QtMiJGMEQCIAxwu8xWqKFLmYJzn9GZHFzUglzd7aZ48ekkSbY%2FmcxYAiA0dSySTBhyIsbLRIfacu5FJV3ZHeBPJxaABMpbVia6rir%2FAwh6EAAaDDYzNzQyMzE4MzgwNSIMblqk%2BU1Jpm9zCEZIKtwDZBctudOw8fdBJiJqY%2FDJ2WWeE3vJhHvtOu24Zn7OZFWtXKSsC7ERY5Fjl1qWv1NQTdIvNLCI1pZecusRNfbjbEMllPc4flF7Ie%2FHY%2Fkys7NTXIV%2FxfQ3zAYCQPrZyYXf5%2F2yRP0L78%2FKPfwvLNX13Z1uoVMN9FIwHxRGlwkGMNTp%2BHQHWe6OyonliysRBhwWXpY%2BJuW4UyV2qrJMTnuGfvokLsI%2BV53aPiKz2rSOvA3QvgBSvlUArBED%2BXGTlS2qFCtsPDTICQ0e3iMkCuEi8oP9usIaBxGIziuZDKzn%2B%2BrO%2FQZTBSZ0PVpTDB4Xrw1YKcN7XJ%2BIIsp7qNtNVI6lQSFkAHHhYIs3olHuVZ%2BZc%2FV6tsMIjcUuvLn2VCLmWF6mB7ajgX6uHk8hqQDyD9c1LNcqaiMR4FRSlqhys%2FUXcLd%2Bqwlp%2BAP9qTFeI1jkehLsIrgm6jyQOrCrkJOvAFG9ekE1uSkMWzjDge0SOnkgn9u254BK06%2B%2BlincniPh%2FXuObluaYPeIdw0kduf36KuBGPvcYHxTPb3bDQa8PhbEpSQnqvw8Lxf9EpkvD0l4eMnkMUE7zGIzImGBSTZCJYikIGvmMDhAF5npKkV1HVUGeMBomT8BSmqhc1rCyTEw7oDdwQY6pgFtUjmBf6k8snzcVmW%2BYp2Icqz8wBrzHQbk265U%2BqwJ3CouYHWdz3GIP3%2FOgArArMbXskD%2Fi%2FTN6%2FKVF%2BVwjHR1dG%2BAfugbWVDZltJQWd3DuriMS4m7ztCUubBLaZ0rV0wODZCESab8PnIM7r5TCbYA81iLqVXME81ZvMYKx3yQCjofu50BTsOtlUrvPIbLwRyQ%2FR1p5qgiIyyuykl3Kq9lSAgCkAHi&X-Amz-Signature=3cfd5c2940c7cef4aa77eb8d1756e7bb3a155149c3de1ec9abfb65a7dea97b5d&X-Amz-SignedHeaders=host&x-id=GetObject',
     available: true,
   },
   {
@@ -37,7 +39,8 @@ export const booksWhatsNewMockData = [
     language: 'ua',
     authors: ['Чарльз Дікенс'],
     year: 2016,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/388635d8a0f95d64b9026e6b38d9df89.image',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/388635d8a0f95d64b9026e6b38d9df89.image',
     available: true,
   },
   {
@@ -50,7 +53,8 @@ export const booksWhatsNewMockData = [
     language: 'ua',
     authors: ['Віктор Франкл'],
     year: 2004,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/64bf9318d0dc85012825d11f5e24424f.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/64bf9318d0dc85012825d11f5e24424f.jpeg',
     available: true,
   },
   {
@@ -63,7 +67,8 @@ export const booksWhatsNewMockData = [
     language: 'ua',
     authors: ['KORO'],
     year: 2019,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/77d32f5b29fc4990e1636b10db844ddc.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/77d32f5b29fc4990e1636b10db844ddc.jpeg',
     available: true,
   },
   {
@@ -76,7 +81,8 @@ export const booksWhatsNewMockData = [
     language: 'ua',
     authors: ['Джекмен Я.'],
     year: 2010,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/583af5b4f50f86793c0434c2598cdae5.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/583af5b4f50f86793c0434c2598cdae5.jpeg',
     available: true,
-  }
+  },
 ];

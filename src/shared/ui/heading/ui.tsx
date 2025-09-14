@@ -1,20 +1,16 @@
-import {ReactNode} from "react";
-import { Heading as ChakraHeading, HeadingProps } from '@chakra-ui/react'
+import { ReactNode } from 'react';
+import { Heading as ChakraHeading, HeadingProps } from '@chakra-ui/react';
 
 interface Props {
   size: HeadingProps['size'];
-  textAlign?: HeadingProps['textAlign']
-  children: ReactNode
+  textAlign?: HeadingProps['textAlign'];
+  children: ReactNode;
 }
 
-export const KowoHeading = ({size, textAlign, children}: Props) => {
+export const KowoHeading = ({ size, textAlign, children }: Props) => {
   return (
-    <ChakraHeading
-      size={size}
-      color='#FC4141'
-      textAlign={textAlign}
-    >
+    <ChakraHeading size={size} color="#FC4141" textAlign={textAlign}>
       {children}
     </ChakraHeading>
-  )
-}
+  );
+};

@@ -1,1 +1,1 @@
-export { KeyConcepts } from './ui/key-concepts'
+export { KeyConcepts } from './ui/key-concepts';

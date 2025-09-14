@@ -1,1 +1,1 @@
-export { DrawerMenu } from './ui/drawer-menu'
+export { DrawerMenu } from './ui/drawer-menu';

@@ -44,7 +44,7 @@ export const UserInfoForm = () => {
     resolver: zodResolver(userInfoSchema),
   });
 
-  const onSubmit: SubmitHandler<Inputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<Inputs> = data => console.log(data);
 
   return (
     <Stack maxW={'604px'} gap={'24px'}>
@@ -56,18 +56,44 @@ export const UserInfoForm = () => {
           <Controller
             name="secondName"
             control={control}
-            render={({ field }) => <StyledInput placeholder="Введіть ваше прізвище" field={field} title="Прізвище" isRequired type="text" errorText={errors.secondName?.message} />}
+            render={({ field }) => (
+              <StyledInput
+                placeholder="Введіть ваше прізвище"
+                field={field}
+                title="Прізвище"
+                isRequired
+                type="text"
+                errorText={errors.secondName?.message}
+              />
+            )}
           />
           <Controller
             name="firstName"
             control={control}
-            render={({ field }) => <StyledInput placeholder="Введіть ваше ім'я" field={field} title="Імʼя" isRequired type="text" errorText={errors.firstName?.message} />}
+            render={({ field }) => (
+              <StyledInput
+                placeholder="Введіть ваше ім'я"
+                field={field}
+                title="Імʼя"
+                isRequired
+                type="text"
+                errorText={errors.firstName?.message}
+              />
+            )}
           />
           <Controller
             name="email"
             control={control}
             render={({ field }) => (
-              <StyledInput icon={<EmailIcon />} placeholder="Введіть вашу пошту" field={field} title="Пошта" isRequired type="email" errorText={errors.email?.message} />
+              <StyledInput
+                icon={<EmailIcon />}
+                placeholder="Введіть вашу пошту"
+                field={field}
+                title="Пошта"
+                isRequired
+                type="email"
+                errorText={errors.email?.message}
+              />
             )}
           />
           <Controller
@@ -79,7 +105,7 @@ export const UserInfoForm = () => {
                 placeholder="Введіть ваш номер телефону"
                 field={{
                   ...field,
-                  onChange: (e) => {
+                  onChange: e => {
                     const value = e.target.value;
                     if (/^[0-9]*$/.test(value)) {
                       field.onChange(value);
@@ -97,13 +123,29 @@ export const UserInfoForm = () => {
             name="telegram"
             control={control}
             render={({ field }) => (
-              <StyledInput icon={<TelegramIcon />} placeholder="Введіть ваш логін" field={field} title="Telegram" type="text" errorText={errors.telegram?.message} />
+              <StyledInput
+                icon={<TelegramIcon />}
+                placeholder="Введіть ваш логін"
+                field={field}
+                title="Telegram"
+                type="text"
+                errorText={errors.telegram?.message}
+              />
             )}
           />
           <Controller
             name="viber"
             control={control}
-            render={({ field }) => <StyledInput icon={<ViberIcon />} placeholder="Введіть ваш логін" field={field} title="Viber" type="text" errorText={errors.viber?.message} />}
+            render={({ field }) => (
+              <StyledInput
+                icon={<ViberIcon />}
+                placeholder="Введіть ваш логін"
+                field={field}
+                title="Viber"
+                type="text"
+                errorText={errors.viber?.message}
+              />
+            )}
           />
         </Grid>
         <Button visual={'kowo_green'} type="submit">

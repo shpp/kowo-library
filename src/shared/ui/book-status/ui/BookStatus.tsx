@@ -9,13 +9,21 @@ export interface IBookStatusProps {
   whenAvailable: string;
 }
 
-export const BookStatus: FC<IBookStatusProps> = ({ isAvailable, whenAvailable }) => {
+export const BookStatus: FC<IBookStatusProps> = ({
+  isAvailable,
+  whenAvailable,
+}) => {
   return (
     <Flex gap={'4px'} alignItems={'center'}>
       {!isAvailable && (
         <React.Fragment>
           <GrayBookIcon />
-          <Text color={'rgba(140, 143, 154, 1)'} fontWeight={400} lineHeight={'18px'} fontSize={'12px'}>
+          <Text
+            color={'rgba(140, 143, 154, 1)'}
+            fontWeight={400}
+            lineHeight={'18px'}
+            fontSize={'12px'}
+          >
             Зараз на руках
           </Text>
         </React.Fragment>
@@ -23,7 +31,12 @@ export const BookStatus: FC<IBookStatusProps> = ({ isAvailable, whenAvailable })
       {isAvailable && whenAvailable === 'now' && (
         <React.Fragment>
           <CheckIcon />
-          <Text color={'rgba(31, 152, 84, 1)'} fontWeight={400} lineHeight={'18px'} fontSize={'12px'}>
+          <Text
+            color={'rgba(31, 152, 84, 1)'}
+            fontWeight={400}
+            lineHeight={'18px'}
+            fontSize={'12px'}
+          >
             В наявності
           </Text>
         </React.Fragment>
@@ -31,7 +44,13 @@ export const BookStatus: FC<IBookStatusProps> = ({ isAvailable, whenAvailable })
       {isAvailable && whenAvailable !== 'now' && (
         <React.Fragment>
           <RefreshIcon />
-          <Text lineClamp={1} color={'rgba(214, 114, 0, 1)'} fontWeight={400} lineHeight={'18px'} fontSize={'12px'}>
+          <Text
+            lineClamp={1}
+            color={'rgba(214, 114, 0, 1)'}
+            fontWeight={400}
+            lineHeight={'18px'}
+            fontSize={'12px'}
+          >
             Доступна з {whenAvailable}
           </Text>
         </React.Fragment>

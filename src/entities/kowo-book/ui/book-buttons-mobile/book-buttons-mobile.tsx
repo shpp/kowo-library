@@ -10,7 +10,10 @@ interface IBookButtonsProps {
   bookData: BookApiResponse;
 }
 
-export const BookButtonsMobile: FC<IBookButtonsProps> = ({ available, bookData }) => {
+export const BookButtonsMobile: FC<IBookButtonsProps> = ({
+  available,
+  bookData,
+}) => {
   if (available.isAvailable) {
     return (
       <React.Fragment>
@@ -30,7 +33,7 @@ export const BookButtonsMobile: FC<IBookButtonsProps> = ({ available, bookData }
                 Встати в чергу
               </Button>
             }
-            content={<QueueUp book={bookData} type='queue' />}
+            content={<QueueUp book={bookData} type="queue" />}
           />
         )}
       </React.Fragment>

@@ -1,1 +1,1 @@
-export { SliderBlock } from './ui/slider-block'
+export { SliderBlock } from './ui/slider-block';

@@ -9,7 +9,8 @@ export const booksMostInterestingMockData = [
     language: 'ua',
     authors: ['Гаррі Беквіт'],
     year: 2018,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/5d84b6ebda4958b21b7e1bacc02f25d0.png',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/5d84b6ebda4958b21b7e1bacc02f25d0.png',
     available: true,
   },
   {
@@ -22,7 +23,8 @@ export const booksMostInterestingMockData = [
     language: 'ua',
     authors: ['Дж. К. Роллінг', 'Джон Тіффані та Джек Торн'],
     year: 2020,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/e11ac3f8dcb6bda32beb3ab9cb313f16.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/e11ac3f8dcb6bda32beb3ab9cb313f16.jpeg',
     available: true,
   },
   {
@@ -35,7 +37,8 @@ export const booksMostInterestingMockData = [
     language: 'ua',
     authors: ['Збірка'],
     year: 2012,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/2f18f2a158a132102ed6a4effecdcc6f.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/2f18f2a158a132102ed6a4effecdcc6f.jpeg',
     available: true,
   },
   {
@@ -48,7 +51,8 @@ export const booksMostInterestingMockData = [
     language: 'ua',
     authors: ['Деніел Ґоулман'],
     year: 2020,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/612c29ab567f91225f6dba97282ba1cb.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/612c29ab567f91225f6dba97282ba1cb.jpeg',
     available: true,
   },
   {
@@ -61,7 +65,8 @@ export const booksMostInterestingMockData = [
     language: 'ua',
     authors: ['Максим Дорофєєв'],
     year: 2017,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/c472d4eff9e75f9bc86392cd51d1712c.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/c472d4eff9e75f9bc86392cd51d1712c.jpeg',
     available: true,
   },
   {
@@ -74,7 +79,8 @@ export const booksMostInterestingMockData = [
     language: 'ua',
     authors: ['Стівен Р. Кові'],
     year: 2020,
-    cover: 'https://uploaded.shpp.me/shpp/uploads/all/support-system/df110845cea5f5b11030d19288744c88.jpeg',
+    cover:
+      'https://uploaded.shpp.me/shpp/uploads/all/support-system/df110845cea5f5b11030d19288744c88.jpeg',
     available: true,
   },
 ];

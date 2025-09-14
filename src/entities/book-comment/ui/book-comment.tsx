@@ -1,4 +1,12 @@
-import { Avatar, Card, Flex, HStack, RatingGroup, Stack, Text } from '@chakra-ui/react';
+import {
+  Avatar,
+  Card,
+  Flex,
+  HStack,
+  RatingGroup,
+  Stack,
+  Text,
+} from '@chakra-ui/react';
 import React from 'react';
 
 export const BookComment = () => {
@@ -12,10 +20,22 @@ export const BookComment = () => {
               <Avatar.Fallback name="Nate Foss" />
             </Avatar.Root>
             <Stack gap="0">
-              <Text fontFamily={'Inter'} fontSize={'14px'} fontWeight={600} lineHeight={'150%'} color={'black'}>
+              <Text
+                fontFamily={'Inter'}
+                fontSize={'14px'}
+                fontWeight={600}
+                lineHeight={'150%'}
+                color={'black'}
+              >
                 Alla Komarova
               </Text>
-              <Text fontFamily={'Inter'} fontSize={'14px'} fontWeight={400} lineHeight={'20px'} color={'black'}>
+              <Text
+                fontFamily={'Inter'}
+                fontSize={'14px'}
+                fontWeight={400}
+                lineHeight={'20px'}
+                color={'black'}
+              >
                 20.10.2023
               </Text>
             </Stack>
@@ -33,9 +53,18 @@ export const BookComment = () => {
           </RatingGroup.Root>
         </Flex>
         <Card.Description>
-          <Text fontFamily={'Inter'} fontSize={'14px'} fontWeight={400} color={'rgba(3, 7, 18, 1)'} lineHeight={'20px'}>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi iusto obcaecati illo magnam facilis doloribus voluptatem molestiae earum expedita, harum tempore,
-            possimus eveniet necessitatibus, ducimus praesentium reiciendis sequi perspiciatis laboriosam dolorem deserunt excepturi commodi dolores! Quae in rerum quia fugiat!
+          <Text
+            fontFamily={'Inter'}
+            fontSize={'14px'}
+            fontWeight={400}
+            color={'rgba(3, 7, 18, 1)'}
+            lineHeight={'20px'}
+          >
+            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Eligendi
+            iusto obcaecati illo magnam facilis doloribus voluptatem molestiae
+            earum expedita, harum tempore, possimus eveniet necessitatibus,
+            ducimus praesentium reiciendis sequi perspiciatis laboriosam dolorem
+            deserunt excepturi commodi dolores! Quae in rerum quia fugiat!
           </Text>
         </Card.Description>
       </Card.Body>

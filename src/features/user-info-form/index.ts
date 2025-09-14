@@ -1,2 +1,1 @@
-export { UserInfoForm }  from './ui/user-info-form';
-
+export { UserInfoForm } from './ui/user-info-form';

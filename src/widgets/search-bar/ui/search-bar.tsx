@@ -5,7 +5,11 @@ import { Group, Input, InputElement } from '@chakra-ui/react';
 import SearchIcon from '@/shared/assets/icons/search-icon';
 import { useRouter } from 'next/navigation';
 
-export const SearchBar = ({ onDrawerCLose }: { onDrawerCLose?: () => void }) => {
+export const SearchBar = ({
+  onDrawerCLose,
+}: {
+  onDrawerCLose?: () => void;
+}) => {
   const [query, setQuery] = useState('');
   const router = useRouter();
 
@@ -40,7 +44,7 @@ export const SearchBar = ({ onDrawerCLose }: { onDrawerCLose?: () => void }) => 
         value={query}
         ps={`calc(var(--input-height) + 8px)`}
         placeholder="Яку книгу або автора ви шукаєте?"
-        onChange={(e) => setQuery(e.target.value)}
+        onChange={e => setQuery(e.target.value)}
       />
     </Group>
   );

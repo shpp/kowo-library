@@ -1,1 +1,1 @@
-export { GoogleLogIn } from './ui/google-log-in'
+export { GoogleLogIn } from './ui/google-log-in';

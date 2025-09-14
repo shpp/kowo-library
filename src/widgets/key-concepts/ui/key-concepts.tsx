@@ -10,7 +10,11 @@ import Link from 'next/link';
 
 export const KeyConcepts = () => {
   return (
-    <Flex w="100%" h={{ xl: '600px' }} direction={{ base: 'column', xl: 'row' }}>
+    <Flex
+      w="100%"
+      h={{ xl: '600px' }}
+      direction={{ base: 'column', xl: 'row' }}
+    >
       <Flex
         justify={{ base: 'center', xl: 'end' }}
         align="center"
@@ -22,14 +26,20 @@ export const KeyConcepts = () => {
       >
         <Box maxW="500px">
           <Stack gap="50px" align="center">
-            <Illustration src={books.src} alt={'Books pile'} width={books.width} height={books.height} />
+            <Illustration
+              src={books.src}
+              alt={'Books pile'}
+              width={books.width}
+              height={books.height}
+            />
             <Stack gap="24px" align="center">
               <Stack gap="8px">
                 <Heading color="white" fontSize="32px" textAlign="center">
                   Подаруйте книзі друге життя
                 </Heading>
                 <Text color="white" fontSize="16px" textAlign="center">
-                  Ваша прочитана книга може знайти нового читача. Донатьте книги та діліться знаннями!
+                  Ваша прочитана книга може знайти нового читача. Донатьте книги
+                  та діліться знаннями!
                 </Text>
               </Stack>
               {/* <Button visual={'kowo_white'} border={'none'}>Задонатити книгу</Button> */}
@@ -55,7 +65,8 @@ export const KeyConcepts = () => {
                   Бібліотека існує завдяки вам!
                 </Heading>
                 <Text color="white" fontSize="16px" textAlign="center">
-                  Ваша підтримка допомагає нам розвиватися та дарувати книги всім охочим. Долучайтеся!
+                  Ваша підтримка допомагає нам розвиватися та дарувати книги
+                  всім охочим. Долучайтеся!
                 </Text>
               </Stack>
               <Link href={'https://donate.kowo.me/'}>
@@ -64,7 +75,12 @@ export const KeyConcepts = () => {
                 </Button>
               </Link>
             </Stack>
-            <Illustration src={support.src} alt={'People support'} width={support.width} height={support.height} />
+            <Illustration
+              src={support.src}
+              alt={'People support'}
+              width={support.width}
+              height={support.height}
+            />
           </Stack>
         </Box>
       </Flex>

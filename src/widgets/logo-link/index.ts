@@ -1,1 +1,1 @@
-export { LogoLink } from './ui/logo-link'
+export { LogoLink } from './ui/logo-link';

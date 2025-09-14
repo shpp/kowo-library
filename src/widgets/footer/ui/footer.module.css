@@ -1,5 +1,5 @@
 .footer {
-    background-color: var(--background-footer, #F7F8F8);
-    min-height: 328px;
-    width: 100%;
+  background-color: var(--background-footer, #f7f8f8);
+  min-height: 328px;
+  width: 100%;
 }

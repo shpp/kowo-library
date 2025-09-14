@@ -3,7 +3,9 @@
   border-radius: 8px;
   gap: none;
   border: 1px solid rgba(212, 213, 217, 1);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .kowo_book:hover {
@@ -24,7 +26,9 @@
   top: 5px;
   z-index: 10;
 
-  transition: background-color 0.2s, box-shadow 0.2s;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .kowo_book:hover .likeBtn {
@@ -36,7 +40,9 @@
 }
 
 .likeBtn svg path {
-  transition: fill 0.2s, stroke 0.2s;
+  transition:
+    fill 0.2s,
+    stroke 0.2s;
 }
 
 .likeBtn.default svg path {
@@ -73,11 +79,15 @@
   top: 5px;
   z-index: 10;
 
-  transition: background-color 0.2s, box-shadow 0.2s;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .mobileLikeBtn svg path {
-  transition: fill 0.2s, stroke 0.2s;
+  transition:
+    fill 0.2s,
+    stroke 0.2s;
 }
 
 .mobileLikeBtn svg path {
@@ -119,7 +129,11 @@
 }
 
 .kowo_book:hover .book_buttons {
-  transition: border-color 0.2s, box-shadow 0.2s, max-height 0.2s, opacity 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s,
+    max-height 0.2s,
+    opacity 0.2s;
   max-height: none;
   opacity: 1;
   border-color: rgba(0, 0, 0, 0.1);

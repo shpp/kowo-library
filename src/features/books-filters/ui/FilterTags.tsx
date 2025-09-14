@@ -14,7 +14,9 @@ export const FilterTags = () => {
     params.delete(tagToRemove[0], tagToRemove[1]);
     params.delete('page');
     const queryString = params.toString();
-    router.push(queryString ? `?page=1&${queryString}` : '?page=1', { scroll: false });
+    router.push(queryString ? `?page=1&${queryString}` : '?page=1', {
+      scroll: false,
+    });
   };
 
   const handleClearTags = () => {
@@ -28,7 +30,11 @@ export const FilterTags = () => {
           Фільтри
         </Text>
         {tags.length > 1 && (
-          <Button variant="plain" css={{ color: '#4B8020' }} onClick={handleClearTags}>
+          <Button
+            variant="plain"
+            css={{ color: '#4B8020' }}
+            onClick={handleClearTags}
+          >
             Очистити
           </Button>
         )}
@@ -40,7 +46,10 @@ export const FilterTags = () => {
             <Tag.Root key={index} variant="outline" padding="6px">
               <Tag.Label>{tag[1]}</Tag.Label>
               <Tag.EndElement>
-                <Tag.CloseTrigger onClick={() => handleRemoveTag(tag)} aria-label={`Видалити тег ${tag}`} />
+                <Tag.CloseTrigger
+                  onClick={() => handleRemoveTag(tag)}
+                  aria-label={`Видалити тег ${tag}`}
+                />
               </Tag.EndElement>
             </Tag.Root>
           ))}

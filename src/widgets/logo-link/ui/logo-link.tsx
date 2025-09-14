@@ -1,12 +1,15 @@
-import React, {SVGProps} from "react";
-import Link from "next/link";
+import React, { SVGProps } from 'react';
+import Link from 'next/link';
 
-import KowoIcon from "@/shared/assets/icons/kowo-icon";
+import KowoIcon from '@/shared/assets/icons/kowo-icon';
 
-export const LogoLink = ({width = 267, height = 34}: SVGProps<SVGSVGElement>) => {
+export const LogoLink = ({
+  width = 267,
+  height = 34,
+}: SVGProps<SVGSVGElement>) => {
   return (
-    <Link href='/'>
+    <Link href="/">
       <KowoIcon width={width} height={height} />
     </Link>
-  )
-}
+  );
+};

@@ -1,1 +1,1 @@
-export { BookComments } from './ui/book-comments'
+export { BookComments } from './ui/book-comments';
