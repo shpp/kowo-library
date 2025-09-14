@@ -23,16 +23,10 @@ export const GET = async () => {
         headers: {
           Authorization: `Bearer ${env.KOWO_API_AUTH_TOKEN}`,
         },
-        next: {
-          revalidate: 60,
-        },
       }).then(response => response.json()),
       fetch(`${env.KOWO_API_BASE_URL}/bookings/frontend/`, {
         headers: {
           Authorization: `Bearer ${env.KOWO_API_AUTH_TOKEN}`,
-        },
-        next: {
-          revalidate: 60,
         },
       }).then(response => response.json()),
     ]);
