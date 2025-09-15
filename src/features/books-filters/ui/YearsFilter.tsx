@@ -1,5 +1,5 @@
 'use client';
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import {
   Box,
   Collapsible,
@@ -79,28 +79,32 @@ export const YearsFilter = ({
     : maxYear;
   const [values, setValues] = useState([initialMinYear, initialMaxYear]);
 
-  const updateQueryParams = (min: number, max: number) => {
-    const params = new URLSearchParams(searchParams.toString());
-    params.delete('years');
-    params.delete('search');
-    params.delete('page');
+  const updateQueryParams = useCallback(
+    (min: number, max: number) => {
+      const params = new URLSearchParams(searchParams.toString());
+      params.delete('years');
+      params.delete('search');
+      params.delete('page');
 
-    if (min !== minYear || max !== maxYear) {
-      params.set('years', `${min}-${max}`);
-    }
+      if (min !== minYear || max !== maxYear) {
+        params.set('years', `${min}-${max}`);
+      }
 
-    router.push(`?${params.toString()}`, { scroll: false });
-  };
+      router.push(`?${params.toString()}`, { scroll: false });
+    },
+    [searchParams, router, minYear, maxYear]
+  );
 
-  const debouncedUpdateQueryParamsRef = useRef(
+  const debouncedUpdateQueryParams = useCallback(
     debounce((min: number, max: number) => {
       updateQueryParams(min, max);
-    }, 300)
+    }, 300),
+    [updateQueryParams]
   );
 
   const handleValueChange = (newValues: number[]) => {
     setValues(newValues);
-    debouncedUpdateQueryParamsRef.current(newValues[0], newValues[1]);
+    debouncedUpdateQueryParams(newValues[0], newValues[1]);
   };
 
   const handleInputChange = (index: number, value: string) => {
@@ -137,9 +141,9 @@ export const YearsFilter = ({
 
   useEffect(() => {
     return () => {
-      debouncedUpdateQueryParamsRef.current.cancel();
+      debouncedUpdateQueryParams.cancel();
     };
-  }, []);
+  }, [debouncedUpdateQueryParams]);
 
   return (
     <Collapsible.Root
