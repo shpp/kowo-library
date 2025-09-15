@@ -61,6 +61,7 @@ export const KowoBook: FC<IKowoBookProps> = ({
     return (
       <Stack
         className={styles.kowo_book}
+        gap={0}
         minW={width}
         maxW={width}
         _hover={{
