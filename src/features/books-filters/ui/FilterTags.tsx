@@ -1,11 +1,12 @@
 'use client';
 import React from 'react';
 import { Box, Button, HStack, Tag, Text } from '@chakra-ui/react';
-import { useRouter, useSearchParams } from 'next/navigation';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 
 export const FilterTags = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
 
   const tags = Array.from(
     searchParams.entries().filter(([key]) => !['sort', 'order'].includes(key))
@@ -16,7 +17,7 @@ export const FilterTags = () => {
     params.delete(tagToRemove[0], tagToRemove[1]);
     params.delete('page');
     const queryString = params.toString();
-    router.push(queryString ? `?${queryString}` : '', {
+    router.push(pathname + (queryString ? `?${queryString}` : ''), {
       scroll: false,
     });
   };
