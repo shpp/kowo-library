@@ -1,5 +1,5 @@
 import { IBookStatusProps } from '@/shared/ui/book-status';
-import { Button, Box } from '@chakra-ui/react';
+import { Button } from '@chakra-ui/react';
 import React, { FC } from 'react';
 import { BookApiResponse } from '../kowo-book';
 import { ModalWindow } from '@/shared/ui/modal-window';
@@ -14,29 +14,14 @@ export const BookButtonsMobile: FC<IBookButtonsProps> = ({
   available,
   bookData,
 }) => {
-  if (available.isAvailable) {
-    return (
-      <React.Fragment>
-        {available.whenAvailable === 'now' ? (
-          <ModalWindow
-            trigger={
-              <Button visual={'kowo_red'} size={'sm'} width={'100%'}>
-                Забронювати
-              </Button>
-            }
-            content={<QueueUp book={bookData} type="book" />}
-          />
-        ) : (
-          <ModalWindow
-            trigger={
-              <Button visual={'kowo_white'} size={'sm'} width={'100%'}>
-                Встати в чергу
-              </Button>
-            }
-            content={<QueueUp book={bookData} type="queue" />}
-          />
-        )}
-      </React.Fragment>
-    );
-  } else return <Box width={'100%'} height={'33px'} />;
+  return (
+    <ModalWindow
+      trigger={
+        <Button visual={available.isAvailable ? 'kowo_red' : 'kowo_white'} size={'sm'} width={'100%'}>
+          {available.isAvailable ? 'Забронювати' : 'Стати в чергу'}
+        </Button>
+      }
+      content={<QueueUp book={bookData} type={available.isAvailable ? 'book' : 'queue'} />}
+    />
+  );
 };

@@ -1,6 +1,7 @@
 .kowo_book {
   position: relative;
   border-radius: 8px;
+  cursor: pointer;
   gap: none;
   border: 1px solid rgba(212, 213, 217, 1);
   transition:

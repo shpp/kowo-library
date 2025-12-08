@@ -157,11 +157,11 @@ export default async function Book({
             <Flex gap={'16px'} mb={'48px'}>
               <ModalWindow
                 trigger={
-                  <Button p={'8px 64px'} visual={'kowo_red'}>
-                    Забронювати
+                  <Button p={'8px 64px'} visual={currentBookData.available ? 'kowo_red' : 'kowo_white'}>
+                    {currentBookData.available ? 'Забронювати' : 'Стати в чергу'}
                   </Button>
                 }
-                content={<QueueUp book={currentBookData} />}
+                content={<QueueUp book={currentBookData} type={currentBookData.available ? 'book' : 'queue'} />}
               />
               {/* <Button border={'1px solid rgba(212, 213, 217, 1)'} borderRadius={'8px'} bgColor={'white'}>
                 <HeartIcon />
