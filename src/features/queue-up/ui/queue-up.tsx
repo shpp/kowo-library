@@ -86,6 +86,7 @@ export const QueueUp = ({
 }) => {
   const [booked, setBooked] = React.useState(false);
   const [error, setError] = React.useState<string | null>(null);
+  const [isLoading, setIsLoading] = React.useState(false);
 
   const {
     control,
@@ -108,6 +109,7 @@ export const QueueUp = ({
 
   const onSubmit: SubmitHandler<Inputs> = async (data: Inputs) => {
     setError(null);
+    setIsLoading(true);
     try {
       const res = await makeBooking({
         bookId: book.id,
@@ -132,6 +134,8 @@ export const QueueUp = ({
     } catch {
       setBooked(false);
       setError('Щось пішло не так, спробуйте ще раз');
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -311,9 +315,9 @@ export const QueueUp = ({
                   visual={'kowo_red'}
                   w={{ base: '100%', sm: 'fit-content' }}
                   type="submit"
-                  disabled={!isFormValid}
+                  disabled={!isFormValid || isLoading}
                 >
-                  {type === 'book' ? 'Забронювати' : 'Стати в чергу'}
+                  {isLoading ? 'Зберігаємо...' : (type === 'book' ? 'Забронювати' : 'Стати в чергу')}
                 </Button>
                 <Dialog.Context>
                   {store => (
