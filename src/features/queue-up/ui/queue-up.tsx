@@ -3,7 +3,7 @@ import { Button, Center, Dialog, Flex, Heading, Text } from '@chakra-ui/react';
 import { Checkbox } from '@/shared/ui/checkbox';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
+import React, { useMemo } from 'react';
 
 import kowoBg from '@/shared/assets/backgrounds/kowo-bg-green.png';
 import { z } from 'zod';
@@ -12,11 +12,30 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { StyledInput } from '@/shared/ui/styled-input';
 import { BookApiResponse } from '@/entities/kowo-book/ui/kowo-book';
 
+const placeholders = [
+  { firstName: 'Гекльберрі', lastName: 'Фінн', email: 'huck@mississippi.us' },
+  { firstName: 'Фродо', lastName: 'Беґґінс', email: 'frodo@shiremail.com' },
+  { firstName: 'Герміона', lastName: 'Ґрейнджер', email: 'hermione@hogwarts.edu' },
+  { firstName: 'Шерлок', lastName: 'Голмс', email: 'sherlock@bakerstreet.uk' },
+  { firstName: 'Катніс', lastName: 'Евердін', email: 'katniss@district12.gov' },
+  { firstName: 'Доріан', lastName: 'Ґрей', email: 'dorian@portrait.net' },
+  { firstName: 'Джей', lastName: 'Ґейтсбі', email: 'jay@westegg.io' },
+  { firstName: 'Джен', lastName: 'Ейр', email: 'jane@thornfield.uk' },
+  { firstName: 'Віктор', lastName: 'Франкенштейн', email: 'victor@ingolstadt.de' },
+  { firstName: 'Еркюль', lastName: 'Пуаро', email: 'poirot@belgium.detect' },
+  { firstName: 'Артур', lastName: 'Дент', email: 'arthur@galaxy42.uk' },
+  { firstName: 'Пол', lastName: 'Атрейдес', email: 'paul@arrakis.dune' }
+]
+
 const userInfoSchema = z.object({
-  name: z
+  firstName: z
     .string()
     .transform(val => val.trim())
     .refine(val => val.length > 0, "Ім'я обов'язкове"),
+  lastName: z
+    .string()
+    .transform(val => val.trim())
+    .refine(val => val.length > 0, "Прізвище обов'язкове"),
   email: z.string().email('Невірний формат пошти').min(1, "Пошта обов'язкова"),
   phone: z
     .string()
@@ -37,7 +56,8 @@ const userInfoSchema = z.object({
 type Inputs = z.infer<typeof userInfoSchema>;
 
 const defaultValues: Inputs = {
-  name: '',
+  firstName: '',
+  lastName: '',
   email: '',
   phone: '',
   policy: false,
@@ -45,7 +65,11 @@ const defaultValues: Inputs = {
 
 async function makeBooking(bookingData: {
   bookId: number;
-  person: Omit<Inputs, 'policy'>;
+  person: {
+    name: string;
+    email: string;
+    phone: string;
+  };
 }) {
   return fetch(`${process.env.NEXT_PUBLIC_APP_URL}/api/books`, {
     method: 'POST',
@@ -76,7 +100,8 @@ export const QueueUp = ({
 
   const watchedValues = watch();
   const isFormValid =
-    watchedValues.name?.trim() &&
+    watchedValues.firstName?.trim() &&
+    watchedValues.lastName?.trim() &&
     watchedValues.email &&
     watchedValues.phone &&
     watchedValues.policy;
@@ -88,7 +113,7 @@ export const QueueUp = ({
         bookId: book.id,
         person: {
           email: data.email,
-          name: data.name.trim(),
+          name: `${data.firstName.trim()} ${data.lastName.trim()}`.trim(),
           phone: data.phone,
         },
       });
@@ -109,6 +134,11 @@ export const QueueUp = ({
       setError('Щось пішло не так, спробуйте ще раз');
     }
   };
+
+  const todayPlaceholder = useMemo(() => {
+    const todayIndex = new Date().getDate();
+    return placeholders[todayIndex % placeholders.length]
+  }, []);
 
   return (
     <Flex
@@ -186,16 +216,30 @@ export const QueueUp = ({
                 </Text>
               )}
               <Controller
-                name="name"
+                name="firstName"
                 control={control}
                 render={({ field }) => (
                   <StyledInput
-                    placeholder="Введіть ваше ім'я"
+                    placeholder={todayPlaceholder.firstName}
                     field={field}
                     title="Ім'я"
                     isRequired
                     type="text"
-                    errorText={errors.name?.message}
+                    errorText={errors.firstName?.message}
+                  />
+                )}
+              />
+              <Controller
+                name="lastName"
+                control={control}
+                render={({ field }) => (
+                  <StyledInput
+                    placeholder={todayPlaceholder.lastName}
+                    field={field}
+                    title="Прізвище"
+                    isRequired
+                    type="text"
+                    errorText={errors.lastName?.message}
                   />
                 )}
               />
@@ -204,7 +248,7 @@ export const QueueUp = ({
                 control={control}
                 render={({ field }) => (
                   <StyledInput
-                    placeholder="Введіть вашу пошту"
+                    placeholder={todayPlaceholder.email}
                     field={field}
                     title="Пошта"
                     isRequired
@@ -218,7 +262,7 @@ export const QueueUp = ({
                 control={control}
                 render={({ field }) => (
                   <StyledInput
-                    placeholder="Введіть ваш номер"
+                    placeholder="0950007075"
                     field={field}
                     title="Номер телефону"
                     isRequired
